@@ -1,4 +1,4 @@
-import { Box,  Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -32,6 +32,7 @@ function Links() {
       <CustomLink text={"Home"} link={"/"} />
       <CustomLink text={"Shop"} link={"/"} />
       <CustomLink text={"About us"} link={"/"} />
+      <CustomLink text={"Contact"} link={"/"} />
     </Box>
   );
 }
