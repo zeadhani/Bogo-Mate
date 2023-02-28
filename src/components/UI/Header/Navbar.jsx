@@ -12,7 +12,7 @@ function Navbar() {
         justifyContent: "space-between",
         px: "32px",
         py: "13px",
-        boxShadow: "0px 1px 2px #F5F5F5",
+        boxShadow: "0px 1px 2px #221",
       }}
     >
       <Logo />

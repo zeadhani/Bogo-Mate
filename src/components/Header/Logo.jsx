@@ -1,9 +1,13 @@
-import React from 'react'
+import { Box, Typography } from "@mui/material";
+import React from "react";
 
 function Logo() {
   return (
-    <>Logo</>
-  )
+    <Box>
+      <Typography variant="h2">BOGO</Typography>
+      <Typography textAlign={"center"} variant="h3">MATE</Typography>
+    </Box>
+  );
 }
 
-export default Logo
+export default Logo;
