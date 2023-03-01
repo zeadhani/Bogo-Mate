@@ -6,12 +6,13 @@ import Links from "./Links";
 import { Adb } from "@mui/icons-material";
 import ProfileIcon from "./ProfileIcon";
 import { colors } from "../../../Theme";
+import SearchBar from "../../Forms/searchBar";
 function LargeNavbar() {
   return (
-    <AppBar position="static" sx={{ bgcolor: colors.grey[900] }}>
+    <AppBar position="static" sx={{ bgcolor: colors.grey[900] ,py:1}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Adb sx={{ display: "flex", mr: 1 }} />
+          <Adb sx={{ display: "flex", mr: 2}} />
           <Typography
             variant="h6"
             noWrap
@@ -26,8 +27,8 @@ function LargeNavbar() {
           >
             BOGO
           </Typography>
-
           <Links />
+          <SearchBar />
           <ProfileIcon />
         </Toolbar>
       </Container>

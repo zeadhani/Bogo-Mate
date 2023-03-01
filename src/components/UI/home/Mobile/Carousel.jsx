@@ -7,7 +7,7 @@ function Carousel() {
       axis: "x",
       direction: "ltr",
       skipSnaps: true,
-      loop: true,
+
     },
     [
       Autoplay({
