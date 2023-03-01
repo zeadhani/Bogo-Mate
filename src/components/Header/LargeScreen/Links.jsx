@@ -17,8 +17,11 @@ const CustomLink = ({ text, link }) => {
         "&:hover": {
           transform: "scale(1.1)",
         },
+        my: 2,
+        color: "white",
+        display: "block",
       }}
-      variant="h4"
+      variant="h5"
       onClick={handlenavigate(link)}
     >
       {text}
@@ -28,7 +31,7 @@ const CustomLink = ({ text, link }) => {
 
 function Links() {
   return (
-    <Box sx={{ display: "flex", gap: 6, alignSelf: "center" }}>
+    <Box sx={{ flexGrow: 1, display: "flex", gap: 2 }}>
       <CustomLink text={"Home"} link={"/"} />
       <CustomLink text={"Shop"} link={"/"} />
       <CustomLink text={"About us"} link={"/"} />

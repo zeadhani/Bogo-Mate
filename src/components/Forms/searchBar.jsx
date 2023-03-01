@@ -19,7 +19,7 @@ function SearchBar() {
         <MenuOutlined />
       </IconButton>
       <InputBase
-        placeholder="Search..."
+        placeholder="Search for products..."
         sx={{ flexGrow: 1, marginLeft: "10px" }}
       />
       <IconButton sx={{ padding: 0 }}>

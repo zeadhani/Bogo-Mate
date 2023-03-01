@@ -6,21 +6,31 @@ import {
   Shop2,
 } from "@mui/icons-material";
 import { Box, IconButton, Typography } from "@mui/material";
+import { motion } from "framer-motion";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const MenuIcon = ({ text, children }) => {
+  const navigate = useNavigate();
+  const handleNavigate = (text) => {
+    return () => {
+      navigate(`/${text === "Home" ? "" : text}`);
+    };
+  };
   return (
     <Box
       sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <IconButton sx={{ color: "#222" }}>{children}</IconButton>
+      <IconButton sx={{ color: "#222" }} onClick={handleNavigate(text)}>
+        {children}
+      </IconButton>
       <Typography variant="caption">{text}</Typography>
     </Box>
   );
 };
 function MobileMenu() {
   return (
-    <>
+    <Box zIndex={100}>
       <Typography
         variant="h5"
         fontWeight={600}
@@ -40,29 +50,28 @@ function MobileMenu() {
           display: "flex",
           justifyContent: "space-around",
           borderRadius: "8px",
-          position: "fixed",
-          top: "110px",
-          left: "8px",
-          right: "8px",
         }}
+        component={motion.div}
+        initial={{ y: "50%", opacity: 0 }}
+        whileInView={{ y: "0%", opacity: 1 }}
       >
         <MenuIcon text={"Home"}>
-          <House sx={{ fontSize: "30px" }} />
+          <House sx={{ fontSize: "25px" }} />
         </MenuIcon>
         <MenuIcon text={"About us"}>
-          <Diversity3 sx={{ fontSize: "30px" }} />
+          <Diversity3 sx={{ fontSize: "25px" }} />
         </MenuIcon>
         <MenuIcon text={"Shop"}>
-          <Shop2 sx={{ fontSize: "30px" }} />
+          <Shop2 sx={{ fontSize: "25px" }} />
         </MenuIcon>
         <MenuIcon text={"Contact"}>
-          <ChatBubble sx={{ fontSize: "30px" }} />
+          <ChatBubble sx={{ fontSize: "25px" }} />
         </MenuIcon>
         <MenuIcon text={"Profile"}>
-          <Person sx={{ fontSize: "30px" }} />
+          <Person sx={{ fontSize: "25px" }} />
         </MenuIcon>
       </Box>
-    </>
+    </Box>
   );
 }
 

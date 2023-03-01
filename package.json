@@ -20,6 +20,8 @@
     "axios": "^1.2.1",
     "dayjs": "^1.11.7",
     "dotenv": "^16.0.3",
+    "embla-carousel-autoplay": "^7.0.9",
+    "embla-carousel-react": "^7.0.9",
     "formik": "^2.2.9",
     "framer-motion": "^10.0.1",
     "moment": "^2.29.4",
