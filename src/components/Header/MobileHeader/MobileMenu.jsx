@@ -1,8 +1,7 @@
 import {
-  ChatBubble,
   Diversity3,
   House,
-  Person,
+  LocalFireDepartment,
   Shop2,
 } from "@mui/icons-material";
 import { Box, IconButton, Typography } from "@mui/material";
@@ -56,19 +55,16 @@ function MobileMenu() {
         whileInView={{ y: "0%", opacity: 1 }}
       >
         <MenuIcon text={"Home"}>
-          <House sx={{ fontSize: "25px" }} />
+          <House sx={{ fontSize: "27px" }} />
         </MenuIcon>
         <MenuIcon text={"About us"}>
-          <Diversity3 sx={{ fontSize: "25px" }} />
+          <Diversity3 sx={{ fontSize: "27px" }} />
         </MenuIcon>
         <MenuIcon text={"Shop"}>
-          <Shop2 sx={{ fontSize: "25px" }} />
+          <Shop2 sx={{ fontSize: "27px" }} />
         </MenuIcon>
-        <MenuIcon text={"Contact"}>
-          <ChatBubble sx={{ fontSize: "25px" }} />
-        </MenuIcon>
-        <MenuIcon text={"Profile"}>
-          <Person sx={{ fontSize: "25px" }} />
+        <MenuIcon text={"hot Deals"}>
+          <LocalFireDepartment sx={{ fontSize: "27px" }} />
         </MenuIcon>
       </Box>
     </Box>

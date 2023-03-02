@@ -6,7 +6,7 @@ import { Logout } from "@mui/icons-material";
 function SearchHeader() {
   return (
     <Box display={"flex"} py={2} zIndex={100}>
-      <SearchBar />
+      <SearchBar rednerMenu={'true'}/>
       <IconButton size="large" sx={{ color: "#f5f5f5" }}>
         <Logout />
       </IconButton>

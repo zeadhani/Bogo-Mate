@@ -1,0 +1,51 @@
+import { Box, Divider, Typography } from "@mui/material";
+import React from "react";
+import { colors } from "../../../Theme";
+import { Person, PersonOutline } from "@mui/icons-material";
+
+function ProductItem({ product, matches }) {
+  return (
+    <Box
+      sx={{
+        borderRadius: "5px",
+        paddingX: 2,
+        paddingY: 1,
+        border: "1px solid rgba(34, 34, 34, 0.5)",
+      }}
+      bgcolor={"transparent"}
+    >
+      <Box
+        sx={{
+          width: { xs: "120px", sm: "150px", md: "180px", lg: "200px" },
+          mb: "auto",
+        }}
+      >
+        <img
+          alt="images"
+          src="https://res.cloudinary.com/df2862din/image/upload/v1677278946/xgagzhtq8odcsryuuaoj.png"
+          width={"100%"}
+          style={{ objectFit: "contain", borderRadius: "5px" }}
+        />
+      </Box>
+      <Divider />
+      <Typography textAlign={"left"} variant={matches ? "h5" : "h3"} mt={2}>
+        {product.name}
+      </Typography>
+      <Typography textAlign={"left"} variant={matches ? "h6" : "h4"}>
+        Nike
+      </Typography>
+      <Typography textAlign={"left"} variant={matches ? "caption" : "h5"}>
+        350EGP
+      </Typography>
+      <Box marginBottom={"auto"} display={"flex"} justifyContent={"end"} mt={1}>
+        <PersonOutline />
+        <PersonOutline />
+        <Person />
+        <Person /> 
+        <Person />
+      </Box>
+    </Box>
+  );
+}
+
+export default ProductItem;

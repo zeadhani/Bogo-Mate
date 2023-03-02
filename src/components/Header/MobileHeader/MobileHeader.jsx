@@ -10,7 +10,7 @@ function MobileHeader() {
     <Box
       sx={{
         height: "100%",
-        backgroundColor: "#f5f5f5",
+        backgroundColor: "white",
         display: "flex",
         flexDirection: "column",
         position: "relative",

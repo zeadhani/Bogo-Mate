@@ -70,7 +70,7 @@ export const theme = createTheme({
       light: colors.grey[100],
     },
     background: {
-      default: "#f5f5f5",
+      default: "white",
     },
   },
   typography: {
