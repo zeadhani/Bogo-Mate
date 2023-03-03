@@ -1,10 +1,9 @@
 import { Box } from "@mui/material";
 import React from "react";
-import { colors } from "../../../Theme";
 
 import SearchHeader from "./SearchHeader";
 import MobileMenu from "./MobileMenu";
-
+import svg from "../../../images/AbstractPaper.svg";
 function MobileHeader() {
   return (
     <Box
@@ -19,7 +18,6 @@ function MobileHeader() {
       pb={2}
     >
       <Box
-        bgcolor={colors.grey[900]}
         sx={{
           height: "150px",
           position: "absolute",
@@ -27,6 +25,7 @@ function MobileHeader() {
           left: "0px",
           right: "0px",
           zIndex: 0,
+          backgroundImage: `url(${svg})`,
         }}
       />
       <SearchHeader />

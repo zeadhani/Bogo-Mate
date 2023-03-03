@@ -1,6 +1,6 @@
 import { Box, Divider, Typography } from "@mui/material";
 import React from "react";
-import { colors } from "../../../Theme";
+
 import { Person, PersonOutline } from "@mui/icons-material";
 
 function ProductItem({ product, matches }) {
@@ -10,9 +10,8 @@ function ProductItem({ product, matches }) {
         borderRadius: "5px",
         paddingX: 2,
         paddingY: 1,
-        border: "1px solid rgba(34, 34, 34, 0.5)",
       }}
-      bgcolor={"transparent"}
+      bgcolor={"#f5f5f5"}
     >
       <Box
         sx={{
@@ -41,7 +40,7 @@ function ProductItem({ product, matches }) {
         <PersonOutline />
         <PersonOutline />
         <Person />
-        <Person /> 
+        <Person />
         <Person />
       </Box>
     </Box>
