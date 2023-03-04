@@ -5,15 +5,17 @@ import svg from "../../../../images/AbstractPaper.svg";
 import { colors } from "../../../../Theme";
 const image =
   "https://res.cloudinary.com/df2862din/image/upload/v1677676881/c1_bz702m.jpg";
-function HomeAboutSection({matches}) {
+function HomeAboutSection({ matches }) {
   return (
     <Box
       sx={{
         display: "flex",
-        flexDirection:matches?"column":"row",
+        flexDirection: matches ? "column" : "row",
         my: 3,
         backgroundImage: `url(${svg})`,
         color: "#f5f5f5",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
       }}
     >
       <Box>
@@ -22,7 +24,7 @@ function HomeAboutSection({matches}) {
           style={{
             height: "100%",
             width: "100%",
-            objectFit:"cover"
+            objectFit: "cover",
           }}
         />
       </Box>
@@ -34,7 +36,9 @@ function HomeAboutSection({matches}) {
           padding: 3,
         }}
       >
-        <Typography variant="h4">Welcome to BOGO</Typography>
+        <Typography variant="h3" sx={{ transform: "translateY(-10px)" }}>
+          Welcome to BOGO
+        </Typography>
         <Typography variant="body1">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in
           ultrices sapien. Nulla nec velit metus. Nullam aliquet, risus ac
@@ -43,7 +47,7 @@ function HomeAboutSection({matches}) {
         </Typography>
         <Button
           variant="contained"
-          sx={{ marginTop: 2, bgcolor: colors.grey[100],color:"#222" }}
+          sx={{ marginTop: 2, bgcolor: colors.grey[100], color: "#222" }}
         >
           Learn more
         </Button>

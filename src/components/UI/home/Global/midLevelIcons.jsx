@@ -26,7 +26,7 @@ function MidLevelIcons() {
         gap: 1,
         justifyContent: "center",
         alignItems: "center",
-        marginY: 3,
+        marginY: 2,
       }}
     >
       <IconBox text={"jkjhasdhjkas ahdasjkhdas"}>

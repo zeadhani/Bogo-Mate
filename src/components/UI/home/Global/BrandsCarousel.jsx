@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import BrandItem from "./BrandItem";
+import { Link } from "react-router-dom";
 
 const Brands = [
   { id: 1, name: "Brand 1" },
@@ -17,14 +18,25 @@ const Brands = [
 function BrandsCarousel({ matches }) {
   return (
     <Box my={3}>
-      <Typography
-        variant={matches ? "h6" : "h4"}
-        fontWeight={700}
-        textTransform={"uppercase"}
-      >
-        Top Brands
-      </Typography>
-
+      <Box display={'flex'} justifyContent={'space-between'}>
+        <Typography
+          variant={matches ? "h6" : "h4"}
+          fontWeight={700}
+          textTransform={"uppercase"}
+        >
+          Top Brands
+        </Typography>
+        <Typography
+          variant={matches ? "caption" : "h6"}
+          fontWeight={700}
+          textTransform={"uppercase"}
+          // color={"#f5f5f5"}
+        >
+          <Link to="/about" style={{ color: "#222" }}>
+            see more &rarr;
+          </Link>
+        </Typography>
+      </Box>
       <Box
         my={1}
         gap={1}

@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./screens/Home";
 import ShopPage from "./screens/Shop";
 import SideBar from "./components/UI/Global/SideBar";
+import Footer from "./components/UI/Footer/Footer";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />} />
       </Routes>
+      <Footer />
     </ThemeProvider>
   );
 }

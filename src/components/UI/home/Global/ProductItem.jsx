@@ -2,16 +2,23 @@ import { Box, Divider, Typography } from "@mui/material";
 import React from "react";
 
 import { Person, PersonOutline } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 function ProductItem({ product, matches }) {
+  const navigate=useNavigate()
+  const handleNavigate=()=>{
+    navigate("/about")
+  }
   return (
     <Box
       sx={{
         borderRadius: "5px",
         paddingX: 2,
         paddingY: 1,
+        cursor:'pointer'
       }}
       bgcolor={"#f5f5f5"}
+      onClick={handleNavigate}
     >
       <Box
         sx={{
@@ -36,7 +43,13 @@ function ProductItem({ product, matches }) {
       <Typography textAlign={"left"} variant={matches ? "caption" : "h5"}>
         350EGP
       </Typography>
-      <Box marginBottom={"auto"} display={"flex"} justifyContent={"end"} mt={1}>
+      <Box
+        marginBottom={"auto"}
+        display={"flex"}
+        justifyContent={"end"}
+        mt={1}
+        flexWrap={"wrap"}
+      >
         <PersonOutline />
         <PersonOutline />
         <Person />
