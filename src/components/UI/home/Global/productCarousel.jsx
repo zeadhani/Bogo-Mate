@@ -1,11 +1,20 @@
-import { Box, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import ProductItem from "./ProductItem";
 import { motion } from "framer-motion";
 import { colors } from "../../../../Theme";
 import svg from "../../../../images/image1.svg";
 import { Link } from "react-router-dom";
-
+import React, { useRef } from "react";
+import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 const ProductCarousel = ({ matches, title, products, navigate }) => {
+  const containerRef = useRef(null);
+  function handleScrollLeft() {
+    containerRef.current.scrollBy({ left: -100, behavior: "smooth" });
+  }
+  function handleScrollRight() {
+    containerRef.current.scrollBy({ left: 100, behavior: "smooth" });
+  }
+  
   return (
     <Box
       bgcolor={colors.grey[900]}
@@ -16,6 +25,8 @@ const ProductCarousel = ({ matches, title, products, navigate }) => {
         marginY: 3,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
+        position: "relative",
+        paddingX: matches ? "" : "4rem",
       }}
     >
       <Box display={"flex"} justifyContent={"space-between"}>
@@ -31,7 +42,6 @@ const ProductCarousel = ({ matches, title, products, navigate }) => {
           variant={matches ? "caption" : "h6"}
           fontWeight={700}
           textTransform={"uppercase"}
-          // color={"#f5f5f5"}
         >
           <Link to={navigate} style={{ color: "white" }}>
             see more &rarr;
@@ -67,12 +77,28 @@ const ProductCarousel = ({ matches, title, products, navigate }) => {
               backgroundColor: "#f5f5f5",
             },
           }}
+          ref={containerRef}
         >
           {products.map((product) => (
             <ProductItem product={product} key={product.id} matches={matches} />
           ))}
         </Box>
       </Box>
+
+     {!matches && <>
+        <IconButton
+          onClick={handleScrollLeft}
+          sx={{ position: "absolute", top: "50%", left: 0 }}
+        >
+          <KeyboardArrowLeft sx={{ fontSize: "3rem", color: "#f5f5f5" }} />
+        </IconButton>
+        <IconButton
+          onClick={handleScrollRight}
+          sx={{ position: "absolute", top: "50%", right: 0 }}
+        >
+          <KeyboardArrowRight sx={{ fontSize: "3rem", color: "#f5f5f5" }} />
+        </IconButton>
+      </>}
     </Box>
   );
 };
