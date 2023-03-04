@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import React, { useRef } from "react";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 const ProductCarousel = ({ matches, title, products, navigate }) => {
+  
   const containerRef = useRef(null);
   function handleScrollLeft() {
     containerRef.current.scrollBy({ left: -100, behavior: "smooth" });
@@ -14,7 +15,7 @@ const ProductCarousel = ({ matches, title, products, navigate }) => {
   function handleScrollRight() {
     containerRef.current.scrollBy({ left: 100, behavior: "smooth" });
   }
-  
+
   return (
     <Box
       bgcolor={colors.grey[900]}

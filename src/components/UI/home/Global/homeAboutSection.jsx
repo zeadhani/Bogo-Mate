@@ -47,7 +47,12 @@ function HomeAboutSection({ matches }) {
         </Typography>
         <Button
           variant="contained"
-          sx={{ marginTop: 2, bgcolor: colors.grey[100], color: "#222" }}
+          sx={{
+            marginTop: 2,
+            bgcolor: colors.grey[100],
+            color: "#222",
+            "&:hover": { color: "#f5f5f5", bgcolor: colors.grey[400] },
+          }}
         >
           Learn more
         </Button>
