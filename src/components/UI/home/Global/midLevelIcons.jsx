@@ -11,6 +11,7 @@ const IconBox = ({ text, children }) => {
         variant={matches ? "caption" : "h4"}
         textAlign={"center"}
         mx={"auto"}
+        fontWeight={'bold'}
       >
         {text}
       </Typography>
