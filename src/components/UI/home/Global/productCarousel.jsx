@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import React, { useRef } from "react";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 const ProductCarousel = ({ matches, title, products, navigate }) => {
-  
   const containerRef = useRef(null);
   function handleScrollLeft() {
     containerRef.current.scrollBy({ left: -100, behavior: "smooth" });
@@ -49,7 +48,7 @@ const ProductCarousel = ({ matches, title, products, navigate }) => {
           </Link>
         </Typography>
       </Box>
-      <Box
+      <Box 
         mt={1}
         display={"flex"}
         justifyContent={"start"}
@@ -86,20 +85,22 @@ const ProductCarousel = ({ matches, title, products, navigate }) => {
         </Box>
       </Box>
 
-     {!matches && <>
-        <IconButton
-          onClick={handleScrollLeft}
-          sx={{ position: "absolute", top: "50%", left: 0 }}
-        >
-          <KeyboardArrowLeft sx={{ fontSize: "3rem", color: "#f5f5f5" }} />
-        </IconButton>
-        <IconButton
-          onClick={handleScrollRight}
-          sx={{ position: "absolute", top: "50%", right: 0 }}
-        >
-          <KeyboardArrowRight sx={{ fontSize: "3rem", color: "#f5f5f5" }} />
-        </IconButton>
-      </>}
+      {!matches && (
+        <>
+          <IconButton
+            onClick={handleScrollLeft}
+            sx={{ position: "absolute", top: "50%", left: 0 }}
+          >
+            <KeyboardArrowLeft sx={{ fontSize: "3rem", color: "#f5f5f5" }} />
+          </IconButton>
+          <IconButton
+            onClick={handleScrollRight}
+            sx={{ position: "absolute", top: "50%", right: 0 }}
+          >
+            <KeyboardArrowRight sx={{ fontSize: "3rem", color: "#f5f5f5" }} />
+          </IconButton>
+        </>
+      )}
     </Box>
   );
 };

@@ -11,7 +11,6 @@ const IconBox = ({ text, children }) => {
         variant={matches ? "caption" : "h4"}
         textAlign={"center"}
         mx={"auto"}
-        fontWeight={'bold'}
       >
         {text}
       </Typography>
@@ -32,17 +31,17 @@ function MidLevelIcons() {
     >
       <IconBox text={"jkjhasdhjkas ahdasjkhdas"}>
         <DeliveryDining
-          sx={{ fontSize: { xs: "40px", md: "80px" }, mx: "auto" }}
+          sx={{ fontSize: { xs: "40px", md: "70px" }, mx: "auto" }}
         />
       </IconBox>
       <IconBox text={"jkjhasdhjkas ahdasjkhdas"}>
         <SecurityUpdateGood
-          sx={{ fontSize: { xs: "40px", md: "80px" }, mx: "auto" }}
+          sx={{ fontSize: { xs: "40px", md: "70px" }, mx: "auto" }}
         />
       </IconBox>
       <IconBox text={"jkjhasdhjkas ahdasjkhdas"}>
         <SecurityUpdateGood
-          sx={{ fontSize: { xs: "40px", md: "80px" }, mx: "auto" }}
+          sx={{ fontSize: { xs: "40px", md: "70px" }, mx: "auto" }}
         />
       </IconBox>
     </Box>

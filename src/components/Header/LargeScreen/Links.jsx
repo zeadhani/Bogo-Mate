@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -17,11 +17,11 @@ const CustomLink = ({ text, link }) => {
         "&:hover": {
           transform: "scale(1.1)",
         },
-        my: 2,
-        color: "white",
+        my: 1,
+
         display: "block",
       }}
-      variant="h5"
+      variant="body1"
       onClick={handlenavigate(link)}
     >
       {text}
@@ -31,10 +31,13 @@ const CustomLink = ({ text, link }) => {
 
 function Links() {
   return (
-    <Box sx={{ flexGrow: 1, display: "flex", gap: 2 }}>
-      <CustomLink text={"Home"} link={"/"} />
-      <CustomLink text={"Shop"} link={"/"} />
-      <CustomLink text={"About us"} link={"/"} />
+    <Box
+      sx={{ display: "flex", gap: 2, mx: "auto", px: 6, color: "white" ,alignItems:'center'}}
+      maxWidth="xl"
+    >
+      <CustomLink text={"Home"} link={"/"} /> |
+      <CustomLink text={"Shop"} link={"/shop"} /> |
+      <CustomLink text={"About us"} link={"/"} /> |
       <CustomLink text={"Contact"} link={"/"} />
     </Box>
   );

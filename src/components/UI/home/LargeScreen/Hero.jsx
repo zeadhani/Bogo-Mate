@@ -25,6 +25,7 @@ function Hero() {
             "https://res.cloudinary.com/df2862din/image/upload/v1677676881/c1_bz702m.jpg"
           }
           alt="Your alt text"
+          style={{objectFit:'cover',maxHeight:"300px"}}
         />
       </Box>
       <Box
