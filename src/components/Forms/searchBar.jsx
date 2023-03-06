@@ -24,7 +24,7 @@ function SearchBar({ rednerMenu }) {
       )}
       <InputBase
         placeholder={`search for products...`}
-        sx={{ flexGrow: 1, marginLeft: "10px" }}
+        sx={{ flexGrow: 1, marginLeft: "10px", touchAction: "manipulation" }}
       />
       <IconButton sx={{ padding: 0 }}>
         <Search />
