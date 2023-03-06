@@ -33,7 +33,7 @@ function Links() {
   return (
     <Box
       sx={{ display: "flex", gap: 2, mx: "auto", px: 6, color: "white" ,alignItems:'center'}}
-      maxWidth="xl"
+      maxWidth="lg"
     >
       <CustomLink text={"Home"} link={"/"} /> |
       <CustomLink text={"Shop"} link={"/shop"} /> |

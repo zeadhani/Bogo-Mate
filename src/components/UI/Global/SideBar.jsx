@@ -26,11 +26,19 @@ import {
   sidebarClasses,
 } from "react-pro-sidebar";
 import { colors } from "../../../Theme";
+import { motion } from "framer-motion";
 function SideBar() {
-  const { collapseSidebar } = useProSidebar();
+  const { collapseSidebar, collapsed } = useProSidebar();
   const matches = useMediaQuery("(max-width:800px)");
   return (
-    <Box className="sidebar">
+    <Box
+      className="sidebar"
+      sx={{ display: collapsed ? "none" : "" }}
+      component={motion.div}
+      initial={{ x: "-100%" }}
+      whileInView={{ x: "0%" }}
+      transition={{ duration: 0.4 }}
+    >
       {matches && (
         <Sidebar
           defaultCollapsed={true}

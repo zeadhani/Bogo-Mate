@@ -15,7 +15,7 @@ function Footer() {
         backgroundSize: "cover",
       }}
     >
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Box
           sx={{
             display: "flex",

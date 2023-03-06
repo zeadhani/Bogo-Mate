@@ -11,7 +11,7 @@ function LargeNavbar() {
   return (
     <Box sx={{ backgroundImage: `url(${svg})`, py: 1 ,backgroundRepeat:"no-repeat" ,backgroundSize:'cover'}}>
       <AppBar position="static" sx={{ bgcolor:'transparent' }} elevation={0}>
-        <Container maxWidth="xl">
+        <Container maxWidth="lg">
           <Toolbar disableGutters >
             <Adb sx={{ display: "flex", mr: 2 }} />
             <Typography

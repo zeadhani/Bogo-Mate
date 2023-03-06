@@ -8,6 +8,7 @@ import BrandsCarousel from "../../components/UI/home/Global/BrandsCarousel";
 import MidLevelIcons from "../../components/UI/home/Global/midLevelIcons";
 import HomeAboutSection from "../../components/UI/home/Global/homeAboutSection";
 import { useNavigate } from "react-router-dom";
+import CategoriesHomePage from "../../components/UI/home/Global/CategoriesHomePage";
 const products = [
   { id: 1, name: "Product 1" },
   { id: 2, name: "Product 2" },
@@ -43,6 +44,7 @@ function HomePage() {
         products={products}
         navigate={"/about"}
       />
+      <CategoriesHomePage matches={matches} />
     </CustomContainer>
   );
 }

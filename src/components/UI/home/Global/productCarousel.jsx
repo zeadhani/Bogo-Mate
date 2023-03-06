@@ -48,14 +48,14 @@ const ProductCarousel = ({ matches, title, products, navigate }) => {
           </Link>
         </Typography>
       </Box>
-      <Box 
+      <Box
         mt={1}
         display={"flex"}
         justifyContent={"start"}
         component={motion.div}
         initial={{ x: "100%" }}
         whileInView={{ x: "0%" }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.5 }}
       >
         <Box
           sx={{
