@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { motion } from "framer-motion";
 import React from "react";
 
-function BrandsHeader({ matches }) {
+function HeaderImage({ matches, image }) {
   return (
     <Box
       component={motion.div}
@@ -12,7 +12,7 @@ function BrandsHeader({ matches }) {
       transition={{ duration: 0.4 }}
     >
       <img
-        src="https://res.cloudinary.com/df2862din/image/upload/v1677676881/c1_bz702m.jpg"
+        src={image}
         style={{
           objectFit: "cover",
           borderRadius: "5px",
@@ -24,4 +24,4 @@ function BrandsHeader({ matches }) {
   );
 }
 
-export default BrandsHeader;
+export default HeaderImage;
