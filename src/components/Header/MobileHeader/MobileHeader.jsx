@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import React from "react";
-
 import SearchHeader from "./SearchHeader";
 import MobileMenu from "./MobileMenu";
 import svg from "../../../images/AbstractPaper.svg";
@@ -26,6 +25,8 @@ function MobileHeader() {
           right: "0px",
           zIndex: 0,
           backgroundImage: `url(${svg})`,
+          backgroundRepeat:"no-repeat",
+          backgroundSize:"cover"
         }}
       />
       <SearchHeader />
