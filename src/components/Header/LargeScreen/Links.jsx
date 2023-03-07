@@ -32,12 +32,19 @@ const CustomLink = ({ text, link }) => {
 function Links() {
   return (
     <Box
-      sx={{ display: "flex", gap: 2, mx: "auto", px: 6, color: "white" ,alignItems:'center'}}
+      sx={{
+        display: "flex",
+        gap: 2,
+        mx: "auto",
+        px: 6,
+        color: "white",
+        alignItems: "center",
+      }}
       maxWidth="lg"
     >
       <CustomLink text={"Home"} link={"/"} /> |
-      <CustomLink text={"Shop"} link={"/shop"} /> |
       <CustomLink text={"About us"} link={"/"} /> |
+      <CustomLink text={"Shop"} link={"/shop"} /> |
       <CustomLink text={"Contact"} link={"/"} />
     </Box>
   );
