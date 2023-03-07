@@ -3,9 +3,14 @@ import { Box } from "@mui/material";
 import { motion } from "framer-motion";
 import React from "react";
 
-function BrandsHeader() {
+function BrandsHeader({ matches }) {
   return (
-    <Box component={motion.div} mb={2} animate={{opacity:[0,1]}} transition={{duration:0.4 }}>
+    <Box
+      component={motion.div}
+      mb={matches ? 0 : 2}
+      animate={{ opacity: [0, 1] }}
+      transition={{ duration: 0.4 }}
+    >
       <img
         src="https://res.cloudinary.com/df2862din/image/upload/v1677676881/c1_bz702m.jpg"
         style={{

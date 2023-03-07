@@ -2,6 +2,7 @@ import React from "react";
 import BrandsHeader from "./Header";
 import { Box, Grid } from "@mui/material";
 import BrandsItems from "./BrandsItems";
+import FilterList from "./Fliter";
 
 const brandsItems = [
   { id: 1, name: "Brand 1" },
@@ -15,10 +16,11 @@ const brandsItems = [
   { id: 9, name: "Brand 9" },
   { id: 10, name: "Brand 10" },
 ];
-function Brands() {
+function Brands({ matches }) {
   return (
     <Box>
-      <BrandsHeader />
+      <BrandsHeader matches={matches}/>
+      {matches && <FilterList matches={matches} />}
       <BrandsItems brands={brandsItems} />
     </Box>
   );

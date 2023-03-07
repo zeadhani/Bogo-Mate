@@ -12,11 +12,12 @@ function ShopPage() {
       <Grid container spacing={2} mb={4}>
         {!matches && (
           <Grid item xs={3}>
-            <FilterList />
+            <FilterList matches={matches} />
           </Grid>
         )}
+
         <Grid item xs={matches ? 12 : 9}>
-          <Brands />
+          <Brands matches={matches} />
         </Grid>
       </Grid>
     </CustomContainer>
