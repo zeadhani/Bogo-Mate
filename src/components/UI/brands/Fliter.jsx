@@ -66,7 +66,7 @@ function FilterList({ matches }) {
             bgcolor: matches ? colors.grey[100] : "transparent",
             left: 0,
             right: 0,
-            top: 50,
+            top: 40,
             zIndex: 999,
             paddingY: matches ? "20px" : "10px",
             borderRadius: "5px",
