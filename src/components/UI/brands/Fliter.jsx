@@ -14,6 +14,7 @@ import {
 import { colors } from "../../../Theme";
 import { motion } from "framer-motion";
 import { Close, Menu } from "@mui/icons-material";
+import SearchBar from "../../Forms/searchBar";
 const preferences = [
   { id: 1, label: "Option 1" },
   { id: 2, label: "Option 2" },
@@ -49,7 +50,9 @@ function FilterList({ matches }) {
           <IconButton onClick={handleOpenFilter}>
             {openFilter ? <Close /> : <Menu />}
           </IconButton>
-          <Typography variant="h6" alignSelf={"center"}>Filters</Typography>
+          <Typography variant="h6" alignSelf={"center"}>
+            Filters
+          </Typography>
         </Box>
       )}
       {(openFilter || !matches) && (
@@ -66,15 +69,24 @@ function FilterList({ matches }) {
             top: 50,
             zIndex: 999,
             paddingY: matches ? "20px" : "10px",
-            borderRadius: "10px",
+            borderRadius: "5px",
             width: "100%",
           }}
           component={motion.div}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
         >
+          <Box mb={2}>
+            <Typography variant="h6" gutterBottom>
+              Search
+            </Typography>
+
+            <Divider style={{ marginBottom: "16px" }} />
+            <SearchBar name={'brands'}/>
+          </Box>
+
           <Typography variant="h6" gutterBottom>
-            Filter by
+            Categories
           </Typography>
 
           <Divider style={{ marginBottom: "16px" }} />

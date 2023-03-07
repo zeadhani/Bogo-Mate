@@ -18,7 +18,7 @@ const brandsItems = [
 ];
 function Brands({ matches }) {
   return (
-    <Box>
+    <Box ml={matches?0:2}>
       <BrandsHeader matches={matches}/>
       {matches && <FilterList matches={matches} />}
       <BrandsItems brands={brandsItems} />

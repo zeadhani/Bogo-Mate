@@ -1,4 +1,4 @@
-import { Grid, useMediaQuery } from "@mui/material";
+import { Box, Grid, Pagination, useMediaQuery } from "@mui/material";
 import React from "react";
 
 import Brands from "../../components/UI/brands/brands";
@@ -18,6 +18,9 @@ function ShopPage() {
 
         <Grid item xs={matches ? 12 : 9}>
           <Brands matches={matches} />
+          <Box display={'flex'} justifyContent={'center'}>
+            <Pagination count={10} sx={{ mt: 5 }} color="primary" />
+          </Box>
         </Grid>
       </Grid>
     </CustomContainer>

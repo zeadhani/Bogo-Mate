@@ -29,7 +29,7 @@ function LargeNavbar() {
               BOGO
             </Typography>
             {/* <Links /> */}
-            <SearchBar />
+            <SearchBar name={'products'}/>
             <ProfileIcon />
           </Toolbar>
         </Container>

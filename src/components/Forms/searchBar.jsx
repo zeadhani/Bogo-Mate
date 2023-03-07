@@ -3,7 +3,7 @@ import { Box, IconButton, InputBase } from "@mui/material";
 import React from "react";
 import { useProSidebar } from "react-pro-sidebar";
 
-function SearchBar({ rednerMenu }) {
+function SearchBar({ rednerMenu ,name }) {
   const { collapseSidebar } = useProSidebar();
   return (
     <Box
@@ -23,7 +23,7 @@ function SearchBar({ rednerMenu }) {
         </IconButton>
       )}
       <InputBase
-        placeholder={`search for products...`}
+        placeholder={`search for ${name}...`}
         sx={{ flexGrow: 1, marginLeft: "10px", touchAction: "none" }}
       />
       <IconButton sx={{ padding: 0 }}>
