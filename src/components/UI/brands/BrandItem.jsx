@@ -2,7 +2,12 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import { colors } from "../../../Theme";
 import svg from "../../../images/AbstractPaper.svg";
-function BrandItem() {
+import { useNavigate } from "react-router-dom";
+function BrandItem({ brand }) {
+  const navigate = useNavigate();
+  const handleBrandNavigation = () => {
+    navigate(`/shop/${brand.name}`);
+  };
   return (
     <Box
       sx={{
@@ -19,6 +24,7 @@ function BrandItem() {
         justifyContent: "center",
         alignItems: "center",
       }}
+      onClick={handleBrandNavigation}
     >
       <Typography
         variant="h1"

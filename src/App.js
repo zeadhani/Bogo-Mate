@@ -6,6 +6,7 @@ import HomePage from "./screens/Home";
 import ShopPage from "./screens/Shop";
 import SideBar from "./components/UI/Global/SideBar";
 import Footer from "./components/UI/Footer/Footer";
+import ProductsDashboard from "./screens/Product";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />} />
+        <Route path="shop/:brand" element={<ProductsDashboard />} />
       </Routes>
       <Footer />
     </ThemeProvider>

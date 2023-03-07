@@ -2,23 +2,24 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function Navigation({ pathname }) {
-  const links = pathname.split("/").filter((item) => item !== "");
+function Navigation({ nav }) {
+  const links = nav?.split("/").filter((item) => item !== "");
 
   const navigate = useNavigate();
   const handleNavigate = (path) => {
     return () => {
-      navigate(`/${path}`);
+      let cutString = nav.substring(0, nav.indexOf(path));
+      navigate(`${cutString}${path}`);
     };
   };
   return (
     <>
-      {pathname !== "/" && (
+      {nav && (
         <Box display={"flex"} my={2} gap={1}>
-          <Typography onClick={handleNavigate("")} sx={{ cursor: "pointer" }}>
+          <Typography onClick={() => navigate("/")} sx={{ cursor: "pointer" }}>
             Home
           </Typography>
-          {links.map((item) => (
+          {links?.map((item) => (
             <Typography
               key={item}
               onClick={handleNavigate(item)}

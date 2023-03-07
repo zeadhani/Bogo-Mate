@@ -8,7 +8,7 @@ import CustomContainer from "../../components/UI/Global/CustomContainer";
 function ShopPage() {
   const matches = useMediaQuery("(max-width:800px)");
   return (
-    <CustomContainer>
+    <CustomContainer nav={"/shop"}>
       <Grid container spacing={2} mb={4}>
         {!matches && (
           <Grid item xs={3}>
@@ -18,7 +18,7 @@ function ShopPage() {
 
         <Grid item xs={matches ? 12 : 9}>
           <Brands matches={matches} />
-          <Box display={'flex'} justifyContent={'center'}>
+          <Box display={"flex"} justifyContent={"center"}>
             <Pagination count={10} sx={{ mt: 5 }} color="primary" />
           </Box>
         </Grid>
