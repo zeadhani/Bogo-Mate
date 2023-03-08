@@ -4,51 +4,46 @@ import {
   Dashboard,
   Help,
   MoneyOff,
-  Person,
   RequestPageSharp,
   Settings,
-  ShoppingCart,
 } from "@mui/icons-material";
 import {
   Avatar,
   Box,
+  Button,
+  Drawer,
   IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
   Typography,
   useMediaQuery,
 } from "@mui/material";
 import React from "react";
-import {
-  Sidebar,
-  Menu,
-  MenuItem,
-  SubMenu,
-  useProSidebar,
-  sidebarClasses,
-} from "react-pro-sidebar";
+
 import { colors } from "../../../Theme";
+import { useDispatch, useSelector } from "react-redux";
+import { sideBarActions } from "../../../store/sideBarSlice";
 function SideBar() {
-  const { collapseSidebar } = useProSidebar();
   const matches = useMediaQuery("(max-width:800px)");
+  const open = useSelector((state) => state.SideBar.open);
+  const dispatch = useDispatch();
+
+  const closeSideBar = () => {
+    dispatch(sideBarActions.close());
+  };
+
+  const handleNavigate = () => {
+    closeSideBar();
+  };
   return (
-    <Box className="sidebar">
+    <React.Fragment>
       {matches && (
-        <Sidebar
-          defaultCollapsed={true}
-          collapsedWidth={"0px"}
-          bor
-          rootStyles={{
-            [`.${sidebarClasses.container}`]: {
-              backgroundColor: "#f8f8f8",
-              height: "100vh",
-            },
-          }}
-        >
+        <Drawer open={open} variant="temporary" anchor="left">
           <Box bgcolor={colors.grey[900]}>
             <Box display={"flex"} justifyContent={"right"}>
-              <IconButton
-                onClick={() => collapseSidebar()}
-                sx={{ color: "#f5f5f5" }}
-              >
+              <IconButton onClick={closeSideBar} sx={{ color: "#f5f5f5" }}>
                 <Close />
               </IconButton>
             </Box>
@@ -67,21 +62,47 @@ function SideBar() {
             </Box>
           </Box>
 
-          <Menu>
-            <SubMenu icon={<Person />} label="Profile">
-              <MenuItem icon={<Dashboard />}>Dashboard</MenuItem>
-              <MenuItem icon={<Settings />}>Edit profile</MenuItem>
-            </SubMenu>
-            <SubMenu icon={<ShoppingCart />} label="Orders">
-              <MenuItem icon={<RequestPageSharp />}>Current requests</MenuItem>
-              <MenuItem icon={<MoneyOff />}>Past orders</MenuItem>
-            </SubMenu>
-            <MenuItem icon={<Call />}>Contact us</MenuItem>
-            <MenuItem icon={<Help />}>Help</MenuItem>
-          </Menu>
-        </Sidebar>
+          <List>
+            <ListItem onClick={handleNavigate}>
+              <ListItemIcon>
+                <Dashboard />
+              </ListItemIcon>
+              <ListItemText primary="Dashboard" />
+            </ListItem>
+            <ListItem onClick={handleNavigate}>
+              <ListItemIcon>
+                <Settings />
+              </ListItemIcon>
+              <ListItemText primary="Edit Profile" />
+            </ListItem>
+            <ListItem onClick={handleNavigate}>
+              <ListItemIcon>
+                <RequestPageSharp />
+              </ListItemIcon>
+              <ListItemText primary="Current Requests" />
+            </ListItem>
+            <ListItem onClick={handleNavigate}>
+              <ListItemIcon>
+                <MoneyOff />
+              </ListItemIcon>
+              <ListItemText primary="Past Orders" />
+            </ListItem>
+            <ListItem onClick={handleNavigate}>
+              <ListItemIcon>
+                <Call />
+              </ListItemIcon>
+              <ListItemText primary="Contact Us" />
+            </ListItem>
+            <ListItem onClick={handleNavigate}>
+              <ListItemIcon>
+                <Help />
+              </ListItemIcon>
+              <ListItemText primary="Help" />
+            </ListItem>
+          </List>
+        </Drawer>
       )}
-    </Box>
+    </React.Fragment>
   );
 }
 

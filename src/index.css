@@ -55,3 +55,7 @@ body,
   z-index: 9999999;
 }
 
+.MuiListItem-root:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}

@@ -3,15 +3,17 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import { ProSidebarProvider } from "react-pro-sidebar";
+
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <React.StrictMode>
-    <ProSidebarProvider>
-      <App />
-      </ProSidebarProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
     </React.StrictMode>
   </BrowserRouter>
 );

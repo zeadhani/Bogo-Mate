@@ -1,10 +1,14 @@
 import { MenuOutlined, Search } from "@mui/icons-material";
 import { Box, IconButton, InputBase } from "@mui/material";
 import React from "react";
-import { useProSidebar } from "react-pro-sidebar";
+import { useDispatch } from "react-redux";
+import { sideBarActions } from "../../store/sideBarSlice";
 
-function SearchBar({ rednerMenu ,name }) {
-  const { collapseSidebar } = useProSidebar();
+function SearchBar({ rednerMenu, name }) {
+  const dispatch = useDispatch();
+  const openSideBar = () => {
+    dispatch(sideBarActions.open());
+  };
   return (
     <Box
       sx={{
@@ -18,7 +22,7 @@ function SearchBar({ rednerMenu ,name }) {
       }}
     >
       {rednerMenu && (
-        <IconButton sx={{ color: "#222" }} onClick={() => collapseSidebar()}>
+        <IconButton sx={{ color: "#222" }} onClick={openSideBar}>
           <MenuOutlined />
         </IconButton>
       )}

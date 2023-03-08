@@ -21,7 +21,6 @@ import {
   EventAvailable,
   ExpandLess,
   ExpandMore,
-
   MoneyOff,
   People,
 } from "@mui/icons-material";
@@ -156,9 +155,7 @@ function ProductsFilter({ matches }) {
 
       <Box display={"flex"} gap={2} p={2}>
         <MoneyOff />
-        <Typography variant="h6" sx>
-          Price Range
-        </Typography>
+        <Typography variant="h6">Price Range</Typography>
       </Box>
       <Box px={4}>
         <Slider
