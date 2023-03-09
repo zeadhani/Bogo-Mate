@@ -29,6 +29,9 @@ const AboutUsPage = () => {
           backgroundImage: `url(${svg})`,
           color: "#f5f5f5",
           borderRadius: "10px",
+          backgroundRepeat:'no-repeat',
+          backgroundSize:'cover',
+          backgroundPosition:"center bottom"
         }}
       >
         <Typography variant="h2" align="center" gutterBottom mb={5}>
