@@ -1,10 +1,14 @@
 import { Person, PersonOutline } from "@mui/icons-material";
 import { Box, Divider, Typography, useMediaQuery } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function ProductItem({ product }) {
   const matches = useMediaQuery("(max-width:800px)");
-  const handleNavigate = () => {};
+  const navigate = useNavigate();
+  const handleNavigate = (brand, item) => () => {
+    navigate(`/shop/${brand}/${item}`);
+  };
   return (
     <Box
       sx={{
@@ -14,13 +18,12 @@ function ProductItem({ product }) {
         cursor: "pointer",
       }}
       bgcolor={"#f5f5f5"}
-      onClick={handleNavigate}
+      onClick={handleNavigate(product.brand, product.name)}
     >
       <Box
         sx={{
-          width: { xs: "120px", sm: "150px", md: "180px", lg: "200px" },
           mb: "auto",
-         mx:'auto'
+          mx: "auto",
         }}
       >
         <img

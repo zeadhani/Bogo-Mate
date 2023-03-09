@@ -1,30 +1,14 @@
 import React, { useState } from "react";
 import FilterContainer from "../Global/filters/FilterContainer";
-import {
-  Box,
-  Button,
-  Checkbox,
-  Collapse,
-  Divider,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemSecondaryAction,
-  ListItemText,
-  Slider,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Divider, Slider, Typography } from "@mui/material";
 import SearchBar from "../../Forms/searchBar";
 import {
   Category,
   EventAvailable,
-  ExpandLess,
-  ExpandMore,
   MoneyOff,
   People,
 } from "@mui/icons-material";
-import FilterList from "../brands/Fliter";
+
 import CustomFilterList from "../Global/filters/FilterList";
 
 const preferences = [
@@ -34,16 +18,16 @@ const preferences = [
   { id: 4, name: "Option 4" },
   { id: 5, name: "Option 5" },
 ];
+
 function ProductsFilter({ matches }) {
   const handleClearFilters = () => {};
-
   const [value, setValue] = useState([0, 100]);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   return (
     <FilterContainer matches={matches}>
+      
       <Box mb={2}>
         <Typography variant="h6" gutterBottom>
           Search
