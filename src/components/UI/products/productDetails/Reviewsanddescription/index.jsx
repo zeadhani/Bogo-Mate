@@ -10,12 +10,14 @@ function ProductReviewsAndDescription() {
     setActive(newValue);
   };
   return (
-    <Box border={"1px solid rgba(0,0,0,.1)"} sx={{ marginBottom: 2 }}>
+    <Box
+      border={"1px solid rgba(0,0,0,.1)"}
+      sx={{ marginBottom: 2, minHeight: { md: "240px" } }}
+    >
       <TabContext value={Active}>
         <Box
           sx={{
             borderBottom: "1px solid rgba(0,0,0,.1)",
-
             width: "100%",
           }}
         >

@@ -1,19 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import CustomContainer from "../../components/UI/Global/CustomContainer";
-import {
-  Box,
-  Button,
-  Divider,
-  Grid,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
+import { Box, Divider, Grid, useMediaQuery } from "@mui/material";
 import ProductImage from "../../components/UI/products/productDetails/productImage";
 import ProductDescription from "../../components/UI/products/productDetails/ProductDescription";
 import ProductReviewsAndDescription from "../../components/UI/products/productDetails/Reviewsanddescription";
-import OtherProducts from "../../components/UI/products/productDetails/OtherProducts";
-import ProductItems from "../../components/UI/products/ProductItems";
+import OtherData from "../../components/UI/products/productDetails/OtherProducts";
+
 import ProductCarousel from "../../components/UI/home/Global/productCarousel";
 const products = [
   { id: 1, name: "product 1", brand: "H&M" },
@@ -33,16 +26,16 @@ function ProductDetails() {
   return (
     <CustomContainer nav={`/shop/${brand}/${product}`}>
       <Grid container spacing={1}>
-        <Grid item xs={12} md={9}>
+        <Grid item xs={12}>
           <Grid container spacing={2}>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={5}>
               <ProductImage
                 image={
                   "https://res.cloudinary.com/df2862din/image/upload/v1678370664/xgagzhtq8odcsryuuaoj.png"
                 }
               />
             </Grid>
-            <Grid item xs={12} md={8} alignSelf={"center"}>
+            <Grid item xs={12} md={7} alignSelf={"center"}>
               <ProductDescription />
             </Grid>
             <Grid item xs={12}>
@@ -50,20 +43,22 @@ function ProductDetails() {
                 <Divider />
               </Box>
             </Grid>
-            <Grid item xs={12}>
-              <ProductReviewsAndDescription />
-            </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={12} md={3}>
-          <OtherProducts />
-        </Grid>
-        <Grid item xs={12} md={9}>
-          <ProductCarousel
-            matches={matches}
-            title={"Products you may  like"}
-            products={products}
-          />
+        <Grid item xs={12}>
+          <Grid container spacing={2} mb={4}>
+            <Grid item xs={12} md={9}>
+              <ProductReviewsAndDescription />
+              <ProductCarousel
+                matches={matches}
+                title={"Products you may  like"}
+                products={products}
+              />
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <OtherData matches={matches} />
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </CustomContainer>
