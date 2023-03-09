@@ -4,7 +4,7 @@ import React from "react";
 
 function Requests() {
   return (
-    <Box mt={4} display={"flex"} gap={4}>
+    <Box mt={4} display={"flex"} gap={4} >
       <Box display={"flex"} gap={0.5}>
         <Person2Outlined />
         <Person2Outlined />
@@ -12,7 +12,7 @@ function Requests() {
         <Person />
         <Person />
       </Box>
-      <Typography variant="caption" fontWeight={900} alignSelf={"center"}>
+      <Typography variant="body2" fontWeight={900} alignSelf={"center"}>
         2 left
       </Typography>
     </Box>

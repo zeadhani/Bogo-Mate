@@ -1,18 +1,20 @@
 import React from "react";
 import { AppBar, Typography, IconButton, Box, Container } from "@mui/material";
 import { Facebook, Twitter, Instagram } from "@mui/icons-material";
-import svg from "../../../images/AbstractPaper.svg";
+import svg from "../../../images/image3.svg";
 import { Link } from "react-router-dom";
 function Footer() {
   return (
     <AppBar
       position="relative"
       sx={{
-        pt: 1,
+        pt: 2,
         pb: 2,
         backgroundImage: `url(${svg})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
+        borderTopLeftRadius:'5px',
+        borderTopRightRadius:'5px'
       }}
     >
       <Container maxWidth="lg">

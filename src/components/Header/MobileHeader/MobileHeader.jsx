@@ -25,8 +25,8 @@ function MobileHeader() {
           right: "0px",
           zIndex: 0,
           backgroundImage: `url(${svg})`,
-          backgroundRepeat:"no-repeat",
-          backgroundSize:"cover"
+          // backgroundRepeat:"no-repeat",
+          // backgroundSize:"cover"
         }}
       />
       <SearchHeader />

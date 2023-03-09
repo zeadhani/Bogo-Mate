@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="200px" height="200px">
+  <rect x="0" y="0" width="400" height="400" fill="#121212"/>
+  <circle cx="50" cy="200" r="5" fill="#333">
+    <animateMotion
+      dur="5s"
+      repeatCount="indefinite"
+      path="M 50 200 C 150 150, 250 150, 350 200 S 550 250, 450 300 S 250 350, 50 300 S -150 250, 50 200"
+    />
+  </circle>
+  <circle cx="150" cy="100" r="5" fill="#333">
+    <animateMotion
+      dur="5s"
+      repeatCount="indefinite"
+      path="M 150 100 C 250 150, 250 250, 150 300 S -50 250, 50 200 S 250 150, 150 100 S -50 50, 150 100"
+    />
+  </circle>
+  <circle cx="250" cy="300" r="5" fill="#333">
+    <animateMotion
+      dur="5s"
+      repeatCount="indefinite"
+      path="M 250 300 C 150 250, 50 250, -50 300 S -150 350, -50 400 S 150 450, 250 400 S 350 350, 250 300"
+    />
+  </circle>
+  <circle cx="350" cy="200" r="5" fill="#333">
+    <animateMotion
+      dur="5s"
+      repeatCount="indefinite"
+      path="M 350 200 C 250 250, 150 250, 50 200 S -150 150, 50 100 S 250 50, 350 100 S 550 150, 350 200"
+    />
+  </circle>
+</svg>
