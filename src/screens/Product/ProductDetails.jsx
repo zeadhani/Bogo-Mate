@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import CustomContainer from "../../components/UI/Global/CustomContainer";
 import { Box, Divider, Grid, useMediaQuery } from "@mui/material";
 import ProductImage from "../../components/UI/products/productDetails/productImage";
-import ProductDescription from "../../components/UI/products/productDetails/ProductDescription";
+import ProductDescription from "../../components/UI/products/productDetails/productDescription/ProductDescription";
 import ProductReviewsAndDescription from "../../components/UI/products/productDetails/Reviewsanddescription";
 import OtherData from "../../components/UI/products/productDetails/OtherProducts";
 
@@ -36,7 +36,7 @@ function ProductDetails() {
               />
             </Grid>
             <Grid item xs={12} md={7} alignSelf={"center"}>
-              <ProductDescription />
+              <ProductDescription matches={matches}/>
             </Grid>
             <Grid item xs={12}>
               <Box p={2}>
@@ -53,6 +53,7 @@ function ProductDetails() {
                 matches={matches}
                 title={"Products you may  like"}
                 products={products}
+                productDetails={'true'}
               />
             </Grid>
             <Grid item xs={12} md={3}>

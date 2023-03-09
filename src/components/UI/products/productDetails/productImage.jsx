@@ -1,9 +1,7 @@
 import useEmblaCarousel from "embla-carousel-react";
 import React, { useCallback, useEffect, useState } from "react";
 
-const images = ["image1", "image2", "image3", "image4"];
 
-const imageByIndex = (index) => images[index % images.length];
 
 const SLIDE_COUNT = 5;
 const slides = Array.from(Array(SLIDE_COUNT).keys());
@@ -68,9 +66,7 @@ function ProductImage(props) {
         <div className="embla__container2">
           {slides.map((index) => (
             <div className="embla__slide2" key={index}>
-              <div className="embla__slide__number">
-                <span>{index + 1}</span>
-              </div>
+              
               <img
                 className="embla__slide__img2"
                 src={props.image}

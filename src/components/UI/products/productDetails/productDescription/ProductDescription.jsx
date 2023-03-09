@@ -1,7 +1,10 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
+import CustomRating from "./Rating";
+import Attributes from "./Attributes";
+import Requests from "./Requests";
 
-function ProductDescription() {
+function ProductDescription({ matches }) {
   return (
     <Box p={2}>
       <Typography variant="h4" gutterBottom fontWeight={900}>
@@ -10,12 +13,16 @@ function ProductDescription() {
       <Typography variant="h6" gutterBottom>
         99.99 EGP
       </Typography>
-      <Typography variant="body1" gutterBottom>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et nulla
-        porta, eleifend sapien ac, aliquam orci. Aenean a tortor mauris. Nullam
-        aliquet diam vel metus volutpat imperdiet.
-      </Typography>
-      <Button variant="contained" color="primary" size="large">
+      <CustomRating />
+      <Attributes />
+      <Requests />
+      <Button
+        variant="contained"
+        color="success"
+        size="large"
+        fullWidth
+        sx={{ mt: 2 }}
+      >
         Join pool
       </Button>
     </Box>

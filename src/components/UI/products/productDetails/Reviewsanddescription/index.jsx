@@ -3,7 +3,7 @@ import { Box, Tab } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { CommentOutlined, DescriptionOutlined } from "@mui/icons-material";
 import Descritption from "./Descritption";
-import Reviews from "./Reviews";
+import Reviews from "./Reviews/Reviews";
 function ProductReviewsAndDescription() {
   const [Active, setActive] = useState("1");
   const handleChange = (e, newValue) => {

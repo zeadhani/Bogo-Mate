@@ -6,7 +6,13 @@ import svg from "../../../../images/image1.svg";
 import { Link } from "react-router-dom";
 import React, { useRef } from "react";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
-const ProductCarousel = ({ matches, title, products, navigate }) => {
+const ProductCarousel = ({
+  matches,
+  title,
+  products,
+  navigate,
+  productDetails,
+}) => {
   const containerRef = useRef(null);
   function handleScrollLeft() {
     containerRef.current.scrollBy({ left: -100, behavior: "smooth" });
@@ -38,23 +44,25 @@ const ProductCarousel = ({ matches, title, products, navigate }) => {
         >
           {title}
         </Typography>
-      {navigate &&  <Typography
-          variant={matches ? "caption" : "h6"}
-          fontWeight={700}
-          textTransform={"uppercase"}
-        >
-          <Link to={navigate} style={{ color: "white" }}>
-            see more &rarr;
-          </Link>
-        </Typography>}
+        {navigate && (
+          <Typography
+            variant={matches ? "caption" : "h6"}
+            fontWeight={700}
+            textTransform={"uppercase"}
+          >
+            <Link to={navigate} style={{ color: "white" }}>
+              see more &rarr;
+            </Link>
+          </Typography>
+        )}
       </Box>
       <Box
         mt={1}
         display={"flex"}
         justifyContent={"start"}
         component={motion.div}
-        initial={{ x: "100%" }}
-        whileInView={{ x: "0%" }}
+        initial={!productDetails ? { x: "100%" } : { opacity: .5 }}
+        whileInView={!productDetails ? { x: "0%" } : { opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
         <Box
