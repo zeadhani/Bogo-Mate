@@ -12,7 +12,8 @@ import {
 } from "@mui/material";
 
 import SearchBar from "../../Forms/searchBar";
-import FilterContainer from "../Global/FilterContainer";
+import FilterContainer from "../Global/filters/FilterContainer";
+
 const preferences = [
   { id: 1, label: "Option 1" },
   { id: 2, label: "Option 2" },

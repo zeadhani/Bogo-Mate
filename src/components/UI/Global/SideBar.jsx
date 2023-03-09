@@ -41,7 +41,7 @@ function SideBar() {
     <React.Fragment>
       {matches && (
         <Drawer open={open} variant="temporary" anchor="left">
-          <Box bgcolor={colors.grey[900]}>
+          <Box bgcolor={colors.grey[900]} >
             <Box display={"flex"} justifyContent={"right"}>
               <IconButton onClick={closeSideBar} sx={{ color: "#f5f5f5" }}>
                 <Close />
@@ -53,6 +53,7 @@ function SideBar() {
                 justifyContent: "center",
                 gap: 2,
                 py: 3,
+                px:8
               }}
             >
               <Avatar alt="Zead" sx={{ width: "120px", height: "120px" }} />

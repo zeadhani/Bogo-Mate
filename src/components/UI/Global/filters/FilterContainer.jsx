@@ -38,6 +38,7 @@ function FilterContainer({ matches, children }) {
               Filters
             </Typography>
           </Box>
+
           <Dialog open={openFilter} fullScreen>
             <Box
               p={2}
