@@ -38,7 +38,7 @@ const ProductCarousel = ({ matches, title, products, navigate }) => {
         >
           {title}
         </Typography>
-        <Typography
+      {navigate &&  <Typography
           variant={matches ? "caption" : "h6"}
           fontWeight={700}
           textTransform={"uppercase"}
@@ -46,7 +46,7 @@ const ProductCarousel = ({ matches, title, products, navigate }) => {
           <Link to={navigate} style={{ color: "white" }}>
             see more &rarr;
           </Link>
-        </Typography>
+        </Typography>}
       </Box>
       <Box
         mt={1}
