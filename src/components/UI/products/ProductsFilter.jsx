@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import FilterContainer from "../Global/filters/FilterContainer";
-import { Box, Button, Divider, Slider, Typography } from "@mui/material";
+import { Box,  Divider, Slider, Typography } from "@mui/material";
 import SearchBar from "../../Forms/searchBar";
 import {
   Category,
@@ -26,8 +26,7 @@ function ProductsFilter({ matches }) {
     setValue(newValue);
   };
   return (
-    <FilterContainer matches={matches}>
-      
+    <FilterContainer matches={matches} clearData={handleClearFilters}>
       <Box mb={2}>
         <Typography variant="h6" gutterBottom>
           Search
@@ -77,9 +76,6 @@ function ProductsFilter({ matches }) {
       </Box>
 
       <Divider style={{ margin: "16px 0" }} />
-      <Button variant="outlined" onClick={handleClearFilters}>
-        Clear Filters
-      </Button>
     </FilterContainer>
   );
 }

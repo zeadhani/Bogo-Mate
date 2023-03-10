@@ -25,7 +25,9 @@ function Brands({ matches }) {
           "https://res.cloudinary.com/df2862din/image/upload/v1677676881/c1_bz702m.jpg"
         }
       />
+
       {matches && <FilterList matches={matches} />}
+
       <BrandsItems brands={brandsItems} />
     </Box>
   );

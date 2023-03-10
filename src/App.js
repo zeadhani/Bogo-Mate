@@ -6,7 +6,11 @@ import SideBar from "./components/UI/Global/SideBar";
 import Footer from "./components/UI/Footer/Footer";
 import React from "react";
 import CustomSuspense from "./components/UI/Global/CustomSuspense";
-
+import PrivateRoutes from "./components/Auth/PrivateRoutes";
+import AuthRoutes from "./components/Auth/AuthRoutes";
+import Login from "./screens/Auth/Login";
+import Register from "./screens/Auth/Register";
+import NoMatch from "./components/UI/Global/NoMatch";
 
 const HomePage = React.lazy(() => import("./screens/Home"));
 const ProductsDashboard = React.lazy(() => import("./screens/Product"));
@@ -21,48 +25,64 @@ function App() {
       <CssBaseline />
       <SideBar />
       <Navbar />
+
       <Routes>
+        <Route element={<PrivateRoutes />}>
+          <Route
+            path="/"
+            element={
+              <CustomSuspense>
+                <HomePage />
+              </CustomSuspense>
+            }
+          />
+          <Route
+            path="/About us"
+            element={
+              <CustomSuspense>
+                <AboutUsPage />
+              </CustomSuspense>
+            }
+          />
+          <Route
+            path="/shop"
+            element={
+              <CustomSuspense>
+                <ShopPage />
+              </CustomSuspense>
+            }
+          />
+          <Route
+            path="shop/:brand"
+            element={
+              <CustomSuspense>
+                <ProductsDashboard />
+              </CustomSuspense>
+            }
+          />
+          <Route
+            path="shop/:brand/:product"
+            element={
+              <CustomSuspense>
+                <ProductDetails />
+              </CustomSuspense>
+            }
+          />
+        </Route>
+        <Route element={<AuthRoutes />}>
+          <Route path="/Auth/Login" element={<Login />} />
+          <Route path="/Auth/Register" element={<Register />} />
+        </Route>
         <Route
-          path="/"
+          path="*"
           element={
             <CustomSuspense>
-              <HomePage />
-            </CustomSuspense>
-          }
-        />
-        <Route
-          path="/About us"
-          element={
-            <CustomSuspense>
-              <AboutUsPage />
-            </CustomSuspense>
-          }
-        />
-        <Route
-          path="/shop"
-          element={
-            <CustomSuspense>
-              <ShopPage />
-            </CustomSuspense>
-          }
-        />
-        <Route
-          path="shop/:brand"
-          element={
-            <CustomSuspense>
-              <ProductsDashboard />
-            </CustomSuspense>
-          }
-        />
-        <Route
-          path="shop/:brand/:product"
-          element={
-            <CustomSuspense>
-              <ProductDetails />
+              <NoMatch />
             </CustomSuspense>
           }
         />
       </Routes>
+
       <Footer />
     </ThemeProvider>
   );

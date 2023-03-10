@@ -7,8 +7,8 @@ import {
   ListItemSecondaryAction,
   Checkbox,
   Divider,
-  Button,
   Box,
+  Button,
 } from "@mui/material";
 
 import SearchBar from "../../Forms/searchBar";
@@ -23,7 +23,6 @@ const preferences = [
 ];
 function FilterList({ matches }) {
   const [selectedPreferences, setSelectedPreferences] = useState([]);
-
   const handlePreferenceToggle = (preference) => () => {
     const currentIndex = selectedPreferences.indexOf(preference);
     const newPreferences = [...selectedPreferences];
@@ -36,12 +35,12 @@ function FilterList({ matches }) {
 
     setSelectedPreferences(newPreferences);
   };
-
   const clearPreferences = () => {
     setSelectedPreferences([]);
   };
+
   return (
-    <FilterContainer matches={matches}>
+    <FilterContainer matches={matches} clearData={clearPreferences}>
       <Box mb={2}>
         <Typography variant="h6" gutterBottom>
           Search
@@ -73,10 +72,13 @@ function FilterList({ matches }) {
       </List>
 
       <Divider style={{ margin: "16px 0" }} />
-
-      <Button variant="outlined" onClick={clearPreferences}>
-        Clear Filters
-      </Button>
+      <Box display={"flex"} gap={1}>
+        {!matches && (
+          <Button variant="outlined" onClick={clearPreferences}>
+            Clear Filters
+          </Button>
+        )}
+      </Box>
     </FilterContainer>
   );
 }

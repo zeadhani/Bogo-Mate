@@ -36,6 +36,7 @@ function SideBar() {
   const handleNavigate = () => {
     closeSideBar();
   };
+
   return (
     <React.Fragment>
       {matches && (

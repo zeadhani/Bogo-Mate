@@ -1,8 +1,8 @@
 import { Close, Menu } from "@mui/icons-material";
-import { Box, Dialog, IconButton, Typography } from "@mui/material";
+import { Box, Button, Dialog, IconButton, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-function FilterContainer({ matches, children }) {
+function FilterContainer({ matches, clearData, children }) {
   const [openFilter, setOpenFilter] = useState(false);
   const handleOpenFilter = () => {
     setOpenFilter((prev) => !prev);
@@ -53,6 +53,18 @@ function FilterContainer({ matches, children }) {
                 </IconButton>
               </Box>
               {children}
+              <Box display={"flex"} gap={1}>
+                <Button variant="outlined" onClick={() => clearData()}>
+                  Clear Filters
+                </Button>
+                <Button
+                  variant="contained"
+                  sx={{ bgcolor: "#222" }}
+                  onClick={handleOpenFilter}
+                >
+                  Apply Filters
+                </Button>
+              </Box>
             </Box>
           </Dialog>
         </>

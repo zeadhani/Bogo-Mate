@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#222;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#222;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#222;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1920" height="1080" fill="url(#grad1)" />
+  <text x="50" y="200" font-size="80" fill="#d3d3d3">
+    <animateTransform attributeName="transform" attributeType="XML" type="translate" from="-2000 0" to="1920 0" dur="10s" repeatCount="indefinite"/>
+    offers
+  </text>
+  <text x="50" y="500" font-size="80" fill="#d3d3d3">
+    <animateTransform attributeName="transform" attributeType="XML" type="translate" from="-2000 0" to="1920 0" dur="10s" repeatCount="indefinite"/>
+    hurry up
+  </text>
+  <text x="50" y="700" font-size="80" fill="#d3d3d3">
+    <animateTransform attributeName="transform" attributeType="XML" type="translate" from="-2000 0" to="1920 0" dur="10s" repeatCount="indefinite"/>
+    limited time offer
+  </text>
+  <text x="50" y="900" font-size="80" fill="#d3d3d3">
+    <animateTransform attributeName="transform" attributeType="XML" type="translate" from="-2000 0" to="1920 0" dur="10s" repeatCount="indefinite"/>
+    last chance to save
+  </text>
+  <text x="1500" y="100" font-size="80" fill="#d3d3d3">
+    <animateTransform attributeName="transform" attributeType="XML" type="translate" from="2000 0" to="-1920 0" dur="10s" repeatCount="indefinite"/>
+    discounts
+  </text>
+  <text x="1500" y="300" font-size="80" fill="#d3d3d3">
+    <animateTransform attributeName="transform" attributeType="XML" type="translate" from="2000 0" to="-1920 0" dur="10s" repeatCount="indefinite"/>
+    don't miss out
+  </text>
+
+</svg>

@@ -22,7 +22,6 @@ function ProductItem({ product }) {
     >
       <Box
         sx={{
-          mb: "auto",
           mx: "auto",
         }}
       >
@@ -34,27 +33,29 @@ function ProductItem({ product }) {
         />
       </Box>
       <Divider />
-      <Typography textAlign={"left"} variant={matches ? "h5" : "h3"} mt={2}>
-        {product.name}
-      </Typography>
-      <Typography textAlign={"left"} variant={matches ? "h6" : "h4"}>
-        Nike
-      </Typography>
-      <Typography textAlign={"left"} variant={matches ? "caption" : "h5"}>
-        350EGP
-      </Typography>
-      <Box
-        marginBottom={"auto"}
-        display={"flex"}
-        justifyContent={"end"}
-        mt={1}
-        flexWrap={"wrap"}
-      >
-        <PersonOutline />
-        <PersonOutline />
-        <Person />
-        <Person />
-        <Person />
+      <Box sx={{marginTop:'auto'}}>
+        <Typography textAlign={"left"} variant={matches ? "h5" : "h3"} mt={2}>
+          {product.name}
+        </Typography>
+        <Typography textAlign={"left"} variant={matches ? "h6" : "h4"}>
+          Nike
+        </Typography>
+        <Typography textAlign={"left"} variant={matches ? "caption" : "h5"}>
+          350EGP
+        </Typography>
+        <Box
+          marginBottom={"auto"}
+          display={"flex"}
+          justifyContent={"end"}
+          mt={1}
+          flexWrap={"wrap"}
+        >
+          <PersonOutline />
+          <PersonOutline />
+          <Person />
+          <Person />
+          <Person />
+        </Box>
       </Box>
     </Box>
   );

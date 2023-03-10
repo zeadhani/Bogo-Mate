@@ -3,78 +3,84 @@ import { AppBar, Typography, IconButton, Box, Container } from "@mui/material";
 import { Facebook, Twitter, Instagram } from "@mui/icons-material";
 import svg from "../../../images/image3.svg";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 function Footer() {
+  const isLoggedIn = useSelector((state) => state.Auth.loggedIn);
   return (
-    <AppBar
-      position="relative"
-      sx={{
-        pt: 2,
-        pb: 2,
-        backgroundImage: `url(${svg})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        borderTopLeftRadius:'5px',
-        borderTopRightRadius:'5px'
-      }}
-    >
-      <Container maxWidth="lg">
-        <Box
+    <>
+      {isLoggedIn && (
+        <AppBar
+          position="relative"
           sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
+            pt: 2,
+            pb: 2,
+            backgroundImage: `url(${svg})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            borderTopLeftRadius: "5px",
+            borderTopRightRadius: "5px",
           }}
         >
-          <Box sx={{ display: "flex", flexDirection: "column" }}>
-            <Typography variant="h6" sx={{ color: "white" }}>
-              BOGO MATE
-            </Typography>
-            <Typography variant="body2" sx={{ color: "white" }}>
-              Copyright © 2023
-            </Typography>
-          </Box>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <IconButton
-              href="https://www.facebook.com"
-              sx={{ color: "white", mr: 1 }}
+          <Container maxWidth="lg">
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
             >
-              <Facebook />
-            </IconButton>
-            <IconButton
-              href="https://www.twitter.com"
-              sx={{ color: "white", mr: 1 }}
-            >
-              <Twitter />
-            </IconButton>
-            <IconButton
-              href="https://www.instagram.com"
-              sx={{ color: "white" }}
-            >
-              <Instagram />
-            </IconButton>
-          </Box>
-        </Box>
-      </Container>
+              <Box sx={{ display: "flex", flexDirection: "column" }}>
+                <Typography variant="h6" sx={{ color: "white" }}>
+                  BOGO MATE
+                </Typography>
+                <Typography variant="body2" sx={{ color: "white" }}>
+                  Copyright © 2023
+                </Typography>
+              </Box>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <IconButton
+                  href="https://www.facebook.com"
+                  sx={{ color: "white", mr: 1 }}
+                >
+                  <Facebook />
+                </IconButton>
+                <IconButton
+                  href="https://www.twitter.com"
+                  sx={{ color: "white", mr: 1 }}
+                >
+                  <Twitter />
+                </IconButton>
+                <IconButton
+                  href="https://www.instagram.com"
+                  sx={{ color: "white" }}
+                >
+                  <Instagram />
+                </IconButton>
+              </Box>
+            </Box>
+          </Container>
 
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          pt: 1,
-        }}
-      >
-        <Box sx={{ display: "flex" }}>
-          <Link to="#" style={{ color: "white", fontSize: "0.75rem" }}>
-            Terms of Service
-          </Link>
-          <Typography sx={{ color: "white", mx: 1 }}>/</Typography>
-          <Link to="#" style={{ color: "white", fontSize: "0.75rem" }}>
-            Privacy Policy
-          </Link>
-        </Box>
-      </Box>
-    </AppBar>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              pt: 1,
+            }}
+          >
+            <Box sx={{ display: "flex" }}>
+              <Link to="#" style={{ color: "white", fontSize: "0.75rem" }}>
+                Terms of Service
+              </Link>
+              <Typography sx={{ color: "white", mx: 1 }}>/</Typography>
+              <Link to="#" style={{ color: "white", fontSize: "0.75rem" }}>
+                Privacy Policy
+              </Link>
+            </Box>
+          </Box>
+        </AppBar>
+      )}
+    </>
   );
 }
 
