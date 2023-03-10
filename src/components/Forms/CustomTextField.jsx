@@ -27,12 +27,6 @@ function CustomTextField(props) {
       helperText={Boolean(touched) && errors}
       disabled={disabled}
       select={select}
-      sx={{ bgcolor: "#d3d3d3", borderRadius: "5px", color: "#222" }}
-      InputLabelProps={{
-        style: {
-          color: "#222",
-        },
-      }}
     >
       {children}
     </Field>

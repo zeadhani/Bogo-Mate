@@ -10,7 +10,7 @@ import FormCard from "../../components/Forms/FormCard";
 import { colors } from "../../Theme";
 import CustomTextField from "../../components/Forms/CustomTextField";
 import FormButton from "../../components/Forms/FormButton";
-import svg from "../../images/auth.svg";
+
 const initialValues = {
   email: "",
   password: "",
@@ -40,14 +40,7 @@ function Login() {
       alignItems={"center"}
       justifyContent={"center"}
       height={"100vh"}
-      sx={{
-        backgroundImage: `url(${svg})`,
-        color: "#f5f5f5",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        overflow:'hidden'
-      }}
+      bgcolor={"#222"}
     >
       <Formik
         onSubmit={handleFormSubmit}
