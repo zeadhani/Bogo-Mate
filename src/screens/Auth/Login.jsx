@@ -46,6 +46,7 @@ function Login() {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
+        overflow:'hidden'
       }}
     >
       <Formik
