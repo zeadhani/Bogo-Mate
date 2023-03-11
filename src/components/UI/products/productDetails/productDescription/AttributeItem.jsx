@@ -24,8 +24,8 @@ function AttributeItem({ attribute, attributeData }) {
                 bgcolor: selected ? colors.grey[900] : "",
                 color: selected ? "#f5f5f5" : "",
                 "&:hover": {
-                  bgcolor: selected ? "#f5f5f5" : colors.grey[900],
-                  color: selected ? "#222" : "#f5f5f5",
+                  bgcolor: colors.grey[900],
+                  color: "#f5f5f5",
                 },
               }}
             >

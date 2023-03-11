@@ -9,7 +9,6 @@ function FormButton({ children }) {
         type="submit"
         variant="outlined"
         size={matches ? "medium" : "large"}
-        sx={{ color: "#d3d3d3" }}
       >
         {children}
       </Button>

@@ -8,14 +8,16 @@ function NoMatch() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        height: "100vh",
+        height: "67vh",
         flexDirection: "column",
       }}
     >
-      <Typography variant="h3">404 - Page not found</Typography>
-      <Typography variant="subtitle1">
-        The page you are looking for does not exist.
-      </Typography>
+      <Box sx={{ transform: "translateY(-100%)" }} textAlign={"center"}>
+        <Typography variant="h3">404 - Page not found</Typography>
+        <Typography variant="subtitle1">
+          The page you are looking for does not exist.
+        </Typography>
+      </Box>
     </Box>
   );
 }

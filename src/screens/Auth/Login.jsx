@@ -40,7 +40,7 @@ function Login() {
       alignItems={"center"}
       justifyContent={"center"}
       height={"100vh"}
-      bgcolor={"#222"}
+      bgcolor={"#f5f5f5"}
     >
       <Formik
         onSubmit={handleFormSubmit}
@@ -51,7 +51,6 @@ function Login() {
           values,
           errors,
           touched,
-
           handleSubmit,
         }) => (
           <Box width={"100%"}>
@@ -65,7 +64,8 @@ function Login() {
                   variant="h2"
                   textAlign={"start"}
                   pt={2}
-                  color={colors.grey[100]}
+                  color={colors.grey[900]}
+                  fontWeight={500}
                   sx={{ mb: "5px", cursor: "pointer" }}
                 >
                   Login
