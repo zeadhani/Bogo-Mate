@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 
-function CustomFilterList({ icon,title, FilterData }) {
+function CustomFilterList({ icon, title, FilterData }) {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -20,8 +20,6 @@ function CustomFilterList({ icon,title, FilterData }) {
 
   const [Data, setData] = useState([]);
   const handleDataToggle = (item) => () => {
-
-
     const currentIndex = Data.indexOf(item);
     const newData = [...Data];
 
@@ -31,10 +29,9 @@ function CustomFilterList({ icon,title, FilterData }) {
       newData.splice(currentIndex, 1);
     }
     setData(newData);
-
   };
   return (
-    <List>
+    <List sx={{ p: 0 }}>
       <ListItemButton onClick={handleClick}>
         <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText primary={title} />

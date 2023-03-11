@@ -42,7 +42,7 @@ function ProductsFilter({ matches }) {
         FilterData={preferences}
       />
 
-      <Divider style={{ margin: "16px 0" }} />
+      <Divider style={{ margin: "10px 0" }} />
 
       <CustomFilterList
         icon={<Category />}
@@ -50,7 +50,7 @@ function ProductsFilter({ matches }) {
         FilterData={preferences}
       />
 
-      <Divider style={{ margin: "16px 0" }} />
+      <Divider style={{ margin: "10px 0" }} />
 
       <CustomFilterList
         icon={<People />}
@@ -58,7 +58,7 @@ function ProductsFilter({ matches }) {
         FilterData={preferences}
       />
 
-      <Divider style={{ margin: "16px 0" }} />
+      <Divider style={{ margin: "10px 0" }} />
 
       <Box display={"flex"} gap={2} p={2}>
         <MoneyOff />
@@ -75,7 +75,7 @@ function ProductsFilter({ matches }) {
         />
       </Box>
 
-      <Divider style={{ margin: "16px 0" }} />
+      <Divider style={{ margin: "10px 0" }} />
     </FilterContainer>
   );
 }
