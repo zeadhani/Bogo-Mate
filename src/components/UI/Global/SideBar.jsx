@@ -33,6 +33,12 @@ function SideBar() {
     dispatch(sideBarActions.close());
   };
 
+  const handleCloseDrwaer = (e) => {
+    if (e.target.classList.contains("MuiModal-backdrop")) {
+      closeSideBar();
+    }
+  };
+
   const handleNavigate = () => {
     closeSideBar();
   };
@@ -40,7 +46,13 @@ function SideBar() {
   return (
     <React.Fragment>
       {matches && (
-        <Drawer open={open} variant="temporary" anchor="left">
+        <Drawer
+          onClick={handleCloseDrwaer}
+          open={open}
+          variant="temporary"
+          anchor="left"
+          transitionDuration={800}
+        >
           <Box bgcolor={colors.grey[900]}>
             <Box display={"flex"} justifyContent={"right"}>
               <IconButton onClick={closeSideBar} sx={{ color: "#f5f5f5" }}>
