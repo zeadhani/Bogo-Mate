@@ -3,7 +3,6 @@ import React from "react";
 import SearchHeader from "./SearchHeader";
 import MobileMenu from "./MobileMenu";
 import svg from "../../../images/AbstractPaper.svg";
-import { BackGorundimage } from "../../../images/image";
 function MobileHeader() {
   return (
     <Box
@@ -25,7 +24,7 @@ function MobileHeader() {
           left: "0px",
           right: "0px",
           zIndex: 0,
-          backgroundImage: BackGorundimage,
+          backgroundImage: `url(${svg})`,
           backgroundRepeat:"no-repeat",
           backgroundSize:"cover"
         }}
