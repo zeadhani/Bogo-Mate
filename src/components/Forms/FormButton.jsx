@@ -7,8 +7,10 @@ function FormButton({ children }) {
     <Box display="flex" justifyContent="end">
       <Button
         type="submit"
-        variant="outlined"
         size={matches ? "medium" : "large"}
+        fullWidth
+        variant="contained"
+        color="primary"
       >
         {children}
       </Button>

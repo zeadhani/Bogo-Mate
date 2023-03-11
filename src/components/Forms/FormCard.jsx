@@ -7,7 +7,7 @@ function FormCard({ children, serverErrors, loading, handleSubmit }) {
     <form onSubmit={handleSubmit}>
       <Box
         sx={{
-          width: { xs: "85%", md: "55%" },
+          width:  "100%",
           margin: "auto",
           paddingTop: "20px",
           paddingBottom: "20px",
