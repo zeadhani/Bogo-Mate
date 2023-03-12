@@ -103,7 +103,7 @@ const ProductCarousel = ({
             <>
               <IconButton
                 onClick={handleScrollLeft}
-                sx={{ position: "absolute", top: "10%", left: 0 }}
+                sx={{ position: "absolute", top: "50%", left: 0 }}
               >
                 <KeyboardArrowLeft
                   sx={{ fontSize: "3rem", color: "#f5f5f5" }}
