@@ -7,7 +7,7 @@ import ProductCarousel from "../../components/UI/home/Global/productCarousel";
 import BrandsCarousel from "../../components/UI/home/Global/BrandsCarousel";
 import MidLevelIcons from "../../components/UI/home/Global/midLevelIcons";
 import HomeAboutSection from "../../components/UI/home/Global/homeAboutSection";
-import { useNavigate } from "react-router-dom";
+
 import CategoriesHomePage from "../../components/UI/home/Global/CategoriesHomePage";
 import useHomeData from "../../hooks/home/useHomeData";
 import LoadingData from "../../components/UI/Global/LoadingData";
