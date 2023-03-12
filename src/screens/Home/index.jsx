@@ -18,7 +18,7 @@ function HomePage() {
   const { data, isLoading, error } = useHomeData({
     email: "zeadhani88@gmail.com",
   });
-
+  console.log(data);
   if (error) {
     return <Error />;
   }

@@ -1,10 +1,9 @@
 import { Box, Divider, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 
 import { Person, PersonOutline } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import LoadingData from "../../Global/LoadingData";
 
 function ProductItem({ product, matches }) {
   const navigate = useNavigate();
@@ -13,11 +12,6 @@ function ProductItem({ product, matches }) {
   const requestsLeft = product.offers.total_people_quantity - completedRequests;
   const handleNavigate = () => {
     navigate("/about");
-  };
-  const [loaded, setLoaded] = useState(false);
-
-  const handleImageLoad = () => {
-    setLoaded(true);
   };
 
   return (
@@ -37,16 +31,13 @@ function ProductItem({ product, matches }) {
           mb: "auto",
         }}
       >
-        <div>
-          {!loaded && <LoadingData />}
-          <LazyLoadImage
-            style={{ objectFit: "contain", borderRadius: "5px" }}
-            width={"100%"}
-            alt={"productImage"}
-            src={`${process.env.REACT_APP_CLOUDINARY}${product.image}`}
-            onLoad={handleImageLoad}
-          />
-        </div>
+        <LazyLoadImage
+          style={{ objectFit: "contain", borderRadius: "5px" }}
+          width={"100%"}
+          alt={"productImage"}
+          src={`${process.env.REACT_APP_CLOUDINARY}${product.image}`}
+          
+        />
       </Box>
       <Divider />
       <Typography textAlign={"left"} variant={matches ? "h5" : "h3"} mt={2}>
