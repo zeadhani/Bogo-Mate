@@ -5,7 +5,14 @@ function CustomSuspense({ children }) {
   return (
     <React.Suspense
       fallback={
-        <Box sx={{ display: "flex" ,justifyContent:"center",alignItems:'center' ,height:"63vh"}}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height:'100%'
+          }}
+        >
           <CircularProgress />
         </Box>
       }

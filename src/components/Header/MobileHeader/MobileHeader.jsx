@@ -7,7 +7,6 @@ function MobileHeader() {
   return (
     <Box
       sx={{
-        height: "100%",
         backgroundColor: "white",
         display: "flex",
         flexDirection: "column",
@@ -23,10 +22,9 @@ function MobileHeader() {
           top: "0px",
           left: "0px",
           right: "0px",
-          zIndex: 0,
           backgroundImage: `url(${svg})`,
-          backgroundRepeat:"no-repeat",
-          backgroundSize:"cover"
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
         }}
       />
       <SearchHeader />

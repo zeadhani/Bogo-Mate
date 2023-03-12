@@ -15,9 +15,9 @@ function Navbar() {
           {!matches ? (
             <LargeNavbar />
           ) : (
-            <Box overflow={"hidden"}>
+           
               <MobileHeader />
-            </Box>
+           
           )}
         </>
       )}

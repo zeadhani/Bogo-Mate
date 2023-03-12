@@ -24,66 +24,68 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <SideBar />
-      <Navbar />
-
-      <Routes>
-        <Route element={<PrivateRoutes />}>
-          <Route
-            path="/"
-            element={
-              <CustomSuspense>
-                <HomePage />
-              </CustomSuspense>
-            }
-          />
-          <Route
-            path="/About us"
-            element={
-              <CustomSuspense>
-                <AboutUsPage />
-              </CustomSuspense>
-            }
-          />
-          <Route
-            path="/shop"
-            element={
-              <CustomSuspense>
-                <ShopPage />
-              </CustomSuspense>
-            }
-          />
-          <Route
-            path="shop/:brand"
-            element={
-              <CustomSuspense>
-                <ProductsDashboard />
-              </CustomSuspense>
-            }
-          />
-          <Route
-            path="shop/:brand/:product"
-            element={
-              <CustomSuspense>
-                <ProductDetails />
-              </CustomSuspense>
-            }
-          />
-        </Route>
-        <Route element={<AuthRoutes />}>
-          <Route path="/Auth/Login" element={<Login />} />
-          <Route path="/Auth/Register" element={<Register />} />
-        </Route>
-        <Route
-          path="*"
-          element={
-            <CustomSuspense>
-              <NoMatch />
-            </CustomSuspense>
-          }
-        />
-      </Routes>
-
-      <Footer />
+      <div className="main">
+        <Navbar />
+        <div className="mainSection">
+          <Routes>
+            <Route element={<PrivateRoutes />}>
+              <Route
+                path="/"
+                element={
+                  <CustomSuspense>
+                    <HomePage />
+                  </CustomSuspense>
+                }
+              />
+              <Route
+                path="/About us"
+                element={
+                  <CustomSuspense>
+                    <AboutUsPage />
+                  </CustomSuspense>
+                }
+              />
+              <Route
+                path="/shop"
+                element={
+                  <CustomSuspense>
+                    <ShopPage />
+                  </CustomSuspense>
+                }
+              />
+              <Route
+                path="shop/:brand"
+                element={
+                  <CustomSuspense>
+                    <ProductsDashboard />
+                  </CustomSuspense>
+                }
+              />
+              <Route
+                path="shop/:brand/:product"
+                element={
+                  <CustomSuspense>
+                    <ProductDetails />
+                  </CustomSuspense>
+                }
+              />
+            </Route>
+            <Route element={<AuthRoutes />}>
+              <Route path="/Auth/Login" element={<Login />} />
+              <Route path="/Auth/Register" element={<Register />} />
+            </Route>
+            <Route
+              path="*"
+              element={
+                <CustomSuspense>
+                  <NoMatch />
+                </CustomSuspense>
+              }
+            />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
     </ThemeProvider>
   );
 }

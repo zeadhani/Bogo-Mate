@@ -6,6 +6,15 @@ body,
   margin: 0;
   overflow-x: "hidden";
 }
+
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.mainSection {
+  flex: 1;
+}
 ::-webkit-scrollbar {
   width: 1px;
   height: 4px;
@@ -47,13 +56,13 @@ body,
   object-fit: contain;
   border-radius: 8px;
 }
-.sidebar {
+/* .sidebar {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   z-index: 9999999;
-}
+} */
 
 .MuiListItem-root:hover {
   background-color: rgba(0, 0, 0, 0.08);
