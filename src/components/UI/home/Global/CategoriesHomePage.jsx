@@ -3,16 +3,8 @@ import React from "react";
 import CategoryItem from "./CategoryItem";
 import { Link } from "react-router-dom";
 
-const categories = [
-  { id: 1, name: "electronics" },
-  { id: 2, name: "Perfumes" },
-  { id: 3, name: "Clothes" },
-  { id: 4, name: "Supplements" },
-  { id: 5, name: "Furniture" },
-  { id: 6, name: "Vacations" },
-  { id: 7, name: "real estate" },
-];
-function CategoriesHomePage({ matches }) {
+function CategoriesHomePage({ categories, matches }) {
+
   return (
     <Box my={3}>
       <Box display={"flex"} justifyContent={"space-between"} mb={2}>
@@ -35,8 +27,8 @@ function CategoriesHomePage({ matches }) {
         </Typography>
       </Box>
       <Grid container spacing={2}>
-        {categories.map((item) => (
-          <Grid item xs={6} md={4} key={item.id}>
+        {categories?.map((item) => (
+          <Grid item xs={6} md={4} key={item.name}>
             <CategoryItem item={item} />
           </Grid>
         ))}

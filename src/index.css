@@ -1,3 +1,5 @@
+/* main styles */
+
 html,
 body,
 #root {
@@ -28,6 +30,7 @@ body,
   background: #222;
 }
 
+/* home embla carousel styles */
 .embla {
   --slide-spacing: 0.5rem;
   --slide-size: 100%;
@@ -56,19 +59,13 @@ body,
   object-fit: contain;
   border-radius: 8px;
 }
-/* .sidebar {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 9999999;
-} */
 
 .MuiListItem-root:hover {
   background-color: rgba(0, 0, 0, 0.08);
   cursor: pointer;
 }
 
+/* product details embla carousel styles */
 .embla2 {
   --slide-spacing: 1rem;
   --slide-size: 100%;
@@ -96,7 +93,6 @@ body,
   width: 100%;
   object-fit: contain;
 }
-
 .embla-thumbs {
   --thumbs-slide-spacing: 0.8rem;
   --thumbs-slide-height: 9rem;
@@ -116,6 +112,7 @@ body,
   padding-left: var(--thumbs-slide-spacing);
   position: relative;
 }
+
 @media (min-width: 576px) {
   .embla-thumbs__slide {
     flex: 0 0 18%;
@@ -177,4 +174,69 @@ body,
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+/* Loading Animation */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin: 0 4px;
+  animation: pulse 1.5s infinite;
+}
+
+.circle:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.circle:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.circle:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Error  */
+.error-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #fff;
+  color: #f44336;
+}
+
+.error-text {
+  text-align: center;
+}
+
+.error-text h3 {
+  margin: 0 0 16px;
+  font-size: 24px;
+}
+
+.error-text p {
+  margin: 0;
+  font-size: 16px;
 }

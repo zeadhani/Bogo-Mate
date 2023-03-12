@@ -61,7 +61,7 @@ const ProductCarousel = ({
         display={"flex"}
         justifyContent={"start"}
         component={motion.div}
-        initial={!productDetails ? { x: "100%" } : { opacity: .5 }}
+        initial={!productDetails ? { x: "50%" } : { opacity: .5 }}
         whileInView={!productDetails ? { x: "0%" } : { opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
@@ -87,8 +87,8 @@ const ProductCarousel = ({
           }}
           ref={containerRef}
         >
-          {products.map((product) => (
-            <ProductItem product={product} key={product.id} matches={matches} />
+          {products?.map((product) => (
+            <ProductItem product={product} key={product.name} matches={matches} />
           ))}
         </Box>
       </Box>
@@ -97,7 +97,7 @@ const ProductCarousel = ({
         <>
           <IconButton
             onClick={handleScrollLeft}
-            sx={{ position: "absolute", top: "50%", left: 0 }}
+            sx={{ position: "absolute", top: "10%", left: 0 }}
           >
             <KeyboardArrowLeft sx={{ fontSize: "3rem", color: "#f5f5f5" }} />
           </IconButton>

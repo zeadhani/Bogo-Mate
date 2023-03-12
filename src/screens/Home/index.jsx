@@ -9,21 +9,22 @@ import MidLevelIcons from "../../components/UI/home/Global/midLevelIcons";
 import HomeAboutSection from "../../components/UI/home/Global/homeAboutSection";
 import { useNavigate } from "react-router-dom";
 import CategoriesHomePage from "../../components/UI/home/Global/CategoriesHomePage";
-const products = [
-  { id: 1, name: "Product 1" },
-  { id: 2, name: "Product 2" },
-  { id: 3, name: "Product 3" },
-  { id: 4, name: "Product 4" },
-  { id: 5, name: "Product 5" },
-  { id: 6, name: "Product 6" },
-  { id: 7, name: "Product 7" },
-  { id: 8, name: "Product 8" },
-  { id: 9, name: "Product 9" },
-  { id: 10, name: "Product 10" },
-];
+import useHomeData from "../../hooks/home/useHomeData";
+import LoadingData from "../../components/UI/Global/LoadingData";
+import Error from "../../components/UI/Global/Error";
+
 function HomePage() {
   const matches = useMediaQuery("(max-width:800px)");
+  const { data, isLoading, error } = useHomeData({
+    email: "zeadhani88@gmail.com",
+  });
 
+  if (error) {
+    return <Error />;
+  }
+  if (isLoading) {
+    return <LoadingData />;
+  }
   return (
     <CustomContainer>
       {matches && <SmallHero />}
@@ -33,18 +34,18 @@ function HomePage() {
       <ProductCarousel
         matches={matches}
         title={"for you"}
-        products={products}
+        products={data?.userProducts}
         navigate={"/about"}
       />
       <HomeAboutSection matches={matches} />
-      <BrandsCarousel matches={matches} />
+      <BrandsCarousel matches={matches} Brands={data?.topTenBrands} />
       <ProductCarousel
         matches={matches}
-        title={"Limited offers"}
-        products={products}
+        title={"Hot Offers"}
+        products={data?.oneRemaining}
         navigate={"/about"}
       />
-      <CategoriesHomePage matches={matches} />
+      <CategoriesHomePage categories={data?.categories} matches={matches} />
     </CustomContainer>
   );
 }
