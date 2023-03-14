@@ -5,7 +5,6 @@ import useFooterData from "../../../hooks/home/useFooterData";
 
 function SettingData() {
   const { data } = useFooterData();
-  console.log(data)
   return (
     <Box
       sx={{
@@ -23,16 +22,10 @@ function SettingData() {
         </Typography>
       </Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        <IconButton
-          href={data?.facebook}
-          sx={{ color: "white", mr: 1 }}
-        >
+        <IconButton href={data?.facebook} sx={{ color: "white", mr: 1 }}>
           <Facebook />
         </IconButton>
-        <IconButton
-          href={data?.twitter}
-          sx={{ color: "white", mr: 1 }}
-        >
+        <IconButton href={data?.twitter} sx={{ color: "white", mr: 1 }}>
           <Twitter />
         </IconButton>
         <IconButton href={data?.instagram} sx={{ color: "white" }}>
