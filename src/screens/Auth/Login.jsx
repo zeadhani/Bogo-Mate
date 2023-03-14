@@ -24,13 +24,28 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const handleFormSubmit = async (values) => {
-    dispatch(
-      authActions.Login({
-        user: "Zead Hani Ali",
-        token: "123456",
-      })
-    );
-    navigate("/");
+    setServerErrors("");
+    const { email, password } = values;
+    setLoading(true);
+
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/auth/login`,
+        { email, password }
+      );
+
+      if (res.statusText !== "OK") return;
+      dispatch(
+        authActions.Login({
+          user: res.data.user.email,
+          token: res.data.token,
+        })
+      );
+      navigate("/");
+    } catch (err) {
+      setServerErrors(err.response.data.error);
+    }
+    setLoading(false);
   };
   const formValidation = yup.object().shape({
     email: yup.string().email().required("Email is required"),
