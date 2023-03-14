@@ -29,7 +29,7 @@ function HomePage() {
     <CustomContainer>
       {matches && <SmallHero />}
       {!matches && <Hero />}
-      <MidLevelIcons />
+      {/* <MidLevelIcons /> */}
 
       <ProductCarousel
         matches={matches}

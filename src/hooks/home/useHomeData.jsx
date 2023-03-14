@@ -8,7 +8,7 @@ function useHomeData({ email }) {
       const { data } = await authFetch.get(`/landingPage/${email}`);
       return data;
     },
-    { staleTime: 2 * 60 * 1000 }
+    // { staleTime: 2 * 60 * 1000 }
   );
 }
 

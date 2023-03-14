@@ -1,11 +1,13 @@
 import React from "react";
-import { AppBar, Typography, IconButton, Box, Container } from "@mui/material";
-import { Facebook, Twitter, Instagram } from "@mui/icons-material";
+import { AppBar, Typography, Box, Container } from "@mui/material";
 import svg from "../../../images/image3.svg";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+
+import SettingData from "./settingData";
 function Footer() {
   const isLoggedIn = useSelector((state) => state.Auth.loggedIn);
+
   return (
     <>
       {isLoggedIn && (
@@ -22,42 +24,7 @@ function Footer() {
           }}
         >
           <Container maxWidth="lg">
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <Box sx={{ display: "flex", flexDirection: "column" }}>
-                <Typography variant="h6" sx={{ color: "white" }}>
-                  BOGO MATE
-                </Typography>
-                <Typography variant="body2" sx={{ color: "white" }}>
-                  Copyright © 2023
-                </Typography>
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <IconButton
-                  href="https://www.facebook.com"
-                  sx={{ color: "white", mr: 1 }}
-                >
-                  <Facebook />
-                </IconButton>
-                <IconButton
-                  href="https://www.twitter.com"
-                  sx={{ color: "white", mr: 1 }}
-                >
-                  <Twitter />
-                </IconButton>
-                <IconButton
-                  href="https://www.instagram.com"
-                  sx={{ color: "white" }}
-                >
-                  <Instagram />
-                </IconButton>
-              </Box>
-            </Box>
+            <SettingData />
           </Container>
 
           <Box
