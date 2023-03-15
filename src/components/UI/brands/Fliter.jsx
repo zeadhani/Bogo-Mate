@@ -14,14 +14,7 @@ import {
 import SearchBar from "../../Forms/searchBar";
 import FilterContainer from "../Global/filters/FilterContainer";
 
-const preferences = [
-  { id: 1, label: "Option 1" },
-  { id: 2, label: "Option 2" },
-  { id: 3, label: "Option 3" },
-  { id: 4, label: "Option 4" },
-  { id: 5, label: "Option 5" },
-];
-function FilterList({ matches }) {
+function FilterList({ matches, preferences }) {
   const [selectedPreferences, setSelectedPreferences] = useState([]);
   const handlePreferenceToggle = (preference) => () => {
     const currentIndex = selectedPreferences.indexOf(preference);
@@ -57,9 +50,9 @@ function FilterList({ matches }) {
       <Divider style={{ marginBottom: "16px" }} />
 
       <List>
-        {preferences.map((preference) => (
+        {preferences?.map((preference) => (
           <ListItem key={preference.id}>
-            <ListItemText primary={preference.label} />
+            <ListItemText primary={preference.name} />
             <ListItemSecondaryAction>
               <Checkbox
                 edge="end"

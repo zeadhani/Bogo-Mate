@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography, Grid, Avatar, Box } from "@mui/material";
+import { Typography, Grid, Avatar, Box } from "@mui/material";
 import svg from "../../images/image2.svg";
 import CustomContainer from "../../components/UI/Global/CustomContainer";
 const url =
@@ -30,9 +30,9 @@ const AboutUsPage = () => {
           backgroundImage: `url(${svg})`,
           color: "#f5f5f5",
           borderRadius: "10px",
-          backgroundRepeat:'no-repeat',
-          backgroundSize:'cover',
-          backgroundPosition:"center bottom"
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center bottom",
         }}
       >
         <Typography variant="h2" align="center" gutterBottom mb={5}>

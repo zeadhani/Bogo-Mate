@@ -2,6 +2,7 @@ import { Close, Menu } from "@mui/icons-material";
 import { Box, Button, Dialog, IconButton, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+
 function FilterContainer({ matches, clearData, children }) {
   const [openFilter, setOpenFilter] = useState(false);
   const handleOpenFilter = () => {
@@ -39,7 +40,7 @@ function FilterContainer({ matches, clearData, children }) {
             </Typography>
           </Box>
 
-          <Dialog open={openFilter} fullScreen>
+          <Dialog open={openFilter}>
             <Box
               p={2}
               component={motion.div}
@@ -54,16 +55,16 @@ function FilterContainer({ matches, clearData, children }) {
               </Box>
               {children}
               <Box display={"flex"} gap={1}>
-                <Button variant="outlined" onClick={() => clearData()}>
+                <Button variant="outlined" onClick={() => clearData()} size="small">
                   Clear Filters
                 </Button>
-                <Button
+                {/* <Button
                   variant="contained"
                   sx={{ bgcolor: "#222" }}
                   onClick={handleOpenFilter}
                 >
                   Apply Filters
-                </Button>
+                </Button> */}
               </Box>
             </Box>
           </Dialog>
@@ -74,39 +75,3 @@ function FilterContainer({ matches, clearData, children }) {
 }
 
 export default FilterContainer;
-{
-  /* {matches && (
-        <Box display={"flex"} gap={1}>
-          <IconButton onClick={handleOpenFilter}>
-            {openFilter ? <Close /> : <Menu />}
-          </IconButton>
-          <Typography variant="h6" alignSelf={"center"}>
-            Filters
-          </Typography>
-        </Box>
-      )} 
-      {(openFilter || !matches) && (
-        <Box
-          sx={{
-            paddingX: "10px",
-            borderRight: "1px solid #e0e0e0",
-            height: matches ? "fit-content" : "100%",
-            margin: matches ? "0px" : "0 12px",
-            position: matches && "absolute",
-            bgcolor: matches ? colors.grey[100] : "transparent",
-            left: 0,
-            right: 0,
-            top: 44,
-            zIndex: 999,
-            paddingY: matches ? "20px" : "10px",
-            borderRadius: "5px",
-            width: "100%",
-          }}
-          component={motion.div}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-        >
-          {children}
-        </Box>
-      )} */
-}
