@@ -8,6 +8,7 @@ function BrandItem({ brand }) {
   const handleBrandNavigation = () => {
     navigate(`/shop/${brand.name}`);
   };
+  console.log(brand);
   return (
     <Box
       sx={{
@@ -16,7 +17,7 @@ function BrandItem({ brand }) {
         cursor: "pointer",
         position: "relative",
         width: "100%",
-        backgroundImage: `url(${svg})`,
+        backgroundImage: `url('${process.env.REACT_APP_CLOUDINARY}${brand.image}')`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         aspectRatio: "2/1",
@@ -34,7 +35,7 @@ function BrandItem({ brand }) {
         component={"div"}
         sx={{ transform: "translateY(-50%)" }}
       >
-        h&m
+        {brand.name}
       </Typography>
       <Typography
         variant="h6"
@@ -50,7 +51,7 @@ function BrandItem({ brand }) {
         color={"white"}
         paddingY={1}
       >
-        10 OFFERS
+        {brand._count.offers} OFFERS
       </Typography>
     </Box>
   );

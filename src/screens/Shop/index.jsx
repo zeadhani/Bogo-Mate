@@ -47,7 +47,7 @@ function ShopPage() {
     sort,
   });
 
-  const BrandsContainer = () => {
+  const BrandsContainer = ({brands}) => {
     return (
       <>
         <Grid item xs={12} md={3}>
@@ -55,7 +55,7 @@ function ShopPage() {
         </Grid>
 
         <Grid item xs={12} md={9}>
-          <Brands matches={matches} />
+          <Brands matches={matches} brands={brands}/>
           <Box display={"flex"} justifyContent={"center"}>
             <Pagination
               size={matches ? "small" : "medium"}
@@ -76,7 +76,7 @@ function ShopPage() {
     return <LoadingData />;
   }
   return (
-    <ShopContainer>{data?.count > 0 && <BrandsContainer />}</ShopContainer>
+    <ShopContainer>{data?.count > 0 && <BrandsContainer brands={data?.brands}/>}</ShopContainer>
   );
 }
 

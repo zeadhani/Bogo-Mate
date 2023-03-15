@@ -40,7 +40,7 @@ function FilterContainer({ matches, clearData, children }) {
             </Typography>
           </Box>
 
-          <Dialog open={openFilter}>
+          <Dialog open={openFilter} fullScreen>
             <Box
               p={2}
               component={motion.div}
