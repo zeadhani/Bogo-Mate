@@ -8,6 +8,7 @@ function useBrandFilters() {
       ? searchParams.get("preferences").split(",")
       : []
   );
+
   const handleFilterPrefChange = (e) => {
     const {
       target: { value },

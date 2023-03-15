@@ -1,11 +1,4 @@
-import {
-  Box,
-  Grid,
-  Pagination,
-
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Box, Grid, Pagination, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 
 import Brands from "../../components/UI/brands/brands";
@@ -21,6 +14,8 @@ import LoadingData from "../../components/UI/Global/LoadingData";
 import Error from "../../components/UI/Global/Error";
 import ShopContainer from "./shopContainer";
 
+const pref = [];
+
 function ShopPage() {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
@@ -35,9 +30,10 @@ function ShopPage() {
     resetCommonFilters,
     handleSortChange,
   } = useCommonFilters();
-  const { pref } = usePreferences();
   const { handleFilterPrefChange, preferencesFilter, resetBrandFilters } =
     useBrandFilters();
+
+  const { pref } = usePreferences();
   const { data, isError, isLoading } = useBrands({
     page,
     orderBy,
@@ -46,16 +42,15 @@ function ShopPage() {
     search,
     sort,
   });
-
-  const BrandsContainer = ({brands}) => {
+  console.log("first");
+  const BrandsContainer = ({ brands }) => {
     return (
       <>
         <Grid item xs={12} md={3}>
           <FilterList matches={matches} preferences={pref} />
         </Grid>
-
         <Grid item xs={12} md={9}>
-          <Brands matches={matches} brands={brands}/>
+          <Brands matches={matches} brands={brands} />
           <Box display={"flex"} justifyContent={"center"}>
             <Pagination
               size={matches ? "small" : "medium"}
@@ -76,7 +71,10 @@ function ShopPage() {
     return <LoadingData />;
   }
   return (
-    <ShopContainer>{data?.count > 0 && <BrandsContainer brands={data?.brands}/>}</ShopContainer>
+    <ShopContainer>
+      {data?.count > 0 && <BrandsContainer brands={data?.brands} />}
+      {/* <BrandsContainer brands={brands} /> */}
+    </ShopContainer>
   );
 }
 

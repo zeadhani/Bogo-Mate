@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import SettingData from "./settingData";
 function Footer() {
   const isLoggedIn = useSelector((state) => state.Auth.loggedIn);
-
   return (
     <>
       {isLoggedIn && (

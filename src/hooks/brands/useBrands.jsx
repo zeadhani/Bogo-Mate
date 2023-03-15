@@ -1,6 +1,7 @@
 import { createSearchParams, useNavigate } from "react-router-dom";
 import authFetch from "../../service/interceptors";
 import { useQuery } from "react-query";
+import { useState } from "react";
 
 function useBrands({
   rowsPerPage,
@@ -33,7 +34,7 @@ function useBrands({
         brands: data.data.data,
         count: data.data.totalCount,
       };
-    }
+    },
   );
 }
 

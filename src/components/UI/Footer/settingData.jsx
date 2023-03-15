@@ -5,6 +5,7 @@ import useFooterData from "../../../hooks/home/useFooterData";
 
 function SettingData() {
   const { data } = useFooterData();
+
   return (
     <Box
       sx={{
