@@ -1,5 +1,10 @@
 import { Close, Menu } from "@mui/icons-material";
-import { Box, Button, Dialog, IconButton, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  Typography,
+} from "@mui/material";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -10,7 +15,12 @@ function FilterContainer({ matches, clearData, children }) {
   };
 
   return (
-    <Box sx={{ position: "relative", my: 1 }}>
+    <Box
+      sx={{
+        position: "relative",
+        mb: 1,
+      }}
+    >
       {!matches && (
         <Box
           sx={{
@@ -34,40 +44,59 @@ function FilterContainer({ matches, clearData, children }) {
       {matches && (
         <>
           <Box display={"flex"} gap={1}>
-            <IconButton onClick={handleOpenFilter}>{<Menu />}</IconButton>
+            <IconButton onClick={handleOpenFilter}>
+              {openFilter ? <Close /> : <Menu />}
+            </IconButton>
             <Typography variant="h6" alignSelf={"center"}>
               Filters
             </Typography>
           </Box>
 
-          <Dialog open={openFilter} fullScreen>
-            <Box
-              p={2}
-              component={motion.div}
-              initial={{ y: "100%" }}
-              whileInView={{ y: "0%" }}
-              transition={{ duration: 0.6, type: "spring" }}
-            >
-              <Box display={"flex"} justifyContent={"right"}>
-                <IconButton onClick={handleOpenFilter}>
-                  <Close />
-                </IconButton>
-              </Box>
-              {children}
-              <Box display={"flex"} gap={1}>
-                <Button variant="outlined" onClick={() => clearData()} size="small">
-                  Clear Filters
-                </Button>
-                {/* <Button
-                  variant="contained"
-                  sx={{ bgcolor: "#222" }}
-                  onClick={handleOpenFilter}
-                >
-                  Apply Filters
-                </Button> */}
-              </Box>
+          {/* <Dialog open={openFilter} fullScreen>
+          <Box
+            p={2}
+            component={motion.div}
+            initial={{ y: "100%" }}
+            whileInView={{ y: "0%" }}
+            transition={{ duration: 0.6, type: "spring" }}
+          >
+            <Box display={"flex"} justifyContent={"right"}>
+              <IconButton onClick={handleOpenFilter}>
+                <Close />
+              </IconButton>
             </Box>
-          </Dialog>
+            {children}
+
+            <Button
+              variant="outlined"
+              onClick={() => clearData()}
+              size="small"
+            >
+              Clear Filters
+            </Button>
+          </Box>
+        </Dialog> */}
+
+          {openFilter && (
+            <Box
+              sx={{
+                padding: 2,
+              }}
+              component={motion.div}
+              initial={{ y: "-10%", opacity: 0 }}
+              whileInView={{ y: "0%", opacity: 1 }}
+              transition={{ duration: 1, type: "spring" }}
+            >
+              {children}
+              <Button
+                variant="outlined"
+                onClick={() => clearData()}
+                size="small"
+              >
+                Clear Filters
+              </Button>
+            </Box>
+          )}
         </>
       )}
     </Box>
