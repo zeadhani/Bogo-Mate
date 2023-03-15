@@ -34,13 +34,13 @@ function ProductItem({ product }) {
       </Box>
       <Divider />
       <Box sx={{marginTop:'auto'}}>
-        <Typography textAlign={"left"} variant={matches ? "h5" : "h3"} mt={2}>
+        <Typography textAlign={"left"} variant={matches ? "h5" : "h4"} mt={2}>
           {product.name}
         </Typography>
-        <Typography textAlign={"left"} variant={matches ? "h6" : "h4"}>
+        <Typography textAlign={"left"} variant={matches ? "h6" : "h5"}>
           Nike
         </Typography>
-        <Typography textAlign={"left"} variant={matches ? "caption" : "h5"}>
+        <Typography textAlign={"left"} variant={matches ? "caption" : "h6"}>
           350EGP
         </Typography>
         <Box

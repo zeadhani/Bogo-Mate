@@ -43,7 +43,7 @@ function Links() {
       maxWidth="lg"
     >
       <CustomLink text={"Home"} link={"/"} /> |
-      <CustomLink text={"About us"} link={"/"} /> |
+      <CustomLink text={"About us"} link={"/About us"} /> |
       <CustomLink text={"Shop"} link={"/shop"} /> |
       <CustomLink text={"Contact"} link={"/"} />
     </Box>

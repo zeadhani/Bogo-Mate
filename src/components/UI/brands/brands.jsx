@@ -1,8 +1,7 @@
 import React from "react";
 import { Box } from "@mui/material";
 import BrandsItems from "./BrandsItems";
-import FilterList from "./Fliter";
-import HeaderImage from "../Global/Header";
+
 
 const brandsItems = [
   { id: 1, name: "Brand 1" },
@@ -19,15 +18,6 @@ const brandsItems = [
 function Brands({ matches }) {
   return (
     <Box ml={matches ? 0 : 2}>
-      <HeaderImage
-        matches={matches}
-        image={
-          "https://res.cloudinary.com/df2862din/image/upload/v1677676881/c1_bz702m.jpg"
-        }
-      />
-
-      {matches && <FilterList matches={matches} />}
-
       <BrandsItems brands={brandsItems} />
     </Box>
   );

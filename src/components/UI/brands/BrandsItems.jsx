@@ -6,7 +6,7 @@ function BrandsItems({ brands }) {
   return (
     <Grid container spacing={2} >
       {brands?.map((item) => (
-        <Grid item key={item.id} xs={12}  md={4}>
+        <Grid item key={item.id} xs={12} sm={6} md={4}>
           <BrandItem brand={item} />
         </Grid>
       ))}

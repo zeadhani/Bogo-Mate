@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Typography, Grid, Avatar, Box } from "@mui/material";
 import svg from "../../images/image2.svg";
+import CustomContainer from "../../components/UI/Global/CustomContainer";
 const url =
   "https://res.cloudinary.com/df2862din/image/upload/v1677278864/jlxrmnqwuenazqfa4uwj.jpg";
 const TEAM = [
@@ -12,7 +13,7 @@ const TEAM = [
 ];
 const AboutUsPage = () => {
   return (
-    <Container maxWidth="md">
+    <CustomContainer nav={"/About us"}>
       <Box py={4}>
         <Typography variant="h2" align="center" gutterBottom>
           About Us
@@ -81,7 +82,7 @@ const AboutUsPage = () => {
           or call us at 0101944562.
         </Typography>
       </Box>
-    </Container>
+    </CustomContainer>
   );
 };
 
