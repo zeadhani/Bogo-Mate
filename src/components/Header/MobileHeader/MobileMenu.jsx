@@ -7,13 +7,28 @@ import {
 import { Box, IconButton, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { createSearchParams, useNavigate } from "react-router-dom";
 
 const MenuIcon = ({ text, children }) => {
   const navigate = useNavigate();
   const handleNavigate = (text) => {
     return () => {
-      navigate(`/${text === "Home" ? "" : text}`);
+      if (text === "Shop") {
+        const params = {
+          rowsPerPage: 10,
+          page: 0,
+          sort: "createdAt",
+          orderBy: "asc",
+          search: "",
+          preferences: [],
+        };
+        navigate({
+          pathname: `/Shop`,
+          search: `?${createSearchParams(params)}`,
+        });
+      } else {
+        navigate(`/${text === "Home" ? "" : text}`);
+      }
     };
   };
   return (

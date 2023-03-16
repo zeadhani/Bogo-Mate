@@ -8,7 +8,7 @@ import {
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-function FilterContainer({ matches, clearData, children }) {
+function FilterContainer({ matches, clearData, children, }) {
   const [openFilter, setOpenFilter] = useState(false);
   const handleOpenFilter = () => {
     setOpenFilter((prev) => !prev);

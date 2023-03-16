@@ -14,26 +14,15 @@ import {
 import SearchBar from "../../Forms/searchBar";
 import FilterContainer from "../Global/filters/FilterContainer";
 
-function FilterList({ matches, preferences }) {
-  const [selectedPreferences, setSelectedPreferences] = useState([]);
-  const handlePreferenceToggle = (preference) => () => {
-    const currentIndex = selectedPreferences.indexOf(preference);
-    const newPreferences = [...selectedPreferences];
-
-    if (currentIndex === -1) {
-      newPreferences.push(preference);
-    } else {
-      newPreferences.splice(currentIndex, 1);
-    }
-
-    setSelectedPreferences(newPreferences);
-  };
-  const clearPreferences = () => {
-    setSelectedPreferences([]);
-  };
-
+function FilterList({
+  matches,
+  preferences,
+  resetBrandFilters,
+  preferencesFilter,
+  handleFilterPrefChange,
+}) {
   return (
-    <FilterContainer matches={matches} clearData={clearPreferences}>
+    <FilterContainer matches={matches} clearData={resetBrandFilters}>
       <Box mb={2}>
         <Typography variant="h6" gutterBottom>
           Search
@@ -50,24 +39,27 @@ function FilterList({ matches, preferences }) {
       <Divider style={{ marginBottom: "16px" }} />
 
       <List>
-        {preferences?.map((preference) => (
-          <ListItem key={preference.id}>
-            <ListItemText primary={preference.name} />
-            <ListItemSecondaryAction>
-              <Checkbox
-                edge="end"
-                checked={selectedPreferences.indexOf(preference) !== -1}
-                onClick={handlePreferenceToggle(preference)}
-              />
-            </ListItemSecondaryAction>
-          </ListItem>
-        ))}
+        {preferences?.map((preference) => {
+          const checked = preferencesFilter.indexOf(preference.name) !== -1;
+          return (
+            <ListItem key={preference.id}>
+              <ListItemText primary={preference.name} />
+              <ListItemSecondaryAction>
+                <Checkbox
+                  edge="end"
+                  checked={checked}
+                  onClick={handleFilterPrefChange(preference.name)}
+                />
+              </ListItemSecondaryAction>
+            </ListItem>
+          );
+        })}
       </List>
 
       <Divider style={{ margin: "16px 0" }} />
       <Box display={"flex"} gap={1}>
         {!matches && (
-          <Button variant="outlined" onClick={clearPreferences}>
+          <Button variant="outlined" onClick={resetBrandFilters}>
             Clear Filters
           </Button>
         )}
