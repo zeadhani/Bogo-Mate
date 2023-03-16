@@ -1,4 +1,11 @@
-import { Box, Grid, Pagination, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Pagination,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import React, {
   useEffect,
   useLayoutEffect,
@@ -55,7 +62,6 @@ function ShopPage() {
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   const [state, dispatch] = useReducer(reducer, initialState);
   const initialRender = useRef(true);
-
   const { page, handleChangePage, handleChangeRowsPerPage, rowsPerPage } =
     usePage();
   const {
@@ -140,42 +146,9 @@ function ShopPage() {
     }
   }, [rowsPerPage, page, sort, orderBy, search, preferencesFilter]);
 
-  // const { page, handleChangePage, handleChangeRowsPerPage, rowsPerPage } =
-  //   usePage();
-  // const {
-  //   sort,
-  //   search,
-  //   orderBy,
-  //   handleOrderByChange,
-  //   handleSearchChange,
-  //   resetCommonFilters,
-  //   handleSortChange,
-  // } = useCommonFilters();
-  // const { handleFilterPrefChange, preferencesFilter, resetBrandFilters } =
-  //   useBrandFilters();
-
-  // const { pref } = usePreferences();
-  // const { brands } = useBrands({
-  //   page,
-  //   orderBy,
-  //   preferencesFilter,
-  //   rowsPerPage,
-  //   search,
-  //   sort,
-  // });
-
   const BrandsContainer = ({ brands }) => {
     return (
       <>
-        <Grid item xs={12} md={3}>
-          <FilterList
-            matches={matches}
-            preferences={state?.pref}
-            resetBrandFilters={resetBrandFilters}
-            preferencesFilter={preferencesFilter}
-            handleFilterPrefChange={handleFilterPrefChange}
-          />
-        </Grid>
         <Grid item xs={12} md={9}>
           <Brands matches={matches} brands={brands} />
           <Box display={"flex"} justifyContent={"center"}>
@@ -204,10 +177,42 @@ function ShopPage() {
     );
   }
   return (
-    <ShopContainer>
-      {state?.count > 0 && <BrandsContainer brands={state?.brands} />}
+    <ShopContainer
+      handleFilterPrefChange={handleFilterPrefChange}
+      matches={matches}
+      pref={state?.pref}
+      preferencesFilter={preferencesFilter}
+      resetBrandFilters={resetBrandFilters}
+    >
+      {state?.count === 0 ? (
+        <Typography textAlign={"center"}>No Items Available</Typography>
+      ) : (
+        <BrandsContainer brands={state?.brands} />
+      )}
     </ShopContainer>
   );
 }
-
 export default ShopPage;
+// const { page, handleChangePage, handleChangeRowsPerPage, rowsPerPage } =
+//   usePage();
+// const {
+//   sort,
+//   search,
+//   orderBy,
+//   handleOrderByChange,
+//   handleSearchChange,
+//   resetCommonFilters,
+//   handleSortChange,
+// } = useCommonFilters();
+// const { handleFilterPrefChange, preferencesFilter, resetBrandFilters } =
+//   useBrandFilters();
+
+// const { pref } = usePreferences();
+// const { brands } = useBrands({
+//   page,
+//   orderBy,
+//   preferencesFilter,
+//   rowsPerPage,
+//   search,
+//   sort,
+// });

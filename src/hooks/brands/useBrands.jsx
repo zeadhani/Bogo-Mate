@@ -41,7 +41,6 @@ function useBrands({
   const [count, setCount] = useState(0);
   const [brands, setBrands] = useState([]);
   const getBrands = async () => {
-    console.log("from brands request");
     try {
       const brands = await authFetch.get(
         `/brand?limit=${rowsPerPage}&page=${
@@ -53,16 +52,24 @@ function useBrands({
     } catch (err) {}
   };
   useEffect(() => {
-    navigate({
-      search: `?${createSearchParams({
-        rowsPerPage,
-        page,
-        sort,
-        orderBy,
-        search,
-        preferences: [preferencesFilter],
-      })}`,
-    });
+    const url = new URL(window.location);
+    url.searchParams.set("rowsPerPage", rowsPerPage);
+    url.searchParams.set("page", page);
+    url.searchParams.set("sort", sort);
+    url.searchParams.set("orderBy", orderBy);
+    url.searchParams.set("search", search);
+    url.searchParams.set("preferences", [preferencesFilter]);
+    window.history.pushState({}, "", url);
+    // navigate({
+    //   search: `?${createSearchParams({
+    //     rowsPerPage,
+    //     page,
+    //     sort,
+    //     orderBy,
+    //     search,
+    //     preferences: [preferencesFilter],
+    //   })}`,
+    // });
     getBrands();
   }, [rowsPerPage, page, sort, orderBy, search, preferencesFilter]);
   return { brands, count, getBrands };

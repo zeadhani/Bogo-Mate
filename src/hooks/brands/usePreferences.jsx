@@ -5,7 +5,7 @@ function usePreferences() {
   const [pref, setPref] = useState();
   // console.log("from pref")
   const getFilteredData = async () => {
-    console.log("from pref request");
+    // console.log("from pref request");
     const filterData = await axios.get(`${process.env.REACT_APP_API_URL}/pref`);
     setPref(filterData.data);
   };

@@ -4,7 +4,9 @@ import { useSearchParams } from "react-router-dom";
 function useBrandFilters() {
   const [searchParams] = useSearchParams();
   const [preferencesFilter, setPrefFilter] = useState(
-    searchParams.get("preferences") ? searchParams.get("preferences") : []
+    searchParams.get("preferences")
+      ? searchParams.get("preferences").split(",")
+      : []
   );
 
   const handleFilterPrefChange = (preference) => () => {
