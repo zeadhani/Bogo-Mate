@@ -60,16 +60,6 @@ function useBrands({
     url.searchParams.set("search", search);
     url.searchParams.set("preferences", [preferencesFilter]);
     window.history.pushState({}, "", url);
-    // navigate({
-    //   search: `?${createSearchParams({
-    //     rowsPerPage,
-    //     page,
-    //     sort,
-    //     orderBy,
-    //     search,
-    //     preferences: [preferencesFilter],
-    //   })}`,
-    // });
     getBrands();
   }, [rowsPerPage, page, sort, orderBy, search, preferencesFilter]);
   return { brands, count, getBrands };

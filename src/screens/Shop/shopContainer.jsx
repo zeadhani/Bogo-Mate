@@ -4,7 +4,14 @@ import { Grid } from "@mui/material";
 import CustomContainer from "../../components/UI/Global/CustomContainer";
 import FilterList from "../../components/UI/brands/Fliter";
 
-function ShopContainer({ children ,matches,pref,resetBrandFilters,preferencesFilter,handleFilterPrefChange }) {
+function ShopContainer({
+  children,
+  matches,
+  pref,
+  resetBrandFilters,
+  preferencesFilter,
+  handleFilterPrefChange,
+}) {
   return (
     <CustomContainer nav={"/shop"}>
       <Grid container spacing={2} mb={4}>
@@ -15,15 +22,17 @@ function ShopContainer({ children ,matches,pref,resetBrandFilters,preferencesFil
             }
           />
         </Grid>
-        <Grid item xs={12} md={3}>
-          <FilterList
-            matches={matches}
-            preferences={pref}
-            resetBrandFilters={resetBrandFilters}
-            preferencesFilter={preferencesFilter}
-            handleFilterPrefChange={handleFilterPrefChange}
-          />
-        </Grid>
+        {pref?.length > 0 && (
+          <Grid item xs={12} md={3}>
+            <FilterList
+              matches={matches}
+              preferences={pref}
+              resetBrandFilters={resetBrandFilters}
+              preferencesFilter={preferencesFilter}
+              handleFilterPrefChange={handleFilterPrefChange}
+            />
+          </Grid>
+        )}
         {children}
       </Grid>
     </CustomContainer>
