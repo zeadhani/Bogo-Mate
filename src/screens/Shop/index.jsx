@@ -2,7 +2,6 @@ import {
   Box,
   Grid,
   Pagination,
-  TablePagination,
   Typography,
   useMediaQuery,
   useTheme,

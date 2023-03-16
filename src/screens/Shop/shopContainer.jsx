@@ -16,7 +16,6 @@ function ShopContainer({
   search,
   handleSearchChange,
 }) {
-  console.log("first");
   return (
     <CustomContainer nav={"/shop"}>
       <Grid container spacing={2} mb={4}>
