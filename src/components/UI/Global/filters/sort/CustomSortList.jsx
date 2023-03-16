@@ -1,4 +1,4 @@
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { ExpandLess, ExpandMore, Sort } from "@mui/icons-material";
 import {
   Checkbox,
   Collapse,
@@ -11,34 +11,29 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 
-function CustomFilterList({ icon, title, FilterData, handleFilterChange ,filteredArray}) {
+function CustomSortList({
+  FilterData,
+  filteredItem,
+  handleFilteredItemChange,
+}) {
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(!open);
   };
-  // const [Data, setData] = useState([]);
-  // const handleDataToggle = (item) => () => {
-  //   const currentIndex = Data.indexOf(item);
-  //   const newData = [...Data];
-
-  //   if (currentIndex === -1) {
-  //     newData.push(item);
-  //   } else {
-  //     newData.splice(currentIndex, 1);
-  //   }
-  //   setData(newData);
-  // };
   return (
     <List sx={{ p: 0 }}>
       <ListItemButton onClick={handleClick}>
-        <ListItemIcon>{icon}</ListItemIcon>
-        <ListItemText primary={title} />
+        <ListItemIcon>
+          <Sort />
+        </ListItemIcon>
+        <ListItemText primary={"Sort"} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List>
           {FilterData?.map((item) => {
-            const checked = filteredArray.indexOf(item.name) !== -1;
+            const checked = filteredItem === item.name;
+      
             return (
               <ListItem key={item.id}>
                 <ListItemText primary={item.name} />
@@ -46,7 +41,7 @@ function CustomFilterList({ icon, title, FilterData, handleFilterChange ,filtere
                   <Checkbox
                     edge="end"
                     checked={checked}
-                    onClick={handleFilterChange(item.name)}
+                    onClick={handleFilteredItemChange(item.name)}
                   />
                 </ListItemSecondaryAction>
               </ListItem>
@@ -58,4 +53,4 @@ function CustomFilterList({ icon, title, FilterData, handleFilterChange ,filtere
   );
 }
 
-export default CustomFilterList;
+export default CustomSortList;

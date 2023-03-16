@@ -12,14 +12,31 @@ function useCommonFilters() {
   const [orderBy, setOrderBy] = useState(
     searchParams.get("orderBy") ? searchParams.get("orderBy") : "asc"
   );
-  const handleOrderByChange = (event) => {
-    setOrderBy(event.target.value);
+
+  const handleSortChange = (item) => () => {
+    switch (item) {
+      case "Price : high to low":
+        setSort("price");
+        setOrderBy("desc");
+        break;
+      case "Price : low to high":
+        setSort("price");
+        setOrderBy("asc");
+        break;
+      case "Latest Items":
+        setSort("createdAt");
+        setOrderBy("desc");
+        break;
+      case "Oldest Items":
+        setSort("createdAt");
+        setOrderBy("asc");
+        break;
+      default:
+        throw new Error("unknown");
+    }
   };
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
-  };
-  const handleSortChange = (event) => {
-    setSort(event.target.value);
   };
   const resetCommonFilters = () => {
     setOrderBy("asc");
@@ -28,7 +45,6 @@ function useCommonFilters() {
   };
   return {
     handleSortChange,
-    handleOrderByChange,
     handleSearchChange,
     sort,
     search,

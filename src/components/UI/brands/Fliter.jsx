@@ -13,53 +13,58 @@ import {
 
 import SearchBar from "../../Forms/searchBar";
 import FilterContainer from "../Global/filters/FilterContainer";
+import CustomFilterList from "../Global/filters/FilterList";
+import { Category, Sort } from "@mui/icons-material";
+import CustomSortList from "../Global/filters/sort/CustomSortList";
 
+
+const FilterData = [
+  // { id: 1, name: "Price : high to low" },
+  // { id: 2, name: "Price : low to high" },
+  { id: 3, name: "Latest Items" },
+  { id: 4, name: "Oldest Items" },
+];
 function FilterList({
   matches,
   preferences,
-  resetBrandFilters,
+  resetFilters,
   preferencesFilter,
   handleFilterPrefChange,
+  filteredItem,
+  handleFilteredItemChange,
+  search,
+  handleSearchChange
 }) {
   return (
-    <FilterContainer matches={matches} clearData={resetBrandFilters}>
+    <FilterContainer matches={matches} clearData={resetFilters}>
       <Box mb={2}>
         <Typography variant="h6" gutterBottom>
           Search
         </Typography>
 
         <Divider style={{ marginBottom: "16px" }} />
-        <SearchBar name={"brands"} />
+        <SearchBar search={search} handleSearchChange={handleSearchChange} name={"brands"} />
       </Box>
 
-      <Typography variant="h6" gutterBottom>
-        Categories
-      </Typography>
+      <CustomFilterList
+        FilterData={preferences}
+        icon={<Category />}
+        title={"categories"}
+        filteredArray={preferencesFilter}
+        handleFilterChange={handleFilterPrefChange}
+      />
 
-      <Divider style={{ marginBottom: "16px" }} />
-
-      <List>
-        {preferences?.map((preference) => {
-          const checked = preferencesFilter.indexOf(preference.name) !== -1;
-          return (
-            <ListItem key={preference.id}>
-              <ListItemText primary={preference.name} />
-              <ListItemSecondaryAction>
-                <Checkbox
-                  edge="end"
-                  checked={checked}
-                  onClick={handleFilterPrefChange(preference.name)}
-                />
-              </ListItemSecondaryAction>
-            </ListItem>
-          );
-        })}
-      </List>
+      <Divider style={{ margin: "10px 0" }} />
+      <CustomSortList
+        FilterData={FilterData}
+        filteredItem={filteredItem}
+        handleFilteredItemChange={handleFilteredItemChange}
+      />
 
       <Divider style={{ margin: "16px 0" }} />
       <Box display={"flex"} gap={1}>
         {!matches && (
-          <Button variant="outlined" onClick={resetBrandFilters}>
+          <Button variant="outlined" onClick={resetFilters}>
             Clear Filters
           </Button>
         )}

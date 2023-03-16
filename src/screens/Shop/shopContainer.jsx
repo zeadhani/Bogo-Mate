@@ -8,10 +8,15 @@ function ShopContainer({
   children,
   matches,
   pref,
-  resetBrandFilters,
+  resetFilters,
   preferencesFilter,
   handleFilterPrefChange,
+  handleFilteredItemChange,
+  filteredItem,
+  search,
+  handleSearchChange,
 }) {
+  console.log("first");
   return (
     <CustomContainer nav={"/shop"}>
       <Grid container spacing={2} mb={4}>
@@ -27,9 +32,13 @@ function ShopContainer({
             <FilterList
               matches={matches}
               preferences={pref}
-              resetBrandFilters={resetBrandFilters}
+              resetFilters={resetFilters}
               preferencesFilter={preferencesFilter}
               handleFilterPrefChange={handleFilterPrefChange}
+              handleFilteredItemChange={handleFilteredItemChange}
+              filteredItem={filteredItem}
+              search={search}
+              handleSearchChange={handleSearchChange}
             />
           </Grid>
         )}

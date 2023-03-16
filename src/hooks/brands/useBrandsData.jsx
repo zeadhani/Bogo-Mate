@@ -5,7 +5,6 @@ import useCommonFilters from "../global/useGlobalFilteredData";
 import usePage from "../global/newPage";
 import axios from "axios";
 
-
 const initialState = {
   pref: [],
   brands: [],
@@ -31,6 +30,7 @@ const reducer = (state, action) => {
       throw new Error("Unexpected action");
   }
 };
+
 function useBrandsData() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const initialRender = useRef(true);
@@ -40,41 +40,51 @@ function useBrandsData() {
     sort,
     search,
     orderBy,
-    handleOrderByChange,
     handleSearchChange,
     resetCommonFilters,
     handleSortChange,
   } = useCommonFilters();
-  
   const { handleFilterPrefChange, preferencesFilter, resetBrandFilters } =
     useBrandFilters();
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
+  const getInitialData = async () => {
+    try {
+      const filterData = await axios.get(
+        `${process.env.REACT_APP_API_URL}/pref`
+      );
+      const brands = await authFetch.get(
+        `/brand?limit=${rowsPerPage}&page=${
+          page + 1
+        }&sort=${sort},${orderBy}&search=${search}&filter=${preferencesFilter}`
+      );
+      dispatch({
+        type: "INITIAL_FETCH_DATA_SUCCESS",
+        payload: {
+          pref: filterData.data,
+          brands: brands.data.data.data,
+          count: brands.data.data.totalCount,
+        },
+      });
+    } catch (error) {
+      setIsError(true);
+    }
+    setIsLoading(false);
+  };
+  const getUpdatedData = async () => {
+    const brands = await authFetch.get(
+      `/brand?limit=${rowsPerPage}&page=${
+        page + 1
+      }&sort=${sort},${orderBy}&search=${search}&filter=${preferencesFilter}`
+    );
+    dispatch({
+      type: "UPDATE_DATA",
+      payload: {
+        brands: brands.data.data.data,
+      },
+    });
+  };
   useEffect(() => {
-    const getInitialData = async () => {
-      try {
-        const filterData = await axios.get(
-          `${process.env.REACT_APP_API_URL}/pref`
-        );
-        const brands = await authFetch.get(
-          `/brand?limit=${rowsPerPage}&page=${
-            page + 1
-          }&sort=${sort},${orderBy}&search=${search}&filter=${preferencesFilter}`
-        );
-        dispatch({
-          type: "INITIAL_FETCH_DATA_SUCCESS",
-          payload: {
-            pref: filterData.data,
-            brands: brands.data.data.data,
-            count: brands.data.data.totalCount,
-          },
-        });
-      } catch (error) {
-        setIsError(true);
-      }
-      setIsLoading(false);
-    };
     getInitialData();
   }, []);
 
@@ -82,19 +92,6 @@ function useBrandsData() {
     if (initialRender.current) {
       initialRender.current = false;
     } else {
-      const getUpdatedData = async () => {
-        const brands = await authFetch.get(
-          `/brand?limit=${rowsPerPage}&page=${
-            page + 1
-          }&sort=${sort},${orderBy}&search=${search}&filter=${preferencesFilter}`
-        );
-        dispatch({
-          type: "UPDATE_DATA",
-          payload: {
-            brands: brands.data.data.data,
-          },
-        });
-      };
       const url = new URL(window.location);
       url.searchParams.set("rowsPerPage", rowsPerPage);
       url.searchParams.set("page", page);
@@ -103,12 +100,28 @@ function useBrandsData() {
       url.searchParams.set("search", search);
       url.searchParams.set("preferences", [preferencesFilter]);
       window.history.pushState({}, "", url);
-
       getUpdatedData();
     }
   }, [rowsPerPage, page, sort, orderBy, search, preferencesFilter]);
 
-  return {state,isError,isLoading,handleFilterPrefChange,preferencesFilter,resetBrandFilters};
+  return {
+    state,
+    isError,
+    isLoading,
+    handleFilterPrefChange,
+    preferencesFilter,
+    resetBrandFilters,
+    handleSortChange,
+    sort,
+    orderBy,
+    resetCommonFilters,
+    handleSearchChange,
+    search,
+    rowsPerPage,
+    page,
+    handleChangePage,
+    handleChangeRowsPerPage,
+  };
 }
 
 export default useBrandsData;

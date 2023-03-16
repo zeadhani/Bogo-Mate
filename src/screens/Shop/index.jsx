@@ -2,6 +2,7 @@ import {
   Box,
   Grid,
   Pagination,
+  TablePagination,
   Typography,
   useMediaQuery,
   useTheme,
@@ -12,6 +13,7 @@ import LoadingData from "../../components/UI/Global/LoadingData";
 import Error from "../../components/UI/Global/Error";
 import ShopContainer from "./shopContainer";
 import useBrandsData from "../../hooks/brands/useBrandsData";
+import handleReverseSortChange from "../../utils/handleReverseSortChange";
 
 function ShopPage() {
   const theme = useTheme();
@@ -23,7 +25,21 @@ function ShopPage() {
     preferencesFilter,
     resetBrandFilters,
     state,
+    handleSortChange,
+    orderBy,
+    sort,
+    resetCommonFilters,
+    handleSearchChange,
+    search,
+    rowsPerPage,
+    page,
+    handleChangePage,
   } = useBrandsData();
+
+  const resetFilters = () => {
+    resetBrandFilters();
+    resetCommonFilters();
+  };
 
   const BrandsContainer = ({ brands }) => {
     return (
@@ -33,8 +49,10 @@ function ShopPage() {
           <Box display={"flex"} justifyContent={"center"}>
             <Pagination
               size={matches ? "small" : "medium"}
-              count={10}
+              count={Math.ceil(state?.count / rowsPerPage)}
               sx={{ mt: 5 }}
+              page={page + 1}
+              onChange={handleChangePage}
               color="primary"
             />
           </Box>
@@ -55,19 +73,40 @@ function ShopPage() {
       </ShopContainer>
     );
   }
+
   return (
     <ShopContainer
       handleFilterPrefChange={handleFilterPrefChange}
       matches={matches}
       pref={state?.pref}
       preferencesFilter={preferencesFilter}
-      resetBrandFilters={resetBrandFilters}
+      filteredItem={handleReverseSortChange({ order: orderBy, sort })()}
+      handleFilteredItemChange={handleSortChange}
+      resetFilters={resetFilters}
+      search={search}
+      handleSearchChange={handleSearchChange}
     >
-      {state?.count === 0 ? (
-        <Typography textAlign={"center"}>No Items Available</Typography>
+      {state?.brands?.length === 0 ? (
+        <Grid item xs={12}>
+          <Typography textAlign={"center"} variant="h5">
+            No Items Available
+          </Typography>
+        </Grid>
       ) : (
         <BrandsContainer brands={state?.brands} />
       )}
+      {/* <Grid item xs={12}>
+        <Box display={"flex"} justifyContent={"center"} pt={5}>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 50]}
+            count={state?.count ? state?.count : 0}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Box>
+      </Grid> */}
     </ShopContainer>
   );
 }

@@ -4,7 +4,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { sideBarActions } from "../../store/sideBarSlice";
 
-function SearchBar({ rednerMenu, name }) {
+function SearchBar({ rednerMenu, name ,search,handleSearchChange}) {
   const dispatch = useDispatch();
   const openSideBar = () => {
     dispatch(sideBarActions.open());
@@ -29,6 +29,8 @@ function SearchBar({ rednerMenu, name }) {
       <InputBase
         placeholder={`search for ${name}...`}
         sx={{ flexGrow: 1, marginLeft: "10px", touchAction: "none" }}
+        value={search}
+        onChange={handleSearchChange}
       />
       <IconButton sx={{ padding: 0 }}>
         <Search />
