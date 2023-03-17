@@ -53,6 +53,8 @@ function ShopPage() {
               page={page + 1}
               onChange={handleChangePage}
               color="primary"
+              hideNextButton
+              hidePrevButton
             />
           </Box>
         </Grid>
@@ -86,7 +88,7 @@ function ShopPage() {
       handleSearchChange={handleSearchChange}
     >
       {state?.brands?.length === 0 ? (
-        <Grid item xs={12}>
+        <Grid item xs={matches ? 12 : 9}>
           <Typography textAlign={"center"} variant="h5">
             No Items Available
           </Typography>

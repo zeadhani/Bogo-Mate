@@ -1,12 +1,27 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { createSearchParams, useNavigate } from "react-router-dom";
 
 const CustomLink = ({ text, link }) => {
   const navigate = useNavigate();
   const handlenavigate = (link) => {
     return () => {
-      navigate(link);
+      if (text === "Shop") {
+        const params = {
+          rowsPerPage: 10,
+          page: 0,
+          sort: "createdAt",
+          orderBy: "asc",
+          search: "",
+          preferences: [],
+        };
+        navigate({
+          pathname: `/Shop`,
+          search: `?${createSearchParams(params)}`,
+        });
+      } else {
+        navigate(link);
+      }
     };
   };
   return (

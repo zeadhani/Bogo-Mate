@@ -29,7 +29,13 @@ function ProductsDashboard() {
         <Grid item xs={matches ? 12 : 9}>
           <Products matches={matches} />
           <Box display={"flex"} justifyContent={"center"}>
-            <Pagination count={10} sx={{ mt: 5 }} color="primary" />
+            <Pagination
+              count={10}
+              sx={{ mt: 5 }}
+              color="primary"
+              hideNextButton
+              hidePrevButton
+            />
           </Box>
         </Grid>
       </Grid>
