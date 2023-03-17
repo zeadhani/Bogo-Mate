@@ -42,7 +42,7 @@ function ShopPage() {
 
   const BrandsContainer = ({ brands }) => {
     return (
-      <>
+      
         <Grid item xs={12} md={9}>
           <Brands matches={matches} brands={brands} />
           <Box display={"flex"} justifyContent={"center"}>
@@ -58,7 +58,7 @@ function ShopPage() {
             />
           </Box>
         </Grid>
-      </>
+      
     );
   };
 
@@ -96,18 +96,7 @@ function ShopPage() {
       ) : (
         <BrandsContainer brands={state?.brands} />
       )}
-      {/* <Grid item xs={12}>
-        <Box display={"flex"} justifyContent={"center"} pt={5}>
-          <TablePagination
-            rowsPerPageOptions={[10, 25, 50]}
-            count={state?.count ? state?.count : 0}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        </Box>
-      </Grid> */}
+  
     </ShopContainer>
   );
 }
