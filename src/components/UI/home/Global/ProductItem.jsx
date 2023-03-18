@@ -1,19 +1,18 @@
 import { Box, Divider, Typography } from "@mui/material";
 import React from "react";
 
-import { Person, PersonOutline } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Requests from "../../Global/Requests";
+import useRequests from "../../../../hooks/global/useRequests";
 
 function ProductItem({ product, matches }) {
   const navigate = useNavigate();
-  const completedRequests =
-    product.offers._count.requests % product.offers.total_people_quantity;
-  const requestsLeft = product.offers.total_people_quantity - completedRequests;
+
   const handleNavigate = () => {
     navigate("/about");
   };
-
+  const { completedRequests, requestsLeft } = useRequests({ product });
   return (
     <Box
       sx={{
@@ -36,7 +35,6 @@ function ProductItem({ product, matches }) {
           width={"100%"}
           alt={"productImage"}
           src={`${process.env.REACT_APP_CLOUDINARY}${product.image}`}
-          
         />
       </Box>
       <Divider />
@@ -49,24 +47,10 @@ function ProductItem({ product, matches }) {
       <Typography textAlign={"left"} variant={matches ? "caption" : "h5"}>
         {product.price} EGP
       </Typography>
-      <Box
-        marginBottom={"auto"}
-        display={"flex"}
-        justifyContent={"end"}
-        mt={1}
-        flexWrap={"wrap"}
-      >
-        {Array(requestsLeft)
-          .fill(0)
-          .map((item, index) => (
-            <PersonOutline key={index} />
-          ))}
-        {Array(completedRequests)
-          .fill(0)
-          .map((item, index) => (
-            <Person key={index} />
-          ))}
-      </Box>
+      <Requests
+        completedRequests={completedRequests}
+        requestsLeft={requestsLeft}
+      />
     </Box>
   );
 }

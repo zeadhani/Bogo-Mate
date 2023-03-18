@@ -2,11 +2,25 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import { colors } from "../../../Theme";
 
-import { useNavigate } from "react-router-dom";
+import { createSearchParams, useNavigate } from "react-router-dom";
 function BrandItem({ brand }) {
   const navigate = useNavigate();
   const handleBrandNavigation = () => {
-    navigate(`/shop/${brand.name}`);
+    const params = {
+      rowsPerPage: 10,
+      page: 0,
+      sort: "createdAt",
+      orderBy: "asc",
+      search: "",
+      stock: "",
+      brand: [brand.name],
+      filtered: [],
+      gender:""
+    };
+    navigate({
+      pathname: `/shop/${brand.name}`,
+      search: `?${createSearchParams(params)}`,
+    });
   };
 
   return (

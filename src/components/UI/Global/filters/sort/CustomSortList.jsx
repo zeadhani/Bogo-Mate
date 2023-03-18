@@ -33,7 +33,6 @@ function CustomSortList({
         <List>
           {FilterData?.map((item) => {
             const checked = filteredItem === item.name;
-      
             return (
               <ListItem key={item.id}>
                 <ListItemText primary={item.name} />

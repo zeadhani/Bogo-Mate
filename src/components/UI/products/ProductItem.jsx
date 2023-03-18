@@ -2,6 +2,8 @@ import { Person, PersonOutline } from "@mui/icons-material";
 import { Box, Divider, Typography, useMediaQuery } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Requests from "../Global/Requests";
+import useRequests from "../../../hooks/global/useRequests";
 
 function ProductItem({ product }) {
   const matches = useMediaQuery("(max-width:800px)");
@@ -9,6 +11,8 @@ function ProductItem({ product }) {
   const handleNavigate = (brand, item) => () => {
     navigate(`/shop/${brand}/${item}`);
   };
+  const { completedRequests, requestsLeft } = useRequests({ product });
+
   return (
     <Box
       sx={{
@@ -33,29 +37,20 @@ function ProductItem({ product }) {
         />
       </Box>
       <Divider />
-      <Box sx={{marginTop:'auto'}}>
+      <Box sx={{ marginTop: "auto" }}>
         <Typography textAlign={"left"} variant={matches ? "h5" : "h4"} mt={2}>
           {product.name}
         </Typography>
         <Typography textAlign={"left"} variant={matches ? "h6" : "h5"}>
-          Nike
+          {product.Brands.name}
         </Typography>
         <Typography textAlign={"left"} variant={matches ? "caption" : "h6"}>
-          350EGP
+          {product.price} EGP
         </Typography>
-        <Box
-          marginBottom={"auto"}
-          display={"flex"}
-          justifyContent={"end"}
-          mt={1}
-          flexWrap={"wrap"}
-        >
-          <PersonOutline />
-          <PersonOutline />
-          <Person />
-          <Person />
-          <Person />
-        </Box>
+        <Requests
+          completedRequests={completedRequests}
+          requestsLeft={requestsLeft}
+        />
       </Box>
     </Box>
   );

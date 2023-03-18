@@ -9,7 +9,9 @@ const initialState = {
   products: [],
   categories: [],
   count: 0,
+  hasGender: false,
 };
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "INITIAL_FETCH_DATA_SUCCESS": {
@@ -19,6 +21,7 @@ const reducer = (state, action) => {
         products: action.payload.products,
         categories: action.payload.categories,
         count: action.payload.count,
+        hasGender: action.payload.hasGender,
       };
     }
     case "UPDATE_DATA": {
@@ -63,7 +66,7 @@ function useProductsData({ filteredBrand }) {
       const products = await authFetch.get(
         `/products?limit=${rowsPerPage}&page=${
           page + 1
-        }&sort=${sort},${orderBy}&search=${search}&filter=${filtered}&stock=${filteredStock}&brand=${filteredBrand}`
+        }&sort=${sort},${orderBy}&search=${search}&filter=${filtered}&stock=${filteredStock}&brand=${filteredBrand}&gender=${filteredGneder}`
       );
 
       dispatch({
@@ -73,6 +76,8 @@ function useProductsData({ filteredBrand }) {
           gender: filterData.data.gender,
           products: products.data.data.data,
           count: products.data.data.totalCount,
+          hasGender:
+            products.data.data.data[0]?.Brands.hasGender === 1 ? true : false,
         },
       });
     } catch (error) {
@@ -110,6 +115,7 @@ function useProductsData({ filteredBrand }) {
       url.searchParams.set("stock", filteredStock);
       url.searchParams.set("brand", [filteredBrand]);
       url.searchParams.set("filtered", [filtered]);
+      url.searchParams.set("gender", filteredGneder);
       window.history.pushState({}, "", url);
       getUpdatedData();
     }

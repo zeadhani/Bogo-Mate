@@ -11,23 +11,18 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 
-function CustomFilterList({ icon, title, FilterData, handleFilterChange ,filteredArray}) {
+function CustomFilterList({
+  icon,
+  title,
+  FilterData,
+  handleFilterChange,
+  filteredArray,
+}) {
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(!open);
   };
-  // const [Data, setData] = useState([]);
-  // const handleDataToggle = (item) => () => {
-  //   const currentIndex = Data.indexOf(item);
-  //   const newData = [...Data];
 
-  //   if (currentIndex === -1) {
-  //     newData.push(item);
-  //   } else {
-  //     newData.splice(currentIndex, 1);
-  //   }
-  //   setData(newData);
-  // };
   return (
     <List sx={{ p: 0 }}>
       <ListItemButton onClick={handleClick}>
@@ -40,7 +35,7 @@ function CustomFilterList({ icon, title, FilterData, handleFilterChange ,filtere
           {FilterData?.map((item) => {
             const checked = filteredArray.indexOf(item.name) !== -1;
             return (
-              <ListItem key={item.id}>
+              <ListItem key={item.name}>
                 <ListItemText primary={item.name} />
                 <ListItemSecondaryAction>
                   <Checkbox

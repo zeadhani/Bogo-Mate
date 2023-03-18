@@ -4,7 +4,26 @@ import { Grid } from "@mui/material";
 import HeaderImage from "../../components/UI/Global/Header";
 import ProductsFilter from "../../components/UI/products/ProductsFilter";
 
-function ProductsShopContainer({ brand, matches, children }) {
+function ProductsShopContainer({
+  brand,
+  matches,
+  children,
+  filteredItem,
+  handleFilteredItemChange,
+  handleSearchChange,
+  search,
+  resetFilters,
+  categories,
+  filteredCategories,
+  handleFilterCategoryChange,
+  stockArray,
+  handleFilterStockChange,
+  filteredStock,
+  filteredGneder,
+  handleFilterGenderChange,
+  gender,
+  hasGender,
+}) {
   return (
     <CustomContainer nav={`/shop/${brand}`}>
       <Grid container spacing={2} mb={4}>
@@ -15,9 +34,28 @@ function ProductsShopContainer({ brand, matches, children }) {
             }
           />
         </Grid>
-        {/* <Grid item xs={12} md={3}>
-          <ProductsFilter matches={matches} />
-        </Grid> */}
+        {categories?.length > 0 && (
+          <Grid item xs={12} md={3}>
+            <ProductsFilter
+              matches={matches}
+              filteredItem={filteredItem}
+              handleFilteredItemChange={handleFilteredItemChange}
+              handleSearchChange={handleSearchChange}
+              resetFilters={resetFilters}
+              search={search}
+              categories={categories}
+              filteredCategories={filteredCategories}
+              handleFilterCategoryChange={handleFilterCategoryChange}
+              stockArray={stockArray}
+              filteredStock={filteredStock}
+              handleFilterStockChange={handleFilterStockChange}
+              filteredGneder={filteredGneder}
+              handleFilterGenderChange={handleFilterGenderChange}
+              gender={gender}
+              hasGender={hasGender}
+            />
+          </Grid>
+        )}
         {children}
       </Grid>
     </CustomContainer>
