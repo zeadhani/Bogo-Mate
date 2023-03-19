@@ -7,7 +7,7 @@ function BrandItem({ brand }) {
   const navigate = useNavigate();
   const handleBrandNavigation = () => {
     const params = {
-      rowsPerPage: 3,
+      rowsPerPage:10,
       page: 0,
       sort: "createdAt",
       orderBy: "asc",
