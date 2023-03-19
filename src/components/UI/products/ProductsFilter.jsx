@@ -42,7 +42,7 @@ function ProductsFilter({
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  // console.log({ filteredGneder, filteredStock, stockArray, gender });
   return (
     <FilterContainer matches={matches} clearData={resetFilters}>
       <Box mb={2}>
@@ -68,7 +68,7 @@ function ProductsFilter({
 
       <Divider style={{ margin: "10px 0" }} />
 
-      {/* {hasGender && (
+      {hasGender && (
         <>
           <CustomFilterList
             FilterData={gender}
@@ -76,10 +76,11 @@ function ProductsFilter({
             title={"gender"}
             filteredArray={filteredGneder}
             handleFilterChange={handleFilterGenderChange}
+            singleItemCheck={true}
           />
           <Divider style={{ margin: "10px 0" }} />
         </>
-      )} */}
+      )}
       <CustomFilterList
         FilterData={stockArray}
         icon={<Storage />}

@@ -11,12 +11,14 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 
+const customFilterData = [{ name: "female" }, { name: "male" }];
 function CustomFilterList({
   icon,
   title,
   FilterData,
   handleFilterChange,
   filteredArray,
+  singleItemCheck,
 }) {
   const [open, setOpen] = useState(false);
   const handleClick = () => {
@@ -32,10 +34,13 @@ function CustomFilterList({
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List>
-          {FilterData?.map((item) => {
-            const checked = filteredArray.indexOf(item.name) !== -1;
+          {FilterData?.map((item, index) => {
+            const checked = singleItemCheck
+              ? filteredArray === item.name
+              : filteredArray.indexOf(item.name) !== -1;
+
             return (
-              <ListItem key={item.name}>
+              <ListItem key={item.name + index}>
                 <ListItemText primary={item.name} />
                 <ListItemSecondaryAction>
                   <Checkbox
