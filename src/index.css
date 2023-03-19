@@ -69,8 +69,10 @@ body,
 .embla2 {
   --slide-spacing: 1rem;
   --slide-size: 100%;
-  --slide-height: 19rem;
-  padding: 1.6rem;
+  /* --slide-height: 19rem; */
+  --slide-height: 13rem;
+  padding: 1rem 1.6rem;
+
 }
 .embla__viewport2 {
   overflow: hidden;
@@ -138,12 +140,14 @@ body,
 .embla-thumbs__slide__img {
   display: block;
   /* height: var(--thumbs-slide-height); */
+  /* object-fit: cover; */
+  height: 4rem;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 10px;
 }
-.embla-thumbs__slide__number {
+/* .embla-thumbs__slide__number {
   width: 3rem;
   height: 3rem;
   z-index: 1;
@@ -174,7 +178,7 @@ body,
   left: 0;
   right: 0;
   bottom: 0;
-}
+} */
 
 /* Loading Animation */
 .loading {

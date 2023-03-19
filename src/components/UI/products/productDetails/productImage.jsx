@@ -19,9 +19,9 @@ export const Thumb = (props) => {
         className="embla-thumbs__slide__button"
         type="button"
       >
-        <div className="embla-thumbs__slide__number">
+        {/* <div className="embla-thumbs__slide__number">
           <span>{index + 1}</span>
-        </div>
+        </div> */}
         <img
           className="embla-thumbs__slide__img"
           src={imgSrc}

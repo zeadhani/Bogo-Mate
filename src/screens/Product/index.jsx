@@ -81,8 +81,8 @@ function ProductsDashboard() {
       hasGender={state?.hasGender}
     >
       {state?.products?.length === 0 ? (
-        <Grid item xs={matches ? 12 : 9}>
-          <Typography textAlign={"center"} variant="h5">
+        <Grid item xs={matches ? 12 : 9} mt={5}>
+          <Typography textAlign={"center"} variant="h4">
             No Items Available
           </Typography>
         </Grid>
