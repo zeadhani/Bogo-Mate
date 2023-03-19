@@ -24,6 +24,8 @@ import React from "react";
 import { colors } from "../../../Theme";
 import { useDispatch, useSelector } from "react-redux";
 import { sideBarActions } from "../../../store/sideBarSlice";
+import useUser from "../../../hooks/user/useUser";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 function SideBar() {
   const matches = useMediaQuery("(max-width:800px)");
   const open = useSelector((state) => state.SideBar.open);
@@ -42,6 +44,10 @@ function SideBar() {
   const handleNavigate = () => {
     closeSideBar();
   };
+
+  const useData = useSelector((state) => state.Auth.user);
+  const email = useData.replace(/"/g, "");
+  const { data } = useUser({ email });
 
   return (
     <React.Fragment>
@@ -68,9 +74,25 @@ function SideBar() {
                 px: 8,
               }}
             >
-              <Avatar alt="Zead" sx={{ width: "120px", height: "120px" }} />
-              <Typography textAlign={"center"} color={"#f5f5f5"} variant="h3">
-                Zead Hani
+              <LazyLoadImage
+                style={{
+                  height: "120px",
+                  width: "120px",
+                  borderRadius: "50%",
+                  cursor: "pointer",
+                  objectFit: "cover",
+                }}
+                alt={"Profile-Image"}
+                src={`${process.env.REACT_APP_CLOUDINARY}${data?.image}`}
+              />
+
+              <Typography
+                textTransform={"uppercase"}
+                textAlign={"center"}
+                color={"#f5f5f5"}
+                variant="h3"
+              >
+                {data?.first_name + " " + data?.last_name}
               </Typography>
             </Box>
           </Box>
