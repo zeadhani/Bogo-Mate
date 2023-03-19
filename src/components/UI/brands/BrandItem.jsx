@@ -15,7 +15,7 @@ function BrandItem({ brand }) {
       stock: "",
       brand: [brand.name],
       filtered: [],
-      gender:""
+      gender: "",
     };
     navigate({
       pathname: `/shop/${brand.name}`,

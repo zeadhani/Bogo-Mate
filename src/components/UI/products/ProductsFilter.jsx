@@ -108,19 +108,3 @@ function ProductsFilter({
 }
 
 export default ProductsFilter;
-{
-  /* <Box display={"flex"} gap={2} p={2}>
-        <MoneyOff />
-        <Typography variant="h6">Price Range</Typography>
-      </Box>
-      <Box px={4}>
-        <Slider
-          value={value}
-          onChange={handleChange}
-          valueLabelDisplay="auto"
-          min={0}
-          max={100}
-          aria-labelledby="range-slider"
-        />
-      </Box> */
-}

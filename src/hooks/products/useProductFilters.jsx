@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 function useProductFilters() {
@@ -22,7 +22,7 @@ function useProductFilters() {
     }
     setFiltered(newPreferences);
   };
-  const handleFilterGenderChange = (item) => {
+  const handleFilterGenderChange = (item) => () => {
     setFilteredGender(item);
   };
   const handleFilterStockChange = (item) => () => {

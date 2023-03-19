@@ -8,12 +8,12 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import Products from "../../components/UI/products/Products";
 import Error from "../../components/UI/Global/Error";
 import ProductsShopContainer from "./productsShpContainer";
 import LoadingData from "../../components/UI/Global/LoadingData";
 import useProductsData from "../../hooks/products/useProductsData";
 import handleReverseSortChange from "../../utils/handleReverseSortChange";
+import ProductItems from "../../components/UI/products/ProductItems";
 
 const stockArray = [{ name: "inStock" }, { name: "outStock" }];
 function ProductsDashboard() {
@@ -60,23 +60,6 @@ function ProductsDashboard() {
     );
   }
 
-  const ShopContainer = ({ products }) => {
-    return (
-      <Grid item xs={matches ? 12 : 9}>
-        <Products matches={matches} products={products} />
-        <Box display={"flex"} justifyContent={"center"}>
-          <Pagination
-            count={10}
-            sx={{ mt: 5 }}
-            color="primary"
-            hideNextButton
-            hidePrevButton
-          />
-        </Box>
-      </Grid>
-    );
-  };
-
   return (
     <ProductsShopContainer
       brand={brand}
@@ -104,8 +87,20 @@ function ProductsDashboard() {
           </Typography>
         </Grid>
       ) : (
-        <ShopContainer products={state?.products} />
+        <ProductItems matches={matches} products={state?.products} />
       )}
+      <Grid item xs={matches ? 12 : 9}>
+        <Box display={"flex"} justifyContent={matches ? "center" : "right"}>
+          <Pagination
+            size={matches ? "small" : "medium"}
+            count={10}
+            sx={{ mt: 5 }}
+            color="primary"
+            hideNextButton
+            hidePrevButton
+          />
+        </Box>
+      </Grid>
     </ProductsShopContainer>
   );
 }

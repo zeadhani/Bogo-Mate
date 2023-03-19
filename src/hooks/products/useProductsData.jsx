@@ -76,8 +76,7 @@ function useProductsData({ filteredBrand }) {
           gender: filterData.data.gender,
           products: products.data.data.data,
           count: products.data.data.totalCount,
-          hasGender:
-            products.data.data.data[0]?.Brands.hasGender === 1 ? true : false,
+          hasGender: filterData.data.hasGender,
         },
       });
     } catch (error) {
@@ -89,7 +88,7 @@ function useProductsData({ filteredBrand }) {
     const products = await authFetch.get(
       `/products?limit=${rowsPerPage}&page=${
         page + 1
-      }&sort=${sort},${orderBy}&search=${search}&filter=${filtered}&stock=${filteredStock}&brand=${filteredBrand}`
+      }&sort=${sort},${orderBy}&search=${search}&filter=${filtered}&stock=${filteredStock}&brand=${filteredBrand}&gender=${filteredGneder}`
     );
     dispatch({
       type: "UPDATE_DATA",
@@ -127,6 +126,7 @@ function useProductsData({ filteredBrand }) {
     search,
     filtered,
     filteredStock,
+    filteredGneder,
     filteredBrand,
   ]);
 

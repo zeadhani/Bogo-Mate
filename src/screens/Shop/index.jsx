@@ -7,12 +7,13 @@ import {
   useTheme,
 } from "@mui/material";
 import React from "react";
-import Brands from "../../components/UI/brands/brands";
+
 import LoadingData from "../../components/UI/Global/LoadingData";
 import Error from "../../components/UI/Global/Error";
 import ShopContainer from "./shopContainer";
 import useBrandsData from "../../hooks/brands/useBrandsData";
 import handleReverseSortChange from "../../utils/handleReverseSortChange";
+import BrandsItems from "../../components/UI/brands/BrandsItems";
 
 function ShopPage() {
   const theme = useTheme();
@@ -38,28 +39,6 @@ function ShopPage() {
   const resetFilters = () => {
     resetBrandFilters();
     resetCommonFilters();
-  };
-
-  const BrandsContainer = ({ brands }) => {
-    return (
-      
-        <Grid item xs={12} md={9}>
-          <Brands matches={matches} brands={brands} />
-          <Box display={"flex"} justifyContent={"center"}>
-            <Pagination
-              size={matches ? "small" : "medium"}
-              count={Math.ceil(state?.count / rowsPerPage)}
-              sx={{ mt: 5 }}
-              page={page + 1}
-              onChange={handleChangePage}
-              color="primary"
-              hideNextButton
-              hidePrevButton
-            />
-          </Box>
-        </Grid>
-      
-    );
   };
 
   if (isError) {
@@ -94,9 +73,22 @@ function ShopPage() {
           </Typography>
         </Grid>
       ) : (
-        <BrandsContainer brands={state?.brands} />
+        <BrandsItems matches={matches} brands={state?.brands} />
       )}
-  
+      <Grid item xs={matches ? 12 : 9}>
+        <Box display={"flex"} justifyContent={matches ? "center" : "right"}>
+          <Pagination
+            size={matches ? "small" : "medium"}
+            count={Math.ceil(state?.count / rowsPerPage)}
+            sx={{ mt: 5 }}
+            page={page + 1}
+            onChange={handleChangePage}
+            color="primary"
+            hideNextButton
+            hidePrevButton
+          />
+        </Box>
+      </Grid>
     </ShopContainer>
   );
 }

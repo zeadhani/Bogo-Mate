@@ -5,7 +5,6 @@ import React from "react";
 function Requests({ requestsLeft, completedRequests }) {
   return (
     <Box
-      marginBottom={"auto"}
       display={"flex"}
       justifyContent={"end"}
       mt={1}
