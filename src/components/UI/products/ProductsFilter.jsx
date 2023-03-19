@@ -38,11 +38,6 @@ function ProductsFilter({
   gender,
   hasGender,
 }) {
-  const [value, setValue] = useState([0, 100]);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-  // console.log({ filteredGneder, filteredStock, stockArray, gender });
   return (
     <FilterContainer matches={matches} clearData={resetFilters}>
       <Box mb={2}>

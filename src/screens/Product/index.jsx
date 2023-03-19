@@ -93,8 +93,10 @@ function ProductsDashboard() {
         <Box display={"flex"} justifyContent={matches ? "center" : "right"}>
           <Pagination
             size={matches ? "small" : "medium"}
-            count={10}
+            count={Math.ceil(state?.count / rowsPerPage)}
+            onChange={handleChangePage}
             sx={{ mt: 5 }}
+            page={page + 1}
             color="primary"
             hideNextButton
             hidePrevButton
