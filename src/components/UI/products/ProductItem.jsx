@@ -24,7 +24,7 @@ function ProductItem({ product }) {
         height: "100%",
       }}
       bgcolor={"#f5f5f5"}
-      onClick={handleNavigate(product.brand, product.name)}
+      onClick={handleNavigate(product.Brands.name, product.name)}
     >
       <LazyLoadImage
         alt="images"
