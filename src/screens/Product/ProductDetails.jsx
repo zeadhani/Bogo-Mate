@@ -12,19 +12,21 @@ import Error from "../../components/UI/Global/Error";
 import LoadingData from "../../components/UI/Global/LoadingData";
 
 import JoinPool from "../../components/UI/products/productDetails/productDescription/JoinPool";
+
 function ProductDetails() {
   const { brand, product } = useParams();
   const matches = useMediaQuery("(max-width:800px)");
   const { isError, isLoading, state } = useProductDetailsData({
     name: product,
   });
+
   if (isError) {
     return <Error />;
   }
   if (isLoading && !isError) {
     return <LoadingData />;
   }
-  console.log(state?.product);
+
   return (
     <CustomContainer nav={`/shop/${brand}/${product}`}>
       <Grid container spacing={1}>
@@ -38,9 +40,13 @@ function ProductDetails() {
                 name={state?.product?.name}
                 brand={state?.product?.Brands.name}
                 price={state?.product?.price}
-                reviews={state.reviews}
+                reviews={state?.reviews}
+                completedRequests={state?.completedRequests}
+                requestsLeft={state?.requestsLeft}
+                hasAttributes={state?.product?.hasAttributes}
+                count={state?.product?.count}
               />
-              <JoinPool />
+              <JoinPool count={state?.product?.count}/>
             </Grid>
             <Grid item xs={12}>
               <Box p={2}>
@@ -52,7 +58,7 @@ function ProductDetails() {
         <Grid item xs={12}>
           <Grid container spacing={2} mb={4}>
             <Grid item xs={12} md={9}>
-              <ProductReviewsAndDescription />
+              <ProductReviewsAndDescription reviews={state?.reviews} />
               <ProductCarousel
                 matches={matches}
                 title={"Products you may  like"}

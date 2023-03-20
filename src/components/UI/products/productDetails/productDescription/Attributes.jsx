@@ -8,7 +8,7 @@ const COLORS = ["red", "green", "yellow", "black"];
 
 function Attributes() {
   return (
-    <Box my={1}>
+    <Box mt={1} mb={4}>
       <AttributeItem attribute={"Color"} attributeData={COLORS} />
       <AttributeItem attribute={"Size"} attributeData={SIZES} />
     </Box>

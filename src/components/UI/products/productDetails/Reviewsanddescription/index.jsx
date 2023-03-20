@@ -4,7 +4,7 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { CommentOutlined, DescriptionOutlined } from "@mui/icons-material";
 import Descritption from "./Descritption";
 import Reviews from "./Reviews/Reviews";
-function ProductReviewsAndDescription() {
+function ProductReviewsAndDescription({reviews}) {
   const [Active, setActive] = useState("1");
   const handleChange = (e, newValue) => {
     setActive(newValue);
@@ -42,7 +42,7 @@ function ProductReviewsAndDescription() {
           <Descritption />
         </TabPanel>
         <TabPanel value="2">
-          <Reviews />
+          <Reviews reviews={reviews}/>
         </TabPanel>
       </TabContext>
     </Box>

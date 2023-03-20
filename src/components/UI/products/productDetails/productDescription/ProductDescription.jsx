@@ -4,10 +4,26 @@ import CustomRating from "./Rating";
 import Attributes from "./Attributes";
 import Requests from "./Requests";
 
-function ProductDescription({ name, brand, price, reviews, attributes }) {
+function ProductDescription({
+  name,
+  brand,
+  price,
+  reviews,
+  attributes,
+  completedRequests,
+  requestsLeft,
+  hasAttributes,
+  count,
+}) {
+  const reviewsCount = reviews?.length;
+  const value = reviews?.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.rating,
+    0
+  );
+
   return (
-    <Box p={2}>
-      <Box display={"flex"} gap={1}>
+    <Box px={2} pt={2}>
+      <Box display={"flex"} gap={1} textTransform={"capitalize"} mb={1}>
         <Typography variant="h3" fontWeight={900}>
           {name}
         </Typography>
@@ -15,12 +31,27 @@ function ProductDescription({ name, brand, price, reviews, attributes }) {
           -{brand}
         </Typography>
       </Box>
-      <Typography variant="h6" gutterBottom>
-        {price} EGP
-      </Typography>
-      <CustomRating reviews={reviews} />
-      <Attributes />
-      <Requests />
+      <Box display={"flex"} gap={1}>
+        <Typography variant="h6" gutterBottom>
+          {price} EGP
+        </Typography>
+        <Typography
+          variant="caption"
+          gutterBottom
+          alignSelf={"center"}
+          color={count ? "greenyellow" : "red"}
+          fontWeight={"bold"}
+        >
+          - {count > 0 ? `IN STOCK ` : "OUT OF STOCK"}
+        </Typography>
+      </Box>
+
+      <CustomRating reviewsCount={reviewsCount} value={value / reviewsCount} />
+      {Boolean(hasAttributes) && <Attributes />}
+      <Requests
+        completedRequests={completedRequests}
+        requestsLeft={requestsLeft}
+      />
     </Box>
   );
 }

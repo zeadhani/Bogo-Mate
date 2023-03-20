@@ -11,7 +11,7 @@ function ReviewItem({ name, image, date, rating, comment }) {
             {name}
           </Typography>
           <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
-            <Rating value={rating} readOnly  size="small"/>
+            <Rating value={rating} readOnly precision={0.5} size="small"/>
             <Typography
               variant="caption"
               style={{ color: "#888", alignSelf: "end" }}

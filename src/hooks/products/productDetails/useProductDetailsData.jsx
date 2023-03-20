@@ -5,7 +5,9 @@ const initialState = {
   product: null,
   ProductItems: [],
   relatedItems: [],
-  reviews:[]
+  reviews: [],
+  completedRequests: 0,
+  requestsLeft: 0,
 };
 
 const reducer = (state, action) => {
@@ -17,6 +19,8 @@ const reducer = (state, action) => {
         ProductItems: action.payload.ProductItems,
         relatedItems: action.payload.relatedItems,
         reviews: action.payload.reviews,
+        completedRequests: action.payload.completedRequests,
+        requestsLeft: action.payload.requestsLeft,
       };
     }
     default:
@@ -31,6 +35,12 @@ function useProductDetailsData({ name }) {
     setIsLoading(true);
     try {
       const product = await authFetch.get(`/products/productgetweb/${name}`);
+
+      const completedRequests =
+        product.data.product.offers._count.requests %
+        product.data.product.offers.total_people_quantity;
+      const requestsLeft =
+        product.data.product.offers.total_people_quantity - completedRequests;
       dispatch({
         type: "GET_PRODUCT",
         payload: {
@@ -38,6 +48,8 @@ function useProductDetailsData({ name }) {
           ProductItems: product.data.product.productItems,
           relatedItems: product.data.relatedItems,
           reviews: product.data.product.Reviews,
+          completedRequests,
+          requestsLeft,
         },
       });
     } catch (err) {
