@@ -39,7 +39,7 @@ function ProductDescription({
           variant="caption"
           gutterBottom
           alignSelf={"center"}
-          color={count ? "greenyellow" : "red"}
+          color={count ? "green" : "red"}
           fontWeight={"bold"}
         >
           - {count > 0 ? `IN STOCK ` : "OUT OF STOCK"}
