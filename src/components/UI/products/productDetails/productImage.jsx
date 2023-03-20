@@ -1,8 +1,6 @@
 import useEmblaCarousel from "embla-carousel-react";
 import React, { useCallback, useEffect, useState } from "react";
 
-
-
 const SLIDE_COUNT = 5;
 const slides = Array.from(Array(SLIDE_COUNT).keys());
 export const Thumb = (props) => {
@@ -31,8 +29,7 @@ export const Thumb = (props) => {
     </div>
   );
 };
-function ProductImage(props) {
-  // const { slides, options } = props
+function ProductImage({ image }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [emblaMainRef, emblaMainApi] = useEmblaCarousel({});
   const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({
@@ -66,10 +63,9 @@ function ProductImage(props) {
         <div className="embla__container2">
           {slides.map((index) => (
             <div className="embla__slide2" key={index}>
-              
               <img
                 className="embla__slide__img2"
-                src={props.image}
+                src={`${process.env.REACT_APP_CLOUDINARY}${image}`}
                 alt="Your alt text"
               />
             </div>
@@ -85,7 +81,7 @@ function ProductImage(props) {
                 onClick={() => onThumbClick(index)}
                 selected={index === selectedIndex}
                 index={index}
-                imgSrc={props.image}
+                imgSrc={`${process.env.REACT_APP_CLOUDINARY}${image}`}
                 key={index}
               />
             ))}

@@ -4,7 +4,7 @@ import React from "react";
 
 function Requests() {
   return (
-    <Box mt={4} display={"flex"} gap={4} >
+    <Box mt={4} display={"flex"} gap={4}>
       <Box display={"flex"} gap={0.5}>
         <Person2Outlined />
         <Person2Outlined />

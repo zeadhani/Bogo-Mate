@@ -1,8 +1,8 @@
 import { Box, Rating, Typography } from "@mui/material";
 import React from "react";
 
-function CustomRating() {
-    const [value, setValue] = React.useState(2);
+function CustomRating({reviews}) {
+  const [value, setValue] = React.useState(2);
   return (
     <Box display={"flex"} gap={1} mb={1}>
       <Rating
@@ -12,7 +12,7 @@ function CustomRating() {
         }}
       />
       <Typography variant="caption" alignSelf={"center"}>
-        100 Ratings
+      {reviews.length} Ratings
       </Typography>
     </Box>
   );

@@ -6,37 +6,41 @@ import ProductImage from "../../components/UI/products/productDetails/productIma
 import ProductDescription from "../../components/UI/products/productDetails/productDescription/ProductDescription";
 import ProductReviewsAndDescription from "../../components/UI/products/productDetails/Reviewsanddescription";
 import OtherData from "../../components/UI/products/productDetails/OtherProducts";
-
 import ProductCarousel from "../../components/UI/home/Global/productCarousel";
-const products = [
-  { id: 1, name: "product 1", brand: "H&M" },
-  { id: 2, name: "product 2", brand: "H&M" },
-  { id: 3, name: "product 3", brand: "H&M" },
-  { id: 4, name: "product 4", brand: "H&M" },
-  { id: 5, name: "product 5", brand: "H&M" },
-  { id: 6, name: "product 6", brand: "H&M" },
-  { id: 7, name: "product 7", brand: "H&M" },
-  { id: 8, name: "product 8", brand: "H&M" },
-  { id: 9, name: "product 9", brand: "H&M" },
-  { id: 10, name: "product 10", brand: "H&M" },
-];
+import useProductDetailsData from "../../hooks/products/productDetails/useProductDetailsData";
+import Error from "../../components/UI/Global/Error";
+import LoadingData from "../../components/UI/Global/LoadingData";
+
+import JoinPool from "../../components/UI/products/productDetails/productDescription/JoinPool";
 function ProductDetails() {
   const { brand, product } = useParams();
   const matches = useMediaQuery("(max-width:800px)");
+  const { isError, isLoading, state } = useProductDetailsData({
+    name: product,
+  });
+  if (isError) {
+    return <Error />;
+  }
+  if (isLoading && !isError) {
+    return <LoadingData />;
+  }
+  console.log(state?.product);
   return (
     <CustomContainer nav={`/shop/${brand}/${product}`}>
       <Grid container spacing={1}>
         <Grid item xs={12}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={5}>
-              <ProductImage
-                image={
-                  "https://res.cloudinary.com/df2862din/image/upload/v1678370664/xgagzhtq8odcsryuuaoj.png"
-                }
-              />
+              <ProductImage image={state?.product?.image} />
             </Grid>
             <Grid item xs={12} md={7} alignSelf={"center"}>
-              <ProductDescription matches={matches}/>
+              <ProductDescription
+                name={state?.product?.name}
+                brand={state?.product?.Brands.name}
+                price={state?.product?.price}
+                reviews={state.reviews}
+              />
+              <JoinPool />
             </Grid>
             <Grid item xs={12}>
               <Box p={2}>
@@ -49,12 +53,12 @@ function ProductDetails() {
           <Grid container spacing={2} mb={4}>
             <Grid item xs={12} md={9}>
               <ProductReviewsAndDescription />
-              {/* <ProductCarousel
+              <ProductCarousel
                 matches={matches}
                 title={"Products you may  like"}
-                products={products}
-                productDetails={'true'}
-              /> */}
+                products={state?.relatedItems}
+                productDetails={"true"}
+              />
             </Grid>
             <Grid item xs={12} md={3}>
               <OtherData matches={matches} />

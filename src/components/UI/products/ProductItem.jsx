@@ -1,4 +1,3 @@
-import { Person, PersonOutline } from "@mui/icons-material";
 import { Box, Divider, Typography, useMediaQuery } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -28,8 +27,8 @@ function ProductItem({ product }) {
     >
       <LazyLoadImage
         alt="images"
-        src="https://res.cloudinary.com/df2862din/image/upload/v1677278946/xgagzhtq8odcsryuuaoj.png"
         width={"100%"}
+        src={`${process.env.REACT_APP_CLOUDINARY}${product.image}`}
         style={{ objectFit: "contain", borderRadius: "5px" }}
       />
 

@@ -1,30 +1,26 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 import CustomRating from "./Rating";
 import Attributes from "./Attributes";
 import Requests from "./Requests";
 
-function ProductDescription({ matches }) {
+function ProductDescription({ name, brand, price, reviews, attributes }) {
   return (
     <Box p={2}>
-      <Typography variant="h4" gutterBottom fontWeight={900}>
-        Product Name
-      </Typography>
+      <Box display={"flex"} gap={1}>
+        <Typography variant="h3" fontWeight={900}>
+          {name}
+        </Typography>
+        <Typography variant="caption" gutterBottom alignSelf={"flex-end"}>
+          -{brand}
+        </Typography>
+      </Box>
       <Typography variant="h6" gutterBottom>
-        99.99 EGP
+        {price} EGP
       </Typography>
-      <CustomRating />
+      <CustomRating reviews={reviews} />
       <Attributes />
       <Requests />
-      <Button
-        variant="contained"
-        color="success"
-        size="large"
-        fullWidth
-        sx={{ mt: 2 }}
-      >
-        Join pool
-      </Button>
     </Box>
   );
 }
