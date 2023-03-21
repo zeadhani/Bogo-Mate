@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 function Navigation({ nav }) {
   const links = nav?.split("/").filter((item) => item !== "");
-
   const navigate = useNavigate();
   const handleNavigate = (path) => {
     return () => {
@@ -19,6 +18,7 @@ function Navigation({ nav }) {
           <Typography onClick={() => navigate("/")} sx={{ cursor: "pointer" }}>
             Home
           </Typography>
+
           {links?.map((item) => (
             <Typography
               key={item}

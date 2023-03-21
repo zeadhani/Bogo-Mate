@@ -9,7 +9,6 @@ function JoinPool({ count }) {
         color={count ? "success" : "error"}
         size="large"
         fullWidth
-        sx={{ mt: 2 }}
       >
         {Boolean(count) ? "Join pool" : "Pool Closed"}
       </Button>
