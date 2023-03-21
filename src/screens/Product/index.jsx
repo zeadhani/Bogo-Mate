@@ -89,7 +89,7 @@ function ProductsDashboard() {
       ) : (
         <ProductItems matches={matches} products={state?.products} />
       )}
-      <Grid item xs={matches ? 12 : 9}>
+      <Grid item xs={12}>
         <Box display={"flex"} justifyContent={matches ? "center" : "right"}>
           <Pagination
             size={matches ? "small" : "medium"}

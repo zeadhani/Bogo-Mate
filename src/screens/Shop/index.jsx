@@ -75,7 +75,7 @@ function ShopPage() {
       ) : (
         <BrandsItems matches={matches} brands={state?.brands} />
       )}
-      <Grid item xs={matches ? 12 : 9}>
+      <Grid item xs={12}>
         <Box display={"flex"} justifyContent={matches ? "center" : "right"}>
           <Pagination
             size={matches ? "small" : "medium"}
