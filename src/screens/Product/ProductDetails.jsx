@@ -12,6 +12,7 @@ import Error from "../../components/UI/Global/Error";
 import LoadingData from "../../components/UI/Global/LoadingData";
 
 import JoinPool from "../../components/UI/products/productDetails/productDescription/JoinPool";
+import HocDescription from "../../components/UI/products/productDetails/HocDescription";
 
 function ProductDetails() {
   const { brand, product } = useParams();
@@ -26,7 +27,6 @@ function ProductDetails() {
   if (isLoading && !isError) {
     return <LoadingData />;
   }
-
   return (
     <CustomContainer nav={`/shop/${brand}/${product}`}>
       <Grid container spacing={1}>
@@ -36,7 +36,8 @@ function ProductDetails() {
               <ProductImage image={state?.product?.image} />
             </Grid>
             <Grid item xs={12} md={7} alignSelf={"center"}>
-              <ProductDescription
+              <HocDescription
+                id={state?.product?.id}
                 name={state?.product?.name}
                 brand={state?.product?.Brands.name}
                 price={state?.product?.price}
@@ -45,8 +46,8 @@ function ProductDetails() {
                 requestsLeft={state?.requestsLeft}
                 hasAttributes={state?.product?.hasAttributes}
                 count={state?.product?.count}
+                productItems={state?.product?.productItems}
               />
-              <JoinPool count={state?.product?.count}/>
             </Grid>
             <Grid item xs={12}>
               <Box p={2}>

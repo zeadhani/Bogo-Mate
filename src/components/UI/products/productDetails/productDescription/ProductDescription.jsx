@@ -9,11 +9,14 @@ function ProductDescription({
   brand,
   price,
   reviews,
-  attributes,
   completedRequests,
   requestsLeft,
   hasAttributes,
   count,
+  productItems,
+  id,
+  handleAttributeInStock,
+  attributeInStock,
 }) {
   const reviewsCount = reviews?.length;
   const value = reviews?.reduce(
@@ -35,19 +38,51 @@ function ProductDescription({
         <Typography variant="h6" gutterBottom>
           {price} EGP
         </Typography>
-        <Typography
-          variant="caption"
-          gutterBottom
-          alignSelf={"center"}
-          color={count ? "green" : "red"}
-          fontWeight={"bold"}
-        >
-          - {count > 0 ? `IN STOCK ` : "OUT OF STOCK"}
-        </Typography>
+        {hasAttributes ? (
+          <Typography
+            variant="caption"
+            gutterBottom
+            alignSelf={"center"}
+            color={
+              !attributeInStock
+                ? "#0288d1"
+                : attributeInStock === "inStock"
+                ? "green"
+                : "red"
+            }
+            fontWeight={"bold"}
+          >
+            -
+            {!attributeInStock
+              ? "Choose Details"
+              : attributeInStock === "inStock"
+              ? `IN STOCK`
+              : "OUT OF STOCK"}
+          </Typography>
+        ) : (
+          <Typography
+            variant="caption"
+            gutterBottom
+            alignSelf={"center"}
+            color={count ? "green" : "red"}
+            fontWeight={"bold"}
+          >
+            -
+            {count > 0
+              ? `IN STOCK`
+              : "OUT OF STOCK"}
+          </Typography>
+        )}
       </Box>
 
       <CustomRating reviewsCount={reviewsCount} value={value / reviewsCount} />
-      {Boolean(hasAttributes) && <Attributes />}
+      {Boolean(hasAttributes) && (
+        <Attributes
+          prodcutAttributeValues={productItems}
+          id={id}
+          handleAttributeInStock={handleAttributeInStock}
+        />
+      )}
       <Requests
         completedRequests={completedRequests}
         requestsLeft={requestsLeft}
