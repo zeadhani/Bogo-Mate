@@ -4,7 +4,12 @@ import React, { useEffect, useState } from "react";
 import AttributeItem from "./AttributeItem";
 import authFetch from "../../../../../service/interceptors";
 
-function Attributes({ prodcutAttributeValues, id, handleAttributeInStock }) {
+function Attributes({
+  prodcutAttributeValues,
+  id,
+  handleAttributeInStock,
+  setAttributeId,
+}) {
   const [selectedAttributes, setSelectedAttributes] = useState({});
   const attributes = [];
   const attributeValues = {};
@@ -43,6 +48,7 @@ function Attributes({ prodcutAttributeValues, id, handleAttributeInStock }) {
         handleAttributeInStock("outStock");
       } else {
         handleAttributeInStock("inStock");
+        setAttributeId(data.data[0].id);
       }
     }
     // console.log(data.data);

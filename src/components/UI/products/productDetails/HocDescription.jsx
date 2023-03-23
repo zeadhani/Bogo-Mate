@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import ProductDescription from "./productDescription/ProductDescription";
 import JoinPool from "./productDescription/JoinPool";
+import authFetch from "../../../../service/interceptors";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 function HocDescription({
   id,
@@ -13,10 +16,38 @@ function HocDescription({
   hasAttributes,
   count,
   productItems,
+  offerId,
+  handleClose,
+  handleOpen,
 }) {
   const [attributeInStock, setAttributeInStock] = useState();
-  const handleAttributeInStock = (value)  => {
+  const [attributeId, setAttributeId] = useState(null);
+  const useData = useSelector((state) => state.Auth.user);
+  const email = useData.replace(/"/g, "");
+  const handleAttributeInStock = (value) => {
     setAttributeInStock(value);
+  };
+  const handleJoinPoll = (text) => async () => {
+    if (text === "Join pool") {
+      handleOpen();
+      try {
+        const user = await authFetch.get(`/user/${email}`);
+        if (!user.data) return;
+        let data = { offerId, userId: user.data.id, productId: id };
+        if (Boolean(hasAttributes)) {
+          data["productItemsId"] = attributeId;
+        }
+        const req = await authFetch.post("/request", data);
+        if (req.status === 200) {
+          handleClose();
+          toast.success("Pool Joined");
+          return;
+        }
+      } catch (err) {
+        handleClose();
+        toast.error("Please try again later!");
+      }
+    }
   };
   return (
     <>
@@ -33,11 +64,13 @@ function HocDescription({
         id={id}
         handleAttributeInStock={handleAttributeInStock}
         attributeInStock={attributeInStock}
+        setAttributeId={setAttributeId}
       />
       <JoinPool
         count={count}
         hasAttributes={hasAttributes}
         attributeInStock={attributeInStock}
+        handleJoinPoll={handleJoinPoll}
       />
     </>
   );

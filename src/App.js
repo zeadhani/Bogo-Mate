@@ -12,7 +12,8 @@ import Login from "./screens/Auth/Login";
 import Register from "./screens/Auth/Register";
 import NoMatch from "./components/UI/Global/NoMatch";
 import { QueryClientProvider, QueryClient } from "react-query";
-
+import "react-toastify/dist/ReactToastify.min.css";
+import ToastMessage from "./components/UI/Global/ToastMessage";
 const queryClient = new QueryClient();
 const HomePage = React.lazy(() => import("./screens/Home"));
 const ProductsDashboard = React.lazy(() => import("./screens/Product"));
@@ -88,6 +89,7 @@ function App() {
             </Routes>
           </div>
           <Footer />
+          <ToastMessage />
         </div>
       </QueryClientProvider>
     </ThemeProvider>

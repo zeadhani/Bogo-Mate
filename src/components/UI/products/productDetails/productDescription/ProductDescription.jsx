@@ -17,6 +17,7 @@ function ProductDescription({
   id,
   handleAttributeInStock,
   attributeInStock,
+  setAttributeId
 }) {
   const reviewsCount = reviews?.length;
   const value = reviews?.reduce(
@@ -67,10 +68,7 @@ function ProductDescription({
             color={count ? "green" : "red"}
             fontWeight={"bold"}
           >
-            -
-            {count > 0
-              ? `IN STOCK`
-              : "OUT OF STOCK"}
+            -{count > 0 ? `IN STOCK` : "OUT OF STOCK"}
           </Typography>
         )}
       </Box>
@@ -81,6 +79,7 @@ function ProductDescription({
           prodcutAttributeValues={productItems}
           id={id}
           handleAttributeInStock={handleAttributeInStock}
+          setAttributeId={setAttributeId}
         />
       )}
       <Requests
