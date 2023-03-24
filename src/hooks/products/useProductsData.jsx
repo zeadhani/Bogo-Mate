@@ -34,21 +34,21 @@ const reducer = (state, action) => {
     case "UPDATE_PRODUCT": {
       return {
         ...state,
-        products: state.products.map(product => {
-          if (product.id === action.payload.id) {
+        products: state.products.map((product) => {
+          if (product.offersId === action.payload.id) {
             return {
               ...product,
               offers: {
                 ...product.offers,
                 _count: {
                   ...product.offers._count,
-                  requests: product.offers._count.requests + 1
-                }
-              }
+                  requests: action.payload.NewofferNumber,
+                },
+              },
             };
           }
           return product;
-        })
+        }),
       };
     }
     default:
@@ -158,16 +158,16 @@ function useProductsData({ filteredBrand }) {
     } else {
       socket.on("update_requests", (data) => {
         const render = state.products.some(
-          (product) => product.id === data.message
+          (product) => product.offersId === data.id
         );
         if (render) {
           dispatch({
             type: "UPDATE_PRODUCT",
             payload: {
-              id: data.message,
+              id: data.id,
+              NewofferNumber: data.NewofferNumber,
             },
           });
-          console.log({ products: state });
         }
       });
     }

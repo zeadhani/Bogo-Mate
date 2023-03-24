@@ -39,7 +39,7 @@ function ProductDetails() {
   if (isLoading && !isError) {
     return <LoadingData />;
   }
-
+  console.log(state);
   return (
     <>
       <CustomContainer nav={`/shop/${brand}/${product}`}>

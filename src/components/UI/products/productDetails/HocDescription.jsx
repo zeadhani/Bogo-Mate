@@ -42,7 +42,7 @@ function HocDescription({
 
         const req = await authFetch.post("/request", data);
         if (req.status === 200) {
-          socket.emit("add_request", { message: id });
+          socket.emit("add_request", { message: offerId });
           handleClose();
           toast.success("Pool Joined");
           return;
