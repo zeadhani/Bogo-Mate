@@ -23,6 +23,12 @@ const reducer = (state, action) => {
         requestsLeft: action.payload.requestsLeft,
       };
     }
+    case "INCREMENT_COMPLETED_REQUESTS":
+      return {
+        ...state,
+        completedRequests: state.completedRequests + 1,
+        requestsLeft: state.requestsLeft - 1,
+      };
     default:
       throw new Error("Unexpected action");
   }
@@ -35,7 +41,6 @@ function useProductDetailsData({ name }) {
     setIsLoading(true);
     try {
       const product = await authFetch.get(`/products/productgetweb/${name}`);
-
       const completedRequests =
         product.data.product.offers._count.requests %
         product.data.product.offers.total_people_quantity;
@@ -57,11 +62,14 @@ function useProductDetailsData({ name }) {
     }
     setIsLoading(false);
   };
-
+  const incrementCompletedRequests = () => {
+    dispatch({ type: "INCREMENT_COMPLETED_REQUESTS" });
+  };
   useEffect(() => {
     getProduct();
   }, []);
-  return { state, isError, isLoading };
+
+  return { state, isError, isLoading, incrementCompletedRequests };
 }
 
 export default useProductDetailsData;

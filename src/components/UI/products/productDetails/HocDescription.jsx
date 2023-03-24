@@ -20,6 +20,7 @@ function HocDescription({
   offerId,
   handleClose,
   handleOpen,
+  incrementCompletedRequests
 }) {
   const [attributeInStock, setAttributeInStock] = useState();
   const [attributeId, setAttributeId] = useState(null);
@@ -43,6 +44,7 @@ function HocDescription({
         const req = await authFetch.post("/request", data);
         if (req.status === 200) {
           socket.emit("add_request", { message: offerId });
+          incrementCompletedRequests()
           handleClose();
           toast.success("Pool Joined");
           return;

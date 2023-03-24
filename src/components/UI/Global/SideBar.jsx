@@ -8,7 +8,6 @@ import {
   Settings,
 } from "@mui/icons-material";
 import {
-  Avatar,
   Box,
   Drawer,
   IconButton,

@@ -12,11 +12,14 @@ import CategoriesHomePage from "../../components/UI/home/Global/CategoriesHomePa
 import useHomeData from "../../hooks/home/useHomeData";
 import LoadingData from "../../components/UI/Global/LoadingData";
 import Error from "../../components/UI/Global/Error";
+import { useSelector } from "react-redux";
 
 function HomePage() {
   const matches = useMediaQuery("(max-width:800px)");
+  const useData = useSelector((state) => state.Auth.user);
+  const email = useData.replace(/"/g, "");
   const { data, isLoading, error } = useHomeData({
-    email: "zeadhani88@gmail.com",
+    email,
   });
 
   if (error) {
@@ -30,12 +33,11 @@ function HomePage() {
       {matches && <SmallHero />}
       {!matches && <Hero />}
       {/* <MidLevelIcons /> */}
-
       <ProductCarousel
         matches={matches}
         title={"for you"}
         products={data?.userProducts}
-        navigate={"/about"}
+        navigate={"/shop"}
       />
       <HomeAboutSection matches={matches} />
       <BrandsCarousel matches={matches} Brands={data?.topTenBrands} />
@@ -43,7 +45,7 @@ function HomePage() {
         matches={matches}
         title={"Hot Offers"}
         products={data?.oneRemaining}
-        navigate={"/about"}
+        navigate={"/hotOffers"}
       />
       <CategoriesHomePage categories={data?.categories} matches={matches} />
     </CustomContainer>

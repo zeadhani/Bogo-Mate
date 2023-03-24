@@ -12,6 +12,7 @@ const ProductCarousel = ({
   products,
   navigate,
   productDetails,
+  update=false
 }) => {
   const containerRef = useRef(null);
   function handleScrollLeft() {
@@ -94,6 +95,7 @@ const ProductCarousel = ({
                   product={product}
                   key={product.name}
                   matches={matches}
+                  update={update}
                 />
               ))}
             </Box>

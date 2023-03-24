@@ -20,7 +20,7 @@ function BrandsCarousel({ Brands, matches }) {
           textTransform={"uppercase"}
           // color={"#f5f5f5"}
         >
-          <Link to="/about" style={{ color: "#222" }}>
+          <Link to="/shop" style={{ color: "#222" }}>
             see more &rarr;
           </Link>
         </Typography>

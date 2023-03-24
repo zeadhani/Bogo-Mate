@@ -1,16 +1,18 @@
 import { Box, Divider, Typography } from "@mui/material";
 import React from "react";
-
 import { useNavigate } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Requests from "../../Global/Requests";
 import useRequests from "../../../../hooks/global/useRequests";
 
-function ProductItem({ product, matches }) {
+function ProductItem({ product, matches, update }) {
   const navigate = useNavigate();
-
-  const handleNavigate = () => {
-    navigate("/about");
+  const handleNavigate = (brand, item) => () => {
+    navigate(`/Shop/${brand}/${item}`);
+  };
+  const handleNavigateWithUpdate = (brand, item) => () => {
+    navigate(`/Shop/${brand}/${item}`);
+    navigate(0);
   };
   const { completedRequests, requestsLeft } = useRequests({ product });
   return (
@@ -22,7 +24,11 @@ function ProductItem({ product, matches }) {
         cursor: "pointer",
       }}
       bgcolor={"#f5f5f5"}
-      onClick={handleNavigate}
+      onClick={
+        update
+          ? handleNavigateWithUpdate(product.Brands.name, product.name)
+          : handleNavigate(product.Brands.name, product.name)
+      }
     >
       <Box
         sx={{

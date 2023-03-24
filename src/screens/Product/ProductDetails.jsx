@@ -29,9 +29,10 @@ function ProductDetails() {
     setOpen(true);
   };
 
-  const { isError, isLoading, state } = useProductDetailsData({
-    name: product,
-  });
+  const { isError, isLoading, state, incrementCompletedRequests } =
+    useProductDetailsData({
+      name: product,
+    });
 
   if (isError) {
     return <Error />;
@@ -39,7 +40,7 @@ function ProductDetails() {
   if (isLoading && !isError) {
     return <LoadingData />;
   }
-  console.log(state);
+
   return (
     <>
       <CustomContainer nav={`/shop/${brand}/${product}`}>
@@ -64,6 +65,7 @@ function ProductDetails() {
                   offerId={state?.product?.offersId}
                   handleClose={handleClose}
                   handleOpen={handleOpen}
+                  incrementCompletedRequests={incrementCompletedRequests}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -82,6 +84,7 @@ function ProductDetails() {
                   title={"Products you may  like"}
                   products={state?.relatedItems}
                   productDetails={"true"}
+                  update={"true"}
                 />
               </Grid>
               <Grid item xs={12} md={3}>

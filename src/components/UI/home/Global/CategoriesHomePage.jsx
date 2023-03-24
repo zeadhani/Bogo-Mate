@@ -15,16 +15,7 @@ function CategoriesHomePage({ categories, matches }) {
         >
           Shop by categories
         </Typography>
-        <Typography
-          variant={matches ? "caption" : "h6"}
-          fontWeight={700}
-          textTransform={"uppercase"}
-          // color={"#f5f5f5"}
-        >
-          <Link to="/about" style={{ color: "#222" }}>
-            see more &rarr;
-          </Link>
-        </Typography>
+       
       </Box>
       <Grid container spacing={2}>
         {categories?.map((item) => (

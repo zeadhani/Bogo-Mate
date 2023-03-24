@@ -1,9 +1,25 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
+import { createSearchParams, useNavigate } from "react-router-dom";
 
 const link =
   "https://res.cloudinary.com/df2862din/image/upload/v1678116941/pexels-pixabay-356056_bjyyrg.jpg";
 function CategoryItem({ item }) {
+  const navigate = useNavigate();
+  const handleCategoryNavigation = (name) => () => {
+    const params = {
+      rowsPerPage: 10,
+      page: 0,
+      sort: "createdAt",
+      orderBy: "asc",
+      search: "",
+      preferences: [name],
+    };
+    navigate({
+      pathname: `/Shop`,
+      search: `?${createSearchParams(params)}`,
+    });
+  };
   return (
     <Box
       sx={{
@@ -13,6 +29,7 @@ function CategoryItem({ item }) {
         borderRadius: "4px",
         cursor: "pointer",
       }}
+      onClick={handleCategoryNavigation(item.name)}
     >
       <Typography
         variant="h5"
