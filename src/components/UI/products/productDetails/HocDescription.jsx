@@ -4,7 +4,8 @@ import JoinPool from "./productDescription/JoinPool";
 import authFetch from "../../../../service/interceptors";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-
+import io from "socket.io-client";
+const socket = io(process.env.REACT_APP_API_URL);
 function HocDescription({
   id,
   name,
@@ -27,6 +28,7 @@ function HocDescription({
   const handleAttributeInStock = (value) => {
     setAttributeInStock(value);
   };
+
   const handleJoinPoll = (text) => async () => {
     if (text === "Join pool") {
       handleOpen();
@@ -37,8 +39,10 @@ function HocDescription({
         if (Boolean(hasAttributes)) {
           data["productItemsId"] = attributeId;
         }
+
         const req = await authFetch.post("/request", data);
         if (req.status === 200) {
+          socket.emit("add_request", { message: id });
           handleClose();
           toast.success("Pool Joined");
           return;

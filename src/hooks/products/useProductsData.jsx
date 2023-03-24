@@ -3,7 +3,8 @@ import authFetch from "../../service/interceptors";
 import useCommonFilters from "../global/useGlobalFilteredData";
 import useProductFilters from "./useProductFilters";
 import usePage from "../global/newPage";
-
+import io from "socket.io-client";
+const socket = io(process.env.REACT_APP_API_URL);
 const initialState = {
   gender: [],
   products: [],
@@ -28,6 +29,26 @@ const reducer = (state, action) => {
       return {
         ...state,
         products: action.payload.products,
+      };
+    }
+    case "UPDATE_PRODUCT": {
+      return {
+        ...state,
+        products: state.products.map(product => {
+          if (product.id === action.payload.id) {
+            return {
+              ...product,
+              offers: {
+                ...product.offers,
+                _count: {
+                  ...product.offers._count,
+                  requests: product.offers._count.requests + 1
+                }
+              }
+            };
+          }
+          return product;
+        })
       };
     }
     default:
@@ -97,6 +118,7 @@ function useProductsData({ filteredBrand }) {
       },
     });
   };
+
   useEffect(() => {
     getInitialData();
   }, []);
@@ -129,6 +151,27 @@ function useProductsData({ filteredBrand }) {
     filteredGneder,
     filteredBrand,
   ]);
+
+  useEffect(() => {
+    if (initialRender.current) {
+      initialRender.current = false;
+    } else {
+      socket.on("update_requests", (data) => {
+        const render = state.products.some(
+          (product) => product.id === data.message
+        );
+        if (render) {
+          dispatch({
+            type: "UPDATE_PRODUCT",
+            payload: {
+              id: data.message,
+            },
+          });
+          console.log({ products: state });
+        }
+      });
+    }
+  }, [socket, state]);
 
   return {
     state,

@@ -20,7 +20,7 @@ function ProductsDashboard() {
   const { brand } = useParams();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
-
+  console.log("index");
   const {
     filtered,
     filteredGneder,
