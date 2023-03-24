@@ -29,6 +29,12 @@ const reducer = (state, action) => {
         completedRequests: state.completedRequests + 1,
         requestsLeft: state.requestsLeft - 1,
       };
+    case "RESET_REQUESTS":
+      return {
+        ...state,
+        completedRequests: action.payload.completedRequests,
+        requestsLeft: action.payload.requestsLeft,
+      };
     default:
       throw new Error("Unexpected action");
   }
@@ -63,7 +69,19 @@ function useProductDetailsData({ name }) {
     setIsLoading(false);
   };
   const incrementCompletedRequests = () => {
-    dispatch({ type: "INCREMENT_COMPLETED_REQUESTS" });
+    if (state?.requestsLeft === 1) {
+      const completedRequests = 0;
+      const requestsLeft = state?.completedRequests + 1;
+      dispatch({
+        type: "RESET_REQUESTS",
+        payload: {
+          completedRequests,
+          requestsLeft,
+        },
+      });
+    } else {
+      dispatch({ type: "INCREMENT_COMPLETED_REQUESTS" });
+    }
   };
   useEffect(() => {
     getProduct();
