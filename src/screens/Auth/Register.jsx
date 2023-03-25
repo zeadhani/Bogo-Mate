@@ -16,7 +16,7 @@ function Register() {
   const handleNewUser = (user) => {
     url.searchParams.set("user", user);
     window.history.pushState({}, "", url);
-    setNewUser(user)
+    setNewUser(user);
   };
   const handleNext = () => {
     url.searchParams.set("step", step + 1);
@@ -26,9 +26,11 @@ function Register() {
   const getStepContent = (step) => {
     switch (step) {
       case 0:
-        return <RegisterForm handleNext={handleNext} handleNewUser={handleNewUser} />;
+        return (
+          <RegisterForm handleNext={handleNext} handleNewUser={handleNewUser} />
+        );
       case 1:
-        return <RegisterNewPref handleNext={handleNext} newUser={newUser}/>;
+        return <RegisterNewPref handleNext={handleNext} newUser={newUser} />;
       case 2:
         return <Typography />;
       default:
@@ -38,14 +40,12 @@ function Register() {
   return (
     <Box
       sx={{
-        height: "100vh",
         display: "flex",
         alignItems: "center",
         bgcolor: "#0c101b",
         flexDirection: "column",
-        paddingTop: "5vh",
         gap: 5,
-        overflow: "scroll",
+        paddingY: "5vh",
       }}
     >
       <Typography
@@ -65,13 +65,13 @@ function Register() {
           "& .MuiStepIcon-root": {
             fontSize: "23px",
           },
-          "& .MuiStepIcon-root.Mui-completed":{
-            color:'green'
+          "& .MuiStepIcon-root.Mui-completed": {
+            color: "green",
           },
-          "& .MuiStepIcon-root.Mui-active":{
-            color:'grey',
+          "& .MuiStepIcon-root.Mui-active": {
+            color: "grey",
             fontSize: "35px",
-          }
+          },
         }}
       >
         <Stepper activeStep={step}>
