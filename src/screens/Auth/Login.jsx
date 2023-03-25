@@ -4,14 +4,11 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { authActions } from "../../store/AuthSlice";
-import { Avatar, Box, Paper, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import { Formik } from "formik";
 import FormCard from "../../components/Forms/FormCard";
-import { theme } from "../../Theme";
 import CustomTextField from "../../components/Forms/CustomTextField";
 import FormButton from "../../components/Forms/FormButton";
-import { LockOutlined } from "@mui/icons-material";
-import { BackGorundimage } from "../../images/image";
 
 const initialValues = {
   email: "",
@@ -58,20 +55,23 @@ function Login() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#292929",
-        bgcolor: "#d3d3d3",
+        bgcolor: "#0c101b",
+        flexDirection: "column",
       }}
     >
+      <Typography
+        variant="h3"
+        fontWeight={600}
+        sx={{
+          textTransform: "uppercase",
+          transform: "translateY(-50px)",
+          color: "#f5f5f5",
+        }}
+      >
+        Welcome to Bogo
+      </Typography>
       <Paper elevation={4} sx={{ padding: 4, width: { xs: "90%", md: "50%" } }}>
-        <Avatar
-          sx={{
-            margin: theme.spacing(1),
-            backgroundColor: theme.palette.secondary.main,
-          }}
-        >
-          <LockOutlined />
-        </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h4" textTransform={"capitalize"}>
           Sign in
         </Typography>
         <Formik
@@ -102,12 +102,14 @@ function Login() {
                 errors={errors.password}
               />
               <FormButton>Sign In</FormButton>
-              <Typography align="center">
-                Don't have an account?
-                <Link to="/register" color="secondary">
-                  Register
-                </Link>
-              </Typography>
+              <Typography align="center">Don't have an account?</Typography>
+              <Link
+                to="/Auth/Register"
+                color="secondary"
+                style={{ color: "#222", textAlign: "center" }}
+              >
+                Register
+              </Link>
             </FormCard>
           )}
         </Formik>

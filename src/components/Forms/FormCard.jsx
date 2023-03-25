@@ -9,8 +9,6 @@ function FormCard({ children, serverErrors, loading, handleSubmit }) {
         sx={{
           width:  "100%",
           margin: "auto",
-          paddingTop: "20px",
-          paddingBottom: "20px",
         }}
       >
         {serverErrors && (
@@ -37,7 +35,7 @@ function FormCard({ children, serverErrors, loading, handleSubmit }) {
           </Box>
         )}
 
-        <Stack spacing={3}>{children}</Stack>
+        <Stack spacing={2}>{children}</Stack>
       </Box>
     </form>
   );

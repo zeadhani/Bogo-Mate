@@ -5,7 +5,6 @@ import Hero from "../../components/UI/home/LargeScreen/Hero";
 import SmallHero from "../../components/UI/home/Mobile/SmallHero";
 import ProductCarousel from "../../components/UI/home/Global/productCarousel";
 import BrandsCarousel from "../../components/UI/home/Global/BrandsCarousel";
-import MidLevelIcons from "../../components/UI/home/Global/midLevelIcons";
 import HomeAboutSection from "../../components/UI/home/Global/homeAboutSection";
 
 import CategoriesHomePage from "../../components/UI/home/Global/CategoriesHomePage";

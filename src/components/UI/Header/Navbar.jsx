@@ -17,7 +17,6 @@ function Navbar() {
           ) : (
            
               <MobileHeader />
-           
           )}
         </>
       )}

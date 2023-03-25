@@ -8,7 +8,7 @@ const authFetch = axios.create({
 
 authFetch.interceptors.request.use(
   (request) => {
-    const token = localStorage.getItem("token").replace(/"/g, "") || "";
+    const token = localStorage.getItem("token")?.replace(/"/g, "") || "";
     request.headers["Authorization"] = `Bearer ${token}`;
     return request;
   },
@@ -22,10 +22,10 @@ authFetch.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response.status === 401) {
+    if (error?.response?.status === 401) {
       store.dispatch(authActions.Logout());
     }
-    if (error.response.status === 409) {
+    if (error?.response?.status === 409) {
       store.dispatch(
         authActions.refreshToken({
           token: error.response.data.newToken,

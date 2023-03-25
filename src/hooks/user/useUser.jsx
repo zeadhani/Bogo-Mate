@@ -5,8 +5,10 @@ function useUser({ email }) {
   return useQuery(
     ["userData", email],
     async () => {
-      const { data } = await authFetch.get(`/user/${email}`);
-      return data;
+      if (email) {
+        const { data } = await authFetch.get(`/user/${email}`);
+        return data;
+      }
     },
     { staleTime: 10 * 60 * 1000 }
   );
