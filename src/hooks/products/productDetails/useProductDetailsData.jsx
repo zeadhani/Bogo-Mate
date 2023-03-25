@@ -85,7 +85,7 @@ function useProductDetailsData({ name }) {
   };
   useEffect(() => {
     getProduct();
-  }, []);
+  }, [name]);
 
   return { state, isError, isLoading, incrementCompletedRequests };
 }

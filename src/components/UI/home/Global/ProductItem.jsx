@@ -5,15 +5,12 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import Requests from "../../Global/Requests";
 import useRequests from "../../../../hooks/global/useRequests";
 
-function ProductItem({ product, matches, update }) {
+function ProductItem({ product, matches }) {
   const navigate = useNavigate();
   const handleNavigate = (brand, item) => () => {
     navigate(`/Shop/${brand}/${item}`);
   };
-  const handleNavigateWithUpdate = (brand, item) => () => {
-    navigate(`/Shop/${brand}/${item}`);
-    navigate(0);
-  };
+
   const { completedRequests, requestsLeft } = useRequests({ product });
   return (
     <Box
@@ -24,11 +21,7 @@ function ProductItem({ product, matches, update }) {
         cursor: "pointer",
       }}
       bgcolor={"#f5f5f5"}
-      onClick={
-        update
-          ? handleNavigateWithUpdate(product.Brands.name, product.name)
-          : handleNavigate(product.Brands.name, product.name)
-      }
+      onClick={handleNavigate(product.Brands.name, product.name)}
     >
       <Box
         sx={{
