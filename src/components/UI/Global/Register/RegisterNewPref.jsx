@@ -41,7 +41,7 @@ function RegisterNewPref({ handleNext, newUser }) {
     setLoading(false);
   };
   return (
-    <Box sx={{ width: { xs: "90%", md: "50%" } }}>
+    <Box sx={{ width: { xs: "90%", md: "50%" },height:"100%" }}>
       {loading && (
         <Box sx={{ width: "100%" }}>
           <LinearProgress />

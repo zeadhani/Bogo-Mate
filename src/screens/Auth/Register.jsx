@@ -46,6 +46,7 @@ function Register() {
         flexDirection: "column",
         gap: 5,
         paddingY: "5vh",
+        minHeight:"100vh"
       }}
     >
       <Typography

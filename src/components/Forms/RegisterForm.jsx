@@ -73,7 +73,6 @@ function RegisterForm({ handleNext, handleNewUser }) {
         `${process.env.REACT_APP_API_URL}/auth/register`,
         form_data
       );
-      console.log(res.data.id);
       if (res.statusText !== "OK") return;
       toast.success("Your account is Created Successfully!");
       handleNewUser(res.data.id);
