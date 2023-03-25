@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Box, Step, StepLabel, Stepper, Typography } from "@mui/material";
 import RegisterForm from "../../components/Forms/RegisterForm";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import RegisterNewPref from "../../components/UI/Global/Register/RegisterNewPref";
+import TermsAndConditions from "../../components/UI/Global/Register/TermsAndConditions";
 
 function Register() {
   const [searchParams] = useSearchParams();
+  const navigate=useNavigate()
   const url = new URL(window.location);
   const [step, setStep] = useState(
     searchParams.get("step") ? parseInt(searchParams.get("step")) : 0
@@ -23,6 +25,9 @@ function Register() {
     window.history.pushState({}, "", url);
     setStep((prevStep) => prevStep + 1);
   };
+  const handleFinish=()=>{
+    navigate("/Auth/Login")
+  }
   const getStepContent = (step) => {
     switch (step) {
       case 0:
@@ -32,7 +37,7 @@ function Register() {
       case 1:
         return <RegisterNewPref handleNext={handleNext} newUser={newUser} />;
       case 2:
-        return <Typography />;
+        return <TermsAndConditions handleFinish={handleFinish}/>;
       default:
         return "Unknown step";
     }
