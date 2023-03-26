@@ -74,7 +74,7 @@ function RegisterForm({ handleNext, handleNewUser }) {
         form_data
       );
       if (res.statusText !== "OK") return;
-      toast.success("Your account is Created Successfully!");
+      // toast.success("Your account is Created Successfully!");
       handleNewUser(res.data.id);
       handleNext();
     } catch (err) {

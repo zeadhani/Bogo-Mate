@@ -33,7 +33,7 @@ function RegisterNewPref({ handleNext, newUser }) {
         { preferences: userPref }
       );
       if (res.statusText !== "OK") return;
-      toast.success("Great one step left!");
+      // toast.success("Great one step left!");
       handleNext();
     } catch (err) {
       toast.error(err.response.data.error);
