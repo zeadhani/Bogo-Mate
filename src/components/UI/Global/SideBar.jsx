@@ -71,19 +71,22 @@ function SideBar() {
                 gap: 2,
                 py: 3,
                 px: 8,
+             
               }}
             >
-              <LazyLoadImage
-                style={{
-                  height: "120px",
-                  width: "120px",
-                  borderRadius: "50%",
-                  cursor: "pointer",
-                  objectFit: "cover",
-                }}
-                alt={"Profile-Image"}
-                src={`${process.env.REACT_APP_CLOUDINARY}${data?.image}`}
-              />
+              <Box mx={"auto"}>
+                <LazyLoadImage
+                  style={{
+                    height: "120px",
+                    width: "120px",
+                    borderRadius: "50%",
+                    cursor: "pointer",
+                    objectFit: "cover",
+                  }}
+                  alt={"Profile-Image"}
+                  src={`${process.env.REACT_APP_CLOUDINARY}${data?.image}`}
+                />
+              </Box>
 
               <Typography
                 textTransform={"uppercase"}
