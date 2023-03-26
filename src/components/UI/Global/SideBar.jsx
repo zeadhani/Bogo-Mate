@@ -70,7 +70,7 @@ function SideBar() {
                 justifyContent: "center",
                 gap: 2,
                 py: 3,
-                px: 8,
+                px: 5,
              
               }}
             >
