@@ -74,7 +74,7 @@ const ContactUsPage = () => {
               Submit
             </Button>
           </form>
-          <Box mt={4}>
+          <Box my={4}>
             <Typography variant="body1">
               Our brand is committed to providing top-notch customer support. We
               value your feedback and will do our best to respond to your
