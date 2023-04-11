@@ -60,7 +60,8 @@ function Links() {
       <CustomLink text={"Home"} link={"/"} /> |
       <CustomLink text={"About us"} link={"/About us"} /> |
       <CustomLink text={"Shop"} link={"/shop"} /> |
-      <CustomLink text={"Contact"} link={"/"} />
+      <CustomLink text={"Contact"} link={"/contact-us"} /> |
+      <CustomLink text={"Help"} link={"/help"} />
     </Box>
   );
 }

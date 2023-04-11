@@ -3,6 +3,7 @@ import {
   Close,
   Dashboard,
   Help,
+  Logout,
   MoneyOff,
   RequestPageSharp,
   Settings,
@@ -26,6 +27,7 @@ import { sideBarActions } from "../../../store/sideBarSlice";
 import useUser from "../../../hooks/user/useUser";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useNavigate } from "react-router-dom";
+import { authActions } from "../../../store/AuthSlice";
 function SideBar() {
   const matches = useMediaQuery("(max-width:800px)");
   const open = useSelector((state) => state.SideBar.open);
@@ -47,7 +49,10 @@ function SideBar() {
       closeSideBar();
     };
   };
-
+  const handleLogout = () => {
+    dispatch(authActions.Logout());
+    navigate("/Auth/Login");
+  };
   const useData = useSelector((state) => state.Auth.user);
   const email = useData.replace(/"/g, "");
   const { data } = useUser({ email });
@@ -121,12 +126,7 @@ function SideBar() {
               </ListItemIcon>
               <ListItemText primary="Current Requests" />
             </ListItem>
-            <ListItem onClick={handleNavigate}>
-              <ListItemIcon>
-                <MoneyOff />
-              </ListItemIcon>
-              <ListItemText primary="Past Orders" />
-            </ListItem>
+          
             <ListItem onClick={handleNavigate("contact-us")}>
               <ListItemIcon>
                 <Call />
@@ -138,6 +138,12 @@ function SideBar() {
                 <Help />
               </ListItemIcon>
               <ListItemText primary="Help" />
+            </ListItem>
+            <ListItem onClick={handleLogout}>
+              <ListItemIcon>
+                <Logout />
+              </ListItemIcon>
+              <ListItemText primary="Logout" />
             </ListItem>
           </List>
         </Drawer>
