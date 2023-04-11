@@ -16,12 +16,14 @@ import "react-toastify/dist/ReactToastify.min.css";
 import ToastMessage from "./components/UI/Global/ToastMessage";
 const queryClient = new QueryClient();
 const HomePage = React.lazy(() => import("./screens/Home"));
-const ProductsDashboard = React.lazy(() => import("./screens/Product"));
+const ProductsDashboard = React.lazy(() => import("./screens/Product/index"));
 const ProductDetails = React.lazy(() =>
   import("./screens/Product/ProductDetails")
 );
 const AboutUsPage = React.lazy(() => import("./screens/About/AboutUs"));
-const ShopPage = React.lazy(() => import("./screens/Shop"));
+const ShopPage = React.lazy(() => import("./screens/Shop/index"));
+const HelpPage = React.lazy(() => import("./screens/help/index"));
+const ContactUs = React.lazy(() => import("./screens/contactus/index"));
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -70,6 +72,22 @@ function App() {
                   element={
                     <CustomSuspense>
                       <ProductDetails />
+                    </CustomSuspense>
+                  }
+                />
+                <Route
+                  path="/help"
+                  element={
+                    <CustomSuspense>
+                      <HelpPage />
+                    </CustomSuspense>
+                  }
+                />
+                <Route
+                  path="/contact-us"
+                  element={
+                    <CustomSuspense>
+                      <ContactUs />
                     </CustomSuspense>
                   }
                 />

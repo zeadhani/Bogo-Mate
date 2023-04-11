@@ -25,11 +25,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { sideBarActions } from "../../../store/sideBarSlice";
 import useUser from "../../../hooks/user/useUser";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useNavigate } from "react-router-dom";
 function SideBar() {
   const matches = useMediaQuery("(max-width:800px)");
   const open = useSelector((state) => state.SideBar.open);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const closeSideBar = () => {
     dispatch(sideBarActions.close());
   };
@@ -40,8 +41,11 @@ function SideBar() {
     }
   };
 
-  const handleNavigate = () => {
-    closeSideBar();
+  const handleNavigate = (nav) => {
+    return () => {
+      navigate("/" + nav);
+      closeSideBar();
+    };
   };
 
   const useData = useSelector((state) => state.Auth.user);
@@ -71,7 +75,6 @@ function SideBar() {
                 gap: 2,
                 py: 3,
                 px: 5,
-             
               }}
             >
               <Box mx={"auto"}>
@@ -124,13 +127,13 @@ function SideBar() {
               </ListItemIcon>
               <ListItemText primary="Past Orders" />
             </ListItem>
-            <ListItem onClick={handleNavigate}>
+            <ListItem onClick={handleNavigate("contact-us")}>
               <ListItemIcon>
                 <Call />
               </ListItemIcon>
               <ListItemText primary="Contact Us" />
             </ListItem>
-            <ListItem onClick={handleNavigate}>
+            <ListItem onClick={handleNavigate("help")}>
               <ListItemIcon>
                 <Help />
               </ListItemIcon>

@@ -2,18 +2,19 @@ import {
   Avatar,
   Box,
   IconButton,
-  Menu,
   MenuItem,
   Tooltip,
   Typography,
 } from "@mui/material";
 import React from "react";
 import DropDownMenu from "../../UI/Global/DropDownMenu";
+import { useSelector } from "react-redux";
 
 const settings = ["Profile", "Dashboard", "Logout"];
 function ProfileIcon() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const useData = useSelector((state) => state.Auth.user);
+  const email = useData.replace(/"/g, "");
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -25,10 +26,13 @@ function ProfileIcon() {
     <Box sx={{ flexGrow: 0, ml: 3 }}>
       <Tooltip title="Open settings">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar alt="Zead" src="/static/images/avatar/2.jpg" />
+          <Avatar alt={email} src="/static/images/avatar/2.jpg" />
         </IconButton>
       </Tooltip>
-      <DropDownMenu anchorEl={anchorElUser} handleCloseMenu={handleCloseUserMenu}>
+      <DropDownMenu
+        anchorEl={anchorElUser}
+        handleCloseMenu={handleCloseUserMenu}
+      >
         {settings.map((setting) => (
           <MenuItem key={setting} onClick={handleCloseUserMenu}>
             <Typography textAlign="center">{setting}</Typography>
