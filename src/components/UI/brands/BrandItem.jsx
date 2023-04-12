@@ -38,6 +38,7 @@ function BrandItem({ brand }) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        backgroundPosition:"center"
       }}
       onClick={handleBrandNavigation}
     >
