@@ -11,33 +11,6 @@ function useBrands({
   search,
   preferencesFilter,
 }) {
-  const navigate = useNavigate();
-  // console.log("from brands")
-  // return useQuery(
-  //   ["brands", rowsPerPage, page, sort, orderBy, search, preferencesFilter],
-  //   async () => {
-  //     console.log("from brands request")
-  //     navigate({
-  //       search: `?${createSearchParams({
-  //         rowsPerPage,
-  //         page,
-  //         sort,
-  //         orderBy,
-  //         search,
-  //         preferences: [preferencesFilter],
-  //       })}`,
-  //     });
-  //     const { data } = await authFetch.get(
-  //       `/brand?limit=${rowsPerPage}&page=${
-  //         page + 1
-  //       }&sort=${sort},${orderBy}&search=${search}&filter=${preferencesFilter}`
-  //     );
-  //     return {
-  //       brands: data.data.data,
-  //       count: data.data.totalCount,
-  //     };
-  //   },
-  // );
   const [count, setCount] = useState(0);
   const [brands, setBrands] = useState([]);
   const getBrands = async () => {

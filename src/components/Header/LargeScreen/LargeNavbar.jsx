@@ -8,6 +8,7 @@ import ProfileIcon from "./ProfileIcon";
 
 import SearchBar from "../../Forms/searchBar";
 import { useNavigate } from "react-router-dom";
+import HeaderSearch from "../../Forms/HeaderSearch";
 function LargeNavbar() {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -43,7 +44,7 @@ function LargeNavbar() {
               BOGO
             </Typography>
             {/* <Links /> */}
-            <SearchBar name={"products"} />
+            <HeaderSearch />
             <ProfileIcon />
           </Toolbar>
         </Container>

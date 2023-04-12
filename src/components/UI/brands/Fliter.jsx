@@ -1,15 +1,5 @@
 import React from "react";
-import {
-  List,
-  ListItem,
-  ListItemText,
-  Typography,
-  ListItemSecondaryAction,
-  Checkbox,
-  Divider,
-  Box,
-  Button,
-} from "@mui/material";
+import { Typography, Divider, Box, Button } from "@mui/material";
 
 import SearchBar from "../../Forms/searchBar";
 import FilterContainer from "../Global/filters/FilterContainer";
@@ -17,10 +7,7 @@ import CustomFilterList from "../Global/filters/FilterList";
 import { Category, Sort } from "@mui/icons-material";
 import CustomSortList from "../Global/filters/sort/CustomSortList";
 
-
 const FilterData = [
-  // { id: 1, name: "Price : high to low" },
-  // { id: 2, name: "Price : low to high" },
   { id: 3, name: "Latest Items" },
   { id: 4, name: "Oldest Items" },
 ];
@@ -33,7 +20,7 @@ function FilterList({
   filteredItem,
   handleFilteredItemChange,
   search,
-  handleSearchChange
+  handleSearchChange,
 }) {
   return (
     <FilterContainer matches={matches} clearData={resetFilters}>
@@ -43,7 +30,11 @@ function FilterList({
         </Typography>
 
         <Divider style={{ marginBottom: "16px" }} />
-        <SearchBar search={search} handleSearchChange={handleSearchChange} name={"brands"} />
+        <SearchBar
+          search={search}
+          handleSearchChange={handleSearchChange}
+          name={"brands"}
+        />
       </Box>
 
       <CustomFilterList
