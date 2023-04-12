@@ -2,6 +2,7 @@ import { MenuOutlined, Search } from "@mui/icons-material";
 import {
   Autocomplete,
   Box,
+  CircularProgress,
   IconButton,
   TextField,
   Typography,
@@ -17,30 +18,30 @@ import { useNavigate } from "react-router-dom";
 function HeaderSearch({ rednerMenu }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [inputValue, setInputValue] = useState("");
   const handleNavigate = (nav) => {
     navigate(nav);
   };
+
   const openSideBar = () => {
     dispatch(sideBarActions.open());
   };
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const response = await authFetch.get(`/search?search=${inputValue}`);
+      setOptions(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     let timeoutId;
-
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const response = await authFetch.get(`/search?search=${inputValue}`);
-        setOptions(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
     if (inputValue) {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(fetchData, 500);
@@ -51,7 +52,6 @@ function HeaderSearch({ rednerMenu }) {
       clearTimeout(timeoutId);
     };
   }, [inputValue]);
-
   return (
     <Box
       sx={{
@@ -75,17 +75,38 @@ function HeaderSearch({ rednerMenu }) {
           flexGrow: 1,
           marginLeft: "10px",
         }}
+        isOptionEqualToValue={(option, value) => option.name === value.name}
+        getOptionLabel={(option) => option.name}
         options={options}
-        autoHighlight
-        loading={loading}
-        loadingText="Loading..."
         {...(!inputValue ? { freeSolo: true } : {})}
         noOptionsText={"No Items Found"}
-        blurOnSelect={true}
-        onChange={(e, value) =>
-          handleNavigate(`/shop/${value.Brands.name}/${value.name}`)
-        }
-        getOptionLabel={(option) => option.name}
+        loading={loading}
+        inputValue={inputValue}
+        onInputChange={(event, value) => setInputValue(value)}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            variant="standard"
+            placeholder="Search"
+            className="custom-textfield"
+            InputProps={{
+              ...params.InputProps,
+              endAdornment: (
+                <React.Fragment>
+                  {loading ? (
+                    <CircularProgress color="inherit" size={20} />
+                  ) : null}
+                  {params.InputProps.endAdornment}
+                </React.Fragment>
+              ),
+            }}
+          />
+        )}
+        onChange={(event, value) => {
+          if (value) {
+            handleNavigate(`/shop/${value.Brands.name}/${value.name}`);
+          }
+        }}
         renderOption={(props, option) => (
           <Box
             component="li"
@@ -100,21 +121,14 @@ function HeaderSearch({ rednerMenu }) {
             />
             <Box display={"flex"} flexDirection={"column"}>
               <Typography> {option.name}</Typography>
-              <Typography variant="caption">{option.Brands.name}</Typography>
+              <Typography variant="caption">
+                {option?.Brands.name ? ` - ${option.Brands.name}` : ""}
+              </Typography>
             </Box>
           </Box>
         )}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            className="custom-textfield"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            variant="standard"
-            placeholder="search for products..."
-          />
-        )}
       />
+
       <IconButton sx={{ padding: 0, ml: 1 }}>
         <Search />
       </IconButton>
