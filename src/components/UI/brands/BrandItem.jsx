@@ -7,7 +7,7 @@ function BrandItem({ brand }) {
   const navigate = useNavigate();
   const handleBrandNavigation = () => {
     const params = {
-      rowsPerPage:10,
+      rowsPerPage: 10,
       page: 0,
       sort: "createdAt",
       orderBy: "asc",
@@ -38,11 +38,11 @@ function BrandItem({ brand }) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundPosition:"center"
+        backgroundPosition: "center",
       }}
       onClick={handleBrandNavigation}
     >
-      <Typography
+      {/* <Typography
         variant="h1"
         textAlign={"center"}
         color={"#f4f4f4"}
@@ -51,7 +51,7 @@ function BrandItem({ brand }) {
         sx={{ transform: "translateY(-50%)" }}
       >
         {brand.name}
-      </Typography>
+      </Typography> */}
       <Typography
         variant="h6"
         sx={{
@@ -65,8 +65,9 @@ function BrandItem({ brand }) {
         bgcolor={colors.grey[200]}
         color={"white"}
         paddingY={1}
+        textTransform={"uppercase"}
       >
-        {brand._count.offers} OFFERS
+       {brand.name}  - {brand._count.offers} OFFERS 
       </Typography>
     </Box>
   );

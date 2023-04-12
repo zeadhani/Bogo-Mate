@@ -1,5 +1,11 @@
 import { MenuOutlined, Search } from "@mui/icons-material";
-import { Autocomplete, Box, IconButton, TextField } from "@mui/material";
+import {
+  Autocomplete,
+  Box,
+  IconButton,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { sideBarActions } from "../../store/sideBarSlice";
@@ -92,10 +98,10 @@ function HeaderSearch({ rednerMenu }) {
               src={`${process.env.REACT_APP_CLOUDINARY}${option.image}`}
               alt=""
             />
-            {option.name}{" "}
-            <span style={{ fontWeight: "bold", marginLeft: "10px" }}>
-              - {option.Brands.name}
-            </span>
+            <Box display={"flex"} flexDirection={"column"}>
+              <Typography> {option.name}</Typography>
+              <Typography variant="caption">{option.Brands.name}</Typography>
+            </Box>
           </Box>
         )}
         renderInput={(params) => (
