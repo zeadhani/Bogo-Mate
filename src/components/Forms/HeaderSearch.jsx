@@ -115,7 +115,7 @@ function HeaderSearch({ rednerMenu }) {
           >
             <img
               loading="lazy"
-              width="20"
+              width={"30px"}
               src={`${process.env.REACT_APP_CLOUDINARY}${option.image}`}
               alt=""
             />
