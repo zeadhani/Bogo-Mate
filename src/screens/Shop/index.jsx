@@ -1,19 +1,13 @@
-import {
-  Box,
-  Grid,
-  Pagination,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
-
 import LoadingData from "../../components/UI/Global/LoadingData";
 import Error from "../../components/UI/Global/Error";
 import ShopContainer from "./shopContainer";
 import useBrandsData from "../../hooks/brands/useBrandsData";
 import handleReverseSortChange from "../../utils/handleReverseSortChange";
 import BrandsItems from "../../components/UI/brands/BrandsItems";
+
+import CustomFetchItems from "../../components/UI/Global/CustomFetchItems";
 
 function ShopPage() {
   const theme = useTheme();
@@ -53,7 +47,6 @@ function ShopPage() {
       </ShopContainer>
     );
   }
-
   return (
     <ShopContainer
       handleFilterPrefChange={handleFilterPrefChange}
@@ -66,29 +59,16 @@ function ShopPage() {
       search={search}
       handleSearchChange={handleSearchChange}
     >
-      {state?.brands?.length === 0 ? (
-        <Grid item xs={matches ? 12 : 9}>
-          <Typography textAlign={"center"} variant="h5">
-            No Items Available
-          </Typography>
-        </Grid>
-      ) : (
+      <CustomFetchItems
+        count={state?.count}
+        handleChangePage={handleChangePage}
+        matches={matches}
+        page={page}
+        rowsPerPage={rowsPerPage}
+        model={state?.brands}
+      >
         <BrandsItems matches={matches} brands={state?.brands} />
-      )}
-      <Grid item xs={12}>
-        <Box display={"flex"} justifyContent={matches ? "center" : "right"}>
-          <Pagination
-            size={matches ? "small" : "medium"}
-            count={Math.ceil(state?.count / rowsPerPage)}
-            sx={{ mt: 5 }}
-            page={page + 1}
-            onChange={handleChangePage}
-            color="primary"
-            hideNextButton
-            hidePrevButton
-          />
-        </Box>
-      </Grid>
+      </CustomFetchItems>
     </ShopContainer>
   );
 }

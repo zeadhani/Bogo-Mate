@@ -13,7 +13,7 @@ import { sideBarActions } from "../../store/sideBarSlice";
 import { useState } from "react";
 import { useEffect } from "react";
 import authFetch from "../../service/interceptors";
-import { useNavigate } from "react-router-dom";
+import { createSearchParams, useNavigate } from "react-router-dom";
 
 function HeaderSearch({ rednerMenu }) {
   const dispatch = useDispatch();
@@ -21,6 +21,10 @@ function HeaderSearch({ rednerMenu }) {
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [searchValue, setSearchValue] = useState("");
+  const handleSearchChange = (e) => {
+    setSearchValue(e.target.value);
+  };
   const handleNavigate = (nav) => {
     navigate(nav);
   };
@@ -52,6 +56,20 @@ function HeaderSearch({ rednerMenu }) {
       clearTimeout(timeoutId);
     };
   }, [inputValue]);
+
+  const handleSearchRequest = () => {
+    if (searchValue) {
+      const params = {
+        rowsPerPage: 10,
+        page: 0,
+        search: searchValue,
+      };
+      navigate({
+        pathname: `/search`,
+        search: `?${createSearchParams(params)}`,
+      });
+    }
+  };
   return (
     <Box
       sx={{
@@ -100,6 +118,8 @@ function HeaderSearch({ rednerMenu }) {
                 </React.Fragment>
               ),
             }}
+            value={searchValue}
+            onChange={handleSearchChange}
           />
         )}
         onChange={(event, value) => {
@@ -129,7 +149,7 @@ function HeaderSearch({ rednerMenu }) {
         )}
       />
 
-      <IconButton sx={{ padding: 0, ml: 1 }}>
+      <IconButton sx={{ padding: 0, ml: 1 }} onClick={handleSearchRequest}>
         <Search />
       </IconButton>
     </Box>

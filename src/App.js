@@ -14,6 +14,7 @@ import NoMatch from "./components/UI/Global/NoMatch";
 import { QueryClientProvider, QueryClient } from "react-query";
 import "react-toastify/dist/ReactToastify.min.css";
 import ToastMessage from "./components/UI/Global/ToastMessage";
+
 const queryClient = new QueryClient();
 const HomePage = React.lazy(() => import("./screens/Home"));
 const ProductsDashboard = React.lazy(() => import("./screens/Product/index"));
@@ -24,6 +25,8 @@ const AboutUsPage = React.lazy(() => import("./screens/About/AboutUs"));
 const ShopPage = React.lazy(() => import("./screens/Shop/index"));
 const HelpPage = React.lazy(() => import("./screens/help/index"));
 const ContactUs = React.lazy(() => import("./screens/contactus/index"));
+const SearchComponent = React.lazy(() => import("./screens/search/index"));
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -88,6 +91,14 @@ function App() {
                   element={
                     <CustomSuspense>
                       <ContactUs />
+                    </CustomSuspense>
+                  }
+                />
+                <Route
+                  path="/search"
+                  element={
+                    <CustomSuspense>
+                      <SearchComponent />
                     </CustomSuspense>
                   }
                 />
