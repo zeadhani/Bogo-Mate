@@ -89,7 +89,8 @@ function SideBar() {
                     width: "120px",
                     borderRadius: "50%",
                     cursor: "pointer",
-                    objectFit: "contain",
+                    objectFit: "cover",
+                    objectPosition:"center"
                   }}
                   alt={"Profile-Image"}
                   src={`${process.env.REACT_APP_CLOUDINARY}${data?.image}`}

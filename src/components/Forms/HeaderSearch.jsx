@@ -68,6 +68,7 @@ function HeaderSearch({ rednerMenu }) {
         pathname: `/search`,
         search: `?${createSearchParams(params)}`,
       });
+      setSearchValue("");
     }
   };
   return (
