@@ -9,7 +9,7 @@ import handleReverseSortChange from "../../utils/handleReverseSortChange";
 import ProductItems from "../../components/UI/products/ProductItems";
 
 import CustomFetchItems from "../../components/UI/Global/CustomFetchItems";
-import ProductItem from "../../components/UI/products/ProductItem";
+
 
 const stockArray = [{ name: "inStock" }, { name: "outStock" }];
 function ProductsDashboard() {

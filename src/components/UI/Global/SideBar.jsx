@@ -4,6 +4,7 @@ import {
   Dashboard,
   Help,
   Logout,
+  Person,
   RequestPageSharp,
   Settings,
 } from "@mui/icons-material";
@@ -27,6 +28,7 @@ import useUser from "../../../hooks/user/useUser";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useNavigate } from "react-router-dom";
 import { authActions } from "../../../store/AuthSlice";
+import { profileActions } from "../../../store/profileDrawerSlice";
 function SideBar() {
   const matches = useMediaQuery("(max-width:800px)");
   const open = useSelector((state) => state.SideBar.open);
@@ -44,8 +46,15 @@ function SideBar() {
 
   const handleNavigate = (nav) => {
     return () => {
-      navigate("/" + nav);
-      closeSideBar();
+      if (nav === "profile") {
+        closeSideBar();
+        setTimeout(() => {
+          dispatch(profileActions.open());
+        }, 700);
+      } else {
+        navigate("/" + nav);
+        closeSideBar();
+      }
     };
   };
   const handleLogout = () => {
@@ -89,7 +98,7 @@ function SideBar() {
                     borderRadius: "50%",
                     cursor: "pointer",
                     objectFit: "cover",
-                    objectPosition:"center"
+                    objectPosition: "center",
                   }}
                   alt={"Profile-Image"}
                   src={`${process.env.REACT_APP_CLOUDINARY}${data?.image}`}
@@ -108,25 +117,13 @@ function SideBar() {
           </Box>
 
           <List>
-            <ListItem onClick={handleNavigate}>
+            <ListItem onClick={handleNavigate("profile")}>
               <ListItemIcon>
-                <Dashboard />
+                <Person />
               </ListItemIcon>
-              <ListItemText primary="Dashboard" />
+              <ListItemText primary="Profile" />
             </ListItem>
-            <ListItem onClick={handleNavigate}>
-              <ListItemIcon>
-                <Settings />
-              </ListItemIcon>
-              <ListItemText primary="Edit Profile" />
-            </ListItem>
-            <ListItem onClick={handleNavigate}>
-              <ListItemIcon>
-                <RequestPageSharp />
-              </ListItemIcon>
-              <ListItemText primary="Current Requests" />
-            </ListItem>
-          
+
             <ListItem onClick={handleNavigate("contact-us")}>
               <ListItemIcon>
                 <Call />

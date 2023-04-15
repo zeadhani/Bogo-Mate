@@ -10,7 +10,7 @@ import React from "react";
 import DropDownMenu from "../../UI/Global/DropDownMenu";
 import { useSelector } from "react-redux";
 
-const settings = ["Profile", "Dashboard", "Logout"];
+
 function ProfileIcon() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const useData = useSelector((state) => state.Auth.user);
@@ -33,11 +33,13 @@ function ProfileIcon() {
         anchorEl={anchorElUser}
         handleCloseMenu={handleCloseUserMenu}
       >
-        {settings.map((setting) => (
-          <MenuItem key={setting} onClick={handleCloseUserMenu}>
-            <Typography textAlign="center">{setting}</Typography>
-          </MenuItem>
-        ))}
+        <MenuItem onClick={handleCloseUserMenu}>
+          <Typography textAlign="center">Profile</Typography>
+        </MenuItem>
+
+        <MenuItem onClick={handleCloseUserMenu}>
+          <Typography textAlign="center">Logout</Typography>
+        </MenuItem>
       </DropDownMenu>
     </Box>
   );
