@@ -9,6 +9,7 @@ import handleReverseSortChange from "../../utils/handleReverseSortChange";
 import ProductItems from "../../components/UI/products/ProductItems";
 
 import CustomFetchItems from "../../components/UI/Global/CustomFetchItems";
+import ProductItem from "../../components/UI/products/ProductItem";
 
 const stockArray = [{ name: "inStock" }, { name: "outStock" }];
 function ProductsDashboard() {
@@ -83,7 +84,7 @@ function ProductsDashboard() {
         rowsPerPage={rowsPerPage}
         model={state?.products}
       >
-        <ProductItems matches={matches} brands={state?.products} />
+        <ProductItems matches={matches} products={state?.products} />
       </CustomFetchItems>
     </ProductsShopContainer>
   );

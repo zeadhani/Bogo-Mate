@@ -4,7 +4,6 @@ import {
   Dashboard,
   Help,
   Logout,
-  MoneyOff,
   RequestPageSharp,
   Settings,
 } from "@mui/icons-material";
