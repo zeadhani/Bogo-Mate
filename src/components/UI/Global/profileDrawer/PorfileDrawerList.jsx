@@ -22,7 +22,7 @@ function PorfileDrawerList({ closeDrawer }) {
   const navigate = useNavigate();
   const handleNavigate = (nav) => {
     return () => {
-      navigate(`/${nav}`);
+      navigate(`${nav}`);
     };
   };
   return (
@@ -36,7 +36,7 @@ function PorfileDrawerList({ closeDrawer }) {
         Account Management
       </Typography>
       <List>
-        <ListItem disablePadding onClick={handleNavigate("profile")}>
+        <ListItem disablePadding onClick={handleNavigate("/profile")}>
           <ListItemButton disableTouchRipple>
             <ListItemIcon>
               <AccountCircle />
@@ -44,7 +44,7 @@ function PorfileDrawerList({ closeDrawer }) {
             <ListItemText primary={"User Profile"} />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding>
+        <ListItem disablePadding onClick={handleNavigate("/profile/edit")}>
           <ListItemButton disableTouchRipple>
             <ListItemIcon>
               <Settings />

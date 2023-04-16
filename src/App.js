@@ -16,6 +16,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 import ToastMessage from "./components/UI/Global/ToastMessage";
 import ProfileDrawer from "./components/UI/Global/profileDrawer/ProfileDrawer";
 import Announcement from "./components/UI/Global/Announcement";
+import EditProfile from "./screens/Profile/EditProfile";
 
 const queryClient = new QueryClient();
 const HomePage = React.lazy(() => import("./screens/Home"));
@@ -111,6 +112,14 @@ function App() {
                   element={
                     <CustomSuspense>
                       <ProfilePage />
+                    </CustomSuspense>
+                  }
+                />
+                <Route
+                  path="/profile/edit"
+                  element={
+                    <CustomSuspense>
+                      <EditProfile />
                     </CustomSuspense>
                   }
                 />

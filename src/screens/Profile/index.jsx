@@ -1,29 +1,29 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Avatar, Box, Button, Typography } from "@mui/material";
 import React from "react";
-import CustomContainer from "../../components/UI/Global/CustomContainer";
-import { useSelector } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
 import useUser from "../../hooks/user/useUser";
 import Error from "../../components/UI/Global/Error";
 import LoadingData from "../../components/UI/Global/LoadingData";
-import { ArrowBack, Edit, Lock, Logout, Settings } from "@mui/icons-material";
+import { Edit, Lock, Logout } from "@mui/icons-material";
+
+import CustomProfileContainer from "../../components/UI/Global/profileDrawer/CustomProfileContainer";
+import { authActions } from "../../store/AuthSlice";
 import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
   const userData = useSelector((state) => state.Auth.user);
   const email = userData.replace(/"/g, "");
   const { data, isLoading, isError } = useUser({ email });
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const matches = useMediaQuery("(max-width:800px)");
-  const handleGoBack = () => {
-    navigate(-1);
+  const handleNavigate = (nav) => {
+    return () => {
+      navigate(`${nav}`);
+    };
+  };
+  const handleLogout = () => {
+    dispatch(authActions.Logout());
   };
   if (isError) {
     return <Error />;
@@ -32,19 +32,7 @@ const ProfilePage = () => {
     return <LoadingData />;
   }
   return (
-    <CustomContainer nav={"profile"}>
-      {matches && (
-        <Button
-          variant="text"
-          color="primary"
-          onClick={handleGoBack}
-          startIcon={<ArrowBack />}
-          sx={{ mt: 1 }}
-        >
-          Go Back
-        </Button>
-      )}
-
+    <CustomProfileContainer nav={"/profile"}>
       <Box my={1} mx={"auto"} width={"fit-content"}>
         <Avatar
           alt={"Profile-Image"}
@@ -79,19 +67,27 @@ const ProfilePage = () => {
         justifyContent={"center"}
         alignItems={"center"}
       >
-        <Button startIcon={<Edit />} color="primary">
+        <Button
+          startIcon={<Edit />}
+          color="primary"
+          onClick={handleNavigate("/profile/edit")}
+        >
           Edit Profile
         </Button>
 
-        <Button startIcon={<Lock />} color="primary">
+        <Button
+          startIcon={<Lock />}
+          color="primary"
+          onClick={handleNavigate("/profile/changepass")}
+        >
           Change Password
         </Button>
 
-        <Button startIcon={<Logout />} color="secondary">
+        <Button startIcon={<Logout />} color="secondary" onClick={handleLogout}>
           Logout
         </Button>
       </Box>
-    </CustomContainer>
+    </CustomProfileContainer>
   );
 };
 
