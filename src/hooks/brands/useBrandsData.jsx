@@ -52,7 +52,11 @@ function useBrandsData() {
     try {
       const [filterData, brands] = await Promise.all([
         axios.get(`${process.env.REACT_APP_API_URL}/pref`),
-        authFetch.get(`/brand?limit=${rowsPerPage}&page=${page + 1}&sort=${sort},${orderBy}&search=${search}&filter=${preferencesFilter}`),
+        authFetch.get(
+          `/brand?limit=${rowsPerPage}&page=${
+            page + 1
+          }&sort=${sort},${orderBy}&search=${search}&filter=${preferencesFilter}&webBrands=true`
+        ),
       ]);
       dispatch({
         type: "INITIAL_FETCH_DATA_SUCCESS",
@@ -67,12 +71,12 @@ function useBrandsData() {
     }
     setIsLoading(false);
   };
-  
+
   const getUpdatedData = async () => {
     const brands = await authFetch.get(
       `/brand?limit=${rowsPerPage}&page=${
         page + 1
-      }&sort=${sort},${orderBy}&search=${search}&filter=${preferencesFilter}`
+      }&sort=${sort},${orderBy}&search=${search}&filter=${preferencesFilter}&webBrands=true`
     );
     dispatch({
       type: "UPDATE_DATA",

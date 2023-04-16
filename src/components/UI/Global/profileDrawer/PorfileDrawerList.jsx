@@ -17,7 +17,14 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { Box, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 function PorfileDrawerList({ closeDrawer }) {
+  const navigate = useNavigate();
+  const handleNavigate = (nav) => {
+    return () => {
+      navigate(`/${nav}`);
+    };
+  };
   return (
     <Box
       role="presentation"
@@ -29,8 +36,8 @@ function PorfileDrawerList({ closeDrawer }) {
         Account Management
       </Typography>
       <List>
-        <ListItem disablePadding>
-          <ListItemButton>
+        <ListItem disablePadding onClick={handleNavigate("profile")}>
+          <ListItemButton disableTouchRipple>
             <ListItemIcon>
               <AccountCircle />
             </ListItemIcon>
@@ -38,7 +45,7 @@ function PorfileDrawerList({ closeDrawer }) {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton disableTouchRipple>
             <ListItemIcon>
               <Settings />
             </ListItemIcon>
@@ -46,7 +53,7 @@ function PorfileDrawerList({ closeDrawer }) {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton disableTouchRipple>
             <ListItemIcon>
               <Dashboard />
             </ListItemIcon>
@@ -54,7 +61,7 @@ function PorfileDrawerList({ closeDrawer }) {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton disableTouchRipple>
             <ListItemIcon>
               <Favorite />
             </ListItemIcon>
@@ -62,7 +69,7 @@ function PorfileDrawerList({ closeDrawer }) {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton disableTouchRipple>
             <ListItemIcon>
               <Lock />
             </ListItemIcon>
@@ -75,7 +82,7 @@ function PorfileDrawerList({ closeDrawer }) {
 
       <List>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton disableTouchRipple>
             <ListItemIcon>
               <History />
             </ListItemIcon>
@@ -83,7 +90,7 @@ function PorfileDrawerList({ closeDrawer }) {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton disableTouchRipple>
             <ListItemIcon>
               <HourglassTop />
             </ListItemIcon>
@@ -91,7 +98,7 @@ function PorfileDrawerList({ closeDrawer }) {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton disableTouchRipple>
             <ListItemIcon>
               <RateReview />
             </ListItemIcon>
@@ -99,7 +106,7 @@ function PorfileDrawerList({ closeDrawer }) {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton disableTouchRipple>
             <ListItemIcon>
               <Chat />
             </ListItemIcon>

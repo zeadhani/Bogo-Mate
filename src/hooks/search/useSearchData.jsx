@@ -53,7 +53,7 @@ function useSearchData() {
   const getUpdatedData = async () => {
     try {
       const products = await authFetch.get(
-        `/products?limit=${rowsPerPage}&page=${page + 1}&search=${search}`
+        `/products?limit=${rowsPerPage}&page=${page + 1}&search=${search}&webProducts=true`
       );
       dispatch({
         type: "UPDATE_DATA",

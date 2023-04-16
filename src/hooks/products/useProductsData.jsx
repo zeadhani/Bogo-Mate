@@ -83,9 +83,13 @@ function useProductsData({ filteredBrand }) {
     try {
       const [filterData, products] = await Promise.all([
         authFetch.get("/products/filterweb/all/" + filteredBrand),
-        authFetch.get(`/products?limit=${rowsPerPage}&page=${page + 1}&sort=${sort},${orderBy}&search=${search}&filter=${filtered}&stock=${filteredStock}&brand=${filteredBrand}&gender=${filteredGneder}`),
+        authFetch.get(
+          `/products?limit=${rowsPerPage}&page=${
+            page + 1
+          }&sort=${sort},${orderBy}&search=${search}&filter=${filtered}&stock=${filteredStock}&brand=${filteredBrand}&gender=${filteredGneder}&webProducts=true`
+        ),
       ]);
-  
+
       dispatch({
         type: "INITIAL_FETCH_DATA_SUCCESS",
         payload: {
@@ -101,12 +105,12 @@ function useProductsData({ filteredBrand }) {
     }
     setIsLoading(false);
   };
-  
+
   const getUpdatedData = async () => {
     const products = await authFetch.get(
       `/products?limit=${rowsPerPage}&page=${
         page + 1
-      }&sort=${sort},${orderBy}&search=${search}&filter=${filtered}&stock=${filteredStock}&brand=${filteredBrand}&gender=${filteredGneder}`
+      }&sort=${sort},${orderBy}&search=${search}&filter=${filtered}&stock=${filteredStock}&brand=${filteredBrand}&gender=${filteredGneder}&webProducts=true`
     );
     dispatch({
       type: "UPDATE_DATA",

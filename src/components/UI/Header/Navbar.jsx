@@ -1,4 +1,4 @@
-import { Box, useMediaQuery } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 import React from "react";
 
 import MobileHeader from "../../Header/MobileHeader/MobileHeader";
@@ -9,18 +9,7 @@ function Navbar() {
   const matches = useMediaQuery("(max-width:800px)");
   const isLoggedIn = useSelector((state) => state.Auth.loggedIn);
   return (
-    <>
-      {isLoggedIn && (
-        <>
-          {!matches ? (
-            <LargeNavbar />
-          ) : (
-           
-              <MobileHeader />
-          )}
-        </>
-      )}
-    </>
+    <>{isLoggedIn && <>{!matches ? <LargeNavbar /> : <MobileHeader />}</>}</>
   );
 }
 
