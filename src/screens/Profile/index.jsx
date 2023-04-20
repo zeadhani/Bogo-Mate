@@ -32,7 +32,7 @@ const ProfilePage = () => {
     return <LoadingData />;
   }
   return (
-    <CustomProfileContainer nav={"/profile"}>
+    <CustomProfileContainer nav={"/profile"} title={"User profile"}>
       <Box my={1} mx={"auto"} width={"fit-content"}>
         <Avatar
           alt={"Profile-Image"}

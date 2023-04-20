@@ -94,7 +94,7 @@ function EditProfile() {
   });
 
   return (
-    <CustomProfileContainer nav={"/profile/edit"}>
+    <CustomProfileContainer nav={"/profile/edit"} title={"Edit profile"}>
       <Box my={2}>
         <Formik
           onSubmit={handleFormSubmit}

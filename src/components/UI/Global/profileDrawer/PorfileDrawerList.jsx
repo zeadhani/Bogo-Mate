@@ -60,7 +60,7 @@ function PorfileDrawerList({ closeDrawer }) {
             <ListItemText primary={"User Dashboard"} />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding>
+        <ListItem disablePadding onClick={handleNavigate("/profile/preferences")}>
           <ListItemButton disableTouchRipple>
             <ListItemIcon>
               <Favorite />
@@ -68,7 +68,7 @@ function PorfileDrawerList({ closeDrawer }) {
             <ListItemText primary={"Settings & Preferences"} />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding>
+        <ListItem disablePadding onClick={handleNavigate("/profile/password")}>
           <ListItemButton disableTouchRipple>
             <ListItemIcon>
               <Lock />

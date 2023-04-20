@@ -16,7 +16,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 import ToastMessage from "./components/UI/Global/ToastMessage";
 import ProfileDrawer from "./components/UI/Global/profileDrawer/ProfileDrawer";
 import Announcement from "./components/UI/Global/Announcement";
-import EditProfile from "./screens/Profile/EditProfile";
+
 
 const queryClient = new QueryClient();
 const HomePage = React.lazy(() => import("./screens/Home"));
@@ -30,6 +30,11 @@ const HelpPage = React.lazy(() => import("./screens/help/index"));
 const ContactUs = React.lazy(() => import("./screens/contactus/index"));
 const SearchComponent = React.lazy(() => import("./screens/search/index"));
 const ProfilePage = React.lazy(() => import("./screens/Profile"));
+const ChangePassword = React.lazy(() =>
+  import("./screens/Profile/changePassword")
+);
+const EditProfile = React.lazy(() => import("./screens/Profile/EditProfile"));
+const ChangePref =React.lazy(() => import("./screens/Profile/changePref"));
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -120,6 +125,22 @@ function App() {
                   element={
                     <CustomSuspense>
                       <EditProfile />
+                    </CustomSuspense>
+                  }
+                />
+                <Route
+                  path="/profile/password"
+                  element={
+                    <CustomSuspense>
+                      <ChangePassword />
+                    </CustomSuspense>
+                  }
+                />
+                 <Route
+                  path="/profile/preferences"
+                  element={
+                    <CustomSuspense>
+                      <ChangePref />
                     </CustomSuspense>
                   }
                 />
