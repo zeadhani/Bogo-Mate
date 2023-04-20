@@ -12,7 +12,7 @@ function UserDashboard() {
     <CustomProfileContainer nav={"/profile/dashboard"} title={"Dashboard"}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Box my={3}>
+          <Box my={1}>
             <Grid container spacing={2}>
               <DashboardItem
                 icon={<MoneyOff sx={{ color: "white" }} />}
