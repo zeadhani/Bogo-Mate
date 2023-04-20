@@ -14,9 +14,9 @@ function PrefItem({ item, addItem, checked }) {
         minWidth: !matches && "200px",
         transition: "all .2s ",
         cursor: "pointer",
-        "&:hover": { bgcolor: "black", color: "#f5f5f5" },
+        // "&:hover": { bgcolor: "black", color: "#f5f5f5" },
         bgcolor: checked ? "#222" : "transparent",
-        color:checked?"#f5f5f5":"black"
+        color: checked ? "#f5f5f5" : "black",
       }}
       onClick={addItem(item.name)}
     >
