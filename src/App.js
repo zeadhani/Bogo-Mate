@@ -17,7 +17,6 @@ import ToastMessage from "./components/UI/Global/ToastMessage";
 import ProfileDrawer from "./components/UI/Global/profileDrawer/ProfileDrawer";
 import Announcement from "./components/UI/Global/Announcement";
 
-
 const queryClient = new QueryClient();
 const HomePage = React.lazy(() => import("./screens/Home"));
 const ProductsDashboard = React.lazy(() => import("./screens/Product/index"));
@@ -34,7 +33,10 @@ const ChangePassword = React.lazy(() =>
   import("./screens/Profile/changePassword")
 );
 const EditProfile = React.lazy(() => import("./screens/Profile/EditProfile"));
-const ChangePref =React.lazy(() => import("./screens/Profile/changePref"));
+const ChangePref = React.lazy(() => import("./screens/Profile/changePref"));
+const UserDashboard = React.lazy(() =>
+  import("./screens/Profile/UserDashboard")
+);
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -136,11 +138,19 @@ function App() {
                     </CustomSuspense>
                   }
                 />
-                 <Route
+                <Route
                   path="/profile/preferences"
                   element={
                     <CustomSuspense>
                       <ChangePref />
+                    </CustomSuspense>
+                  }
+                />
+                <Route
+                  path="/profile/dashboard"
+                  element={
+                    <CustomSuspense>
+                      <UserDashboard />
                     </CustomSuspense>
                   }
                 />
