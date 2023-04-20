@@ -9,13 +9,13 @@ function PrefItem({ item, addItem, checked }) {
         paddingX: 3,
         paddingY: 1,
         borderRadius: "5px",
-        border: "1px solid #141b2d",
+        border: "1px solid #222",
         flexShrink: 0,
         minWidth: !matches && "200px",
         transition: "all .2s ",
         cursor: "pointer",
-        "&:hover": { bgcolor: "#141b2d", color: "#f5f5f5" },
-        bgcolor: checked ? "#141b2d" : "transparent",
+        "&:hover": { bgcolor: "black", color: "#f5f5f5" },
+        bgcolor: checked ? "#222" : "transparent",
         color:checked?"#f5f5f5":"black"
       }}
       onClick={addItem(item.name)}

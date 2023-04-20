@@ -1,7 +1,7 @@
 import { Box, Button, useMediaQuery } from "@mui/material";
 import React from "react";
 
-function FormButton({ children ,action}) {
+function FormButton({ children ,action,disabled}) {
   const matches = useMediaQuery("(max-width:800px)");
   return (
     <Box display="flex" justifyContent="end">
@@ -10,8 +10,10 @@ function FormButton({ children ,action}) {
         size={matches ? "medium" : "large"}
         fullWidth
         variant="contained"
-        color="primary"
+        // color="primary"
+        sx={{color:"#f5f5f5",bgcolor:"#222"}}
         onClick={action}
+        disabled={disabled}
       >
         {children}
       </Button>

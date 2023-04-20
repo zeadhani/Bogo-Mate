@@ -2,28 +2,55 @@ import React, { useState } from "react";
 import CustomProfileContainer from "../../components/UI/Global/profileDrawer/CustomProfileContainer";
 import { useSelector } from "react-redux";
 import useUserPref from "../../hooks/user/useUserPref";
-import { Box, Divider, LinearProgress, Paper, Typography } from "@mui/material";
+import { Box, LinearProgress } from "@mui/material";
 import PrefItem from "../../components/UI/Global/Register/PrefItem";
 import FormButton from "../../components/Forms/FormButton";
+import Error from "../../components/UI/Global/Error";
+import LoadingData from "../../components/UI/Global/LoadingData";
+import { toast } from "react-toastify";
+import authFetch from "../../service/interceptors";
 
 function ChangePref() {
   const data = useSelector((state) => state.Auth.user);
   const email = data.replace(/"/g, "");
   const [loading, setLoading] = useState(false);
-  const [userPref, setUserPref] = useState([]);
-  const { pref } = useUserPref({ email });
 
-  const addItem = (item) => () => {
-    const currentIndex = userPref?.indexOf(item);
-    const newPrefs = [...userPref];
-    if (currentIndex === -1) {
-      newPrefs.push(item);
-    } else {
-      newPrefs.splice(currentIndex, 1);
+  const {
+    allPref,
+    isError,
+    isLoading,
+    userNewPrefData,
+    dirty,
+    addItem,
+    updateOldPref,
+  } = useUserPref({ email });
+
+  const handleSubmit = async () => {
+    if (!dirty) {
+      return;
     }
-    setUserPref(newPrefs);
+    setLoading(true);
+    try {
+      await authFetch.patch(
+        `${process.env.REACT_APP_API_URL}/user/editprefweb/${email}`,
+        {
+          preferences: userNewPrefData,
+        }
+      );
+      updateOldPref();
+      toast.success("Updated");
+    } catch (error) {
+      toast.error("Failed");
+    } finally {
+      setLoading(false);
+    }
   };
-  const handleSubmit = () => {};
+  if (isError) {
+    return <Error />;
+  }
+  if (isLoading && !isError) {
+    return <LoadingData />;
+  }
   return (
     <CustomProfileContainer nav={"/profile/preferences"} title={"Preferences"}>
       {loading && (
@@ -31,35 +58,33 @@ function ChangePref() {
           <LinearProgress />
         </Box>
       )}
-      <Paper elevation={2} sx={{ padding: 4 ,margin:1}}>
-        <Typography variant="h4" textTransform={"capitalize"} mb={1}>
-          Choose your Preferences
-        </Typography>
-        <Divider sx={{ my: 1 }} />
-        <Box
-          my={1}
-          gap={1}
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-          }}
-        >
-          {pref?.map((item) => {
-            const checked = userPref.includes(item.name) || pref;
-            return (
-              <PrefItem
-                key={item.name}
-                item={item}
-                addItem={addItem}
-                checked={checked}
-              />
-            );
-          })}
-        </Box>
-        <Box mt={5}>
-          <FormButton action={handleSubmit}>Save</FormButton>
-        </Box>
-      </Paper>
+
+      <Box
+        my={4}
+        gap={1}
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+        }}
+      >
+        {allPref?.map((item) => {
+          const checked = userNewPrefData?.includes(item.name);
+          return (
+            <PrefItem
+              key={item.name}
+              item={item}
+              addItem={addItem}
+              checked={checked}
+            />
+          );
+        })}
+      </Box>
+
+      <Box mt={5}>
+        <FormButton disabled={!dirty} action={handleSubmit}>
+          Save
+        </FormButton>
+      </Box>
     </CustomProfileContainer>
   );
 }
