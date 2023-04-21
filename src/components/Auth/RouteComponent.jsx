@@ -32,6 +32,9 @@ const OrdersHistory = React.lazy(() =>
 const Login = React.lazy(() => import("../../screens/Auth/Login"));
 const Register = React.lazy(() => import("../../screens/Auth/Register"));
 const AddReview = React.lazy(() => import("../../screens/Profile/addReview"));
+const CurrentRequests = React.lazy(() =>
+  import("../../screens/Profile/CurrentRequests")
+);
 function RouteComponent() {
   //   return (
   //     <Routes>
@@ -237,6 +240,10 @@ function RouteComponent() {
     {
       path: "/profile/add-review/:id",
       component: AddReview,
+    },
+    {
+      path: "/profile/current-requests",
+      component: CurrentRequests,
     },
   ];
   const authRoutes = [

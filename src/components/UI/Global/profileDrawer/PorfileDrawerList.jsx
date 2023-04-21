@@ -92,7 +92,10 @@ function PorfileDrawerList({ closeDrawer }) {
             <ListItemText primary={"Orders History"} />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding>
+        <ListItem
+          disablePadding
+          onClick={handleNavigate("/profile/current-requests")}
+        >
           <ListItemButton disableTouchRipple>
             <ListItemIcon>
               <HourglassTop />
