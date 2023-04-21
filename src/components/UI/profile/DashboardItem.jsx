@@ -27,13 +27,13 @@ function DashboardItem({ icon, title, subtitle, data, itemSize }) {
         </Box>
 
         <Box display="flex" justifyContent="space-between" mt="2px">
-          <Typography variant="h6" sx={{ color: colors.grey[200] }}>
+          <Typography variant="h6" sx={{ color: colors.grey[200] ,maxWidth:"60%"}}>
             {subtitle}
           </Typography>
           <Typography
             variant="h5"
             fontStyle="italic"
-            sx={{ color: colors.grey[400] }}
+            sx={{ color: colors.grey[400] ,alignSelf:"flex-end"}}
           >
             {data}
           </Typography>
