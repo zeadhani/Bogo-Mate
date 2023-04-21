@@ -24,52 +24,40 @@ function BrandItem({ brand }) {
   };
 
   return (
-    <Box
-      sx={{
-        mb: "auto",
-        borderRadius: "5px",
-        cursor: "pointer",
-        position: "relative",
-        width: "100%",
-        backgroundImage: `url('${process.env.REACT_APP_CLOUDINARY}${brand.image}')`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        aspectRatio: "2/1",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundPosition: "center",
-      }}
-      onClick={handleBrandNavigation}
-    >
-      {/* <Typography
-        variant="h1"
-        textAlign={"center"}
-        color={"#f4f4f4"}
-        textTransform={"uppercase"}
-        component={"div"}
-        sx={{ transform: "translateY(-50%)" }}
-      >
-        {brand.name}
-      </Typography> */}
+    <>
+      <Box
+        sx={{
+          mb: "auto",
+          borderTopLeftRadius: "5px",
+          borderTopRightRadius: "5px",
+          cursor: "pointer",
+          width: "100%",
+          backgroundImage: `url('${process.env.REACT_APP_CLOUDINARY}${brand.image}')`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          aspectRatio: "2/1",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundPosition: "center",
+        }}
+        onClick={handleBrandNavigation}
+      />
       <Typography
         variant="h6"
         sx={{
-          position: "absolute",
-          left: 0,
-          bottom: 0,
-          right: 0,
           textAlign: "center",
-          zIndex: 10,
+          borderBottomLeftRadius: "5px",
+          borderBottomRightRadius: "5px",
         }}
         bgcolor={colors.grey[200]}
         color={"white"}
         paddingY={1}
         textTransform={"uppercase"}
       >
-       {brand.name}  - {brand._count.offers} OFFERS 
+        {brand.name} - {brand._count.offers} OFFERS
       </Typography>
-    </Box>
+    </>
   );
 }
 
