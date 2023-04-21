@@ -2,7 +2,7 @@ import { useMediaQuery } from "@mui/material";
 import React from "react";
 import { ToastContainer } from "react-toastify";
 
-function ToastMessage({ direction }) {
+function ToastMessage() {
   const matches = useMediaQuery("(max-width:600px)");
   return (
     <ToastContainer
