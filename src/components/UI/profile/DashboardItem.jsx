@@ -12,6 +12,7 @@ function DashboardItem({ icon, title, subtitle, data, itemSize }) {
         sx={{
           bgcolor: colors.grey[900],
           height: "100%",
+          cursor: "pointer",
         }}
       >
         <Box>
@@ -26,13 +27,13 @@ function DashboardItem({ icon, title, subtitle, data, itemSize }) {
         </Box>
 
         <Box display="flex" justifyContent="space-between" mt="2px">
-          <Typography variant="h5" sx={{ color: colors.grey[100] }}>
+          <Typography variant="h6" sx={{ color: colors.grey[200] }}>
             {subtitle}
           </Typography>
           <Typography
             variant="h5"
             fontStyle="italic"
-            sx={{ color: colors.grey[600] }}
+            sx={{ color: colors.grey[400] }}
           >
             {data}
           </Typography>

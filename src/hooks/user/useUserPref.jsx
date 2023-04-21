@@ -29,7 +29,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         userPref: action.payload.userPref,
-        dirty:false
+        dirty: false,
       };
     }
     case "SET_DIRTY": {
@@ -113,7 +113,6 @@ function useUserPref({ email }) {
   };
   return {
     allPref: state.allPref,
-    // useroldPref: state.userPref,
     isError,
     isLoading,
     userNewPrefData: state.userNewPrefData,
