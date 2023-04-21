@@ -84,7 +84,7 @@ function PorfileDrawerList({ closeDrawer }) {
       <Divider />
 
       <List>
-        <ListItem disablePadding>
+        <ListItem disablePadding onClick={handleNavigate("/profile/orders")}>
           <ListItemButton disableTouchRipple>
             <ListItemIcon>
               <History />
