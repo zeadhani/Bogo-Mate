@@ -1,10 +1,15 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import moment from "moment/moment";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function OrderItem({ order }) {
+  const navigate = useNavigate();
+  const handleNavigate = (id) => {
+    navigate("/profile/add-review/" + id);
+  };
   return (
-    <Grid item xs={12} sm={6} md={4}>
+    <Grid item xs={12} md={6} lg={4}>
       <Box
         sx={{
           borderRadius: "8px",
@@ -12,8 +17,8 @@ function OrderItem({ order }) {
         }}
       >
         <img
-          src={`${process.env.REACT_APP_CLOUDINARY}${order.Product.image}`}
-          alt={order.Product.name}
+          src={`${process.env.REACT_APP_CLOUDINARY}${order?.Product?.image}`}
+          alt={order?.Product?.name}
           style={{
             width: "200px",
             height: "200px",
@@ -33,7 +38,7 @@ function OrderItem({ order }) {
               marginBottom: "8px",
             }}
           >
-            {order.Product.name}
+            {order?.Product?.name}
           </Typography>
 
           <Typography variant="subtitle1" style={{ fontSize: "1rem" }}>
@@ -55,19 +60,20 @@ function OrderItem({ order }) {
                 component={"del"}
                 alignSelf={"center"}
               >
-                {order.Product.price} EGP
+                {order?.Product?.price} EGP
               </Typography>
               <Typography
                 variant="subtitle1"
                 color="textSecondary"
                 style={{ fontSize: "1rem" }}
               >
-                {Number(order.price).toFixed(2)} EGP
+                {Number(order?.price).toFixed(2)} EGP
               </Typography>
             </Box>
             <Button
               variant="contained"
               sx={{ bgcolor: "#222", color: "#f5f5f5" }}
+              onClick={() => handleNavigate(order.id)}
             >
               Add Review
             </Button>

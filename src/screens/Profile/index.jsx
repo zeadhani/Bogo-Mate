@@ -78,7 +78,7 @@ const ProfilePage = () => {
         <Button
           startIcon={<Lock />}
           color="primary"
-          onClick={handleNavigate("/profile/changepass")}
+          onClick={handleNavigate("/profile/password")}
         >
           Change Password
         </Button>
