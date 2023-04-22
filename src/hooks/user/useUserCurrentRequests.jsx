@@ -1,4 +1,4 @@
-import  { useReducer, useState } from "react";
+import { useReducer, useState } from "react";
 import usePage from "../global/newPage";
 import authFetch from "../../service/interceptors";
 import { useEffect } from "react";
@@ -21,23 +21,32 @@ const reducer = (state, action) => {
     case "UPDATE_PRODUCT": {
       return {
         ...state,
-        products: state.products.map((product) => {
-          if (product.offersId === action.payload.id) {
-            return {
-              ...product,
-              offers: {
-                ...product.offers,
-                _count: {
-                  ...product.offers._count,
-                  requests: action.payload.NewofferNumber,
+        products: state.products
+          .filter(
+            (product) =>
+              product.offerId !== action.payload.id ||
+              action.payload.NewofferNumber %
+                product.offers.total_people_quantity !==
+                0
+          )
+          .map((product) => {
+            if (product.offerId === action.payload.id) {
+              return {
+                ...product,
+                offers: {
+                  ...product.offers,
+                  _count: {
+                    ...product.offers._count,
+                    requests: action.payload.NewofferNumber,
+                  },
                 },
-              },
-            };
-          }
-          return product;
-        }),
+              };
+            }
+            return product;
+          }),
       };
     }
+
     default:
       throw new Error("Unexpected action");
   }
@@ -51,10 +60,11 @@ function useUserCurrentRequests({ email }) {
   const getData = async () => {
     try {
       const products = await authFetch.get(
-        `/products?limit=${rowsPerPage}&page=${
+        `/request?limit=${rowsPerPage}&page=${
           page + 1
-        }&sort=createdAt,desc&webProducts=true&email=${email}`
+        }&sort=createdAt,desc&email=${email}&status=incomplete`
       );
+
       dispatch({
         type: "INITIAL_FETCH_DATA_SUCCESS",
         payload: {
@@ -83,7 +93,7 @@ function useUserCurrentRequests({ email }) {
     } else {
       socket.on("update_requests", (data) => {
         const render = state.products.some(
-          (product) => product.offersId === data.id
+          (product) => product.offerId === data.id
         );
         if (render) {
           dispatch({
@@ -105,6 +115,7 @@ function useUserCurrentRequests({ email }) {
     rowsPerPage,
     isLoading,
     isError,
+    getData,
   };
 }
 

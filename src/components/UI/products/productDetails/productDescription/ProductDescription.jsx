@@ -17,7 +17,7 @@ function ProductDescription({
   id,
   handleAttributeInStock,
   attributeInStock,
-  setAttributeId
+  setAttributeId,
 }) {
   const reviewsCount = reviews?.length;
   const value = reviews?.reduce(
