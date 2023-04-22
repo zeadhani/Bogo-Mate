@@ -1,6 +1,6 @@
 import React from "react";
 import CustomProfileContainer from "../../components/UI/Global/profileDrawer/CustomProfileContainer";
-import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useSelector } from "react-redux";
 import useUserCurrentRequests from "../../hooks/user/useUserCurrentRequests";
 import Error from "../../components/UI/Global/Error";
@@ -52,23 +52,31 @@ function CurrentRequests() {
   return (
     <CustomProfileContainer nav={"/profile/orders"} title={"Requests"}>
       <Box my={2}>
-        <Grid container spacing={2}>
-          {products?.map((item) => (
-            <Grid item key={item.id} xs={12}>
-              <RequestItem
-                request={item}
-                handleDeleteRequest={handleDeleteRequest}
-              />
+        {products?.length === 0 ? (
+          <Typography textAlign={"center"} variant="h4" mt={2}>
+            You have no running Requests
+          </Typography>
+        ) : (
+          <>
+            <Grid container spacing={2}>
+              {products?.map((item) => (
+                <Grid item key={item.id} xs={12}>
+                  <RequestItem
+                    request={item}
+                    handleDeleteRequest={handleDeleteRequest}
+                  />
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
-        <CustomPagination
-          handleChangePage={handleChangePage}
-          matches={matches}
-          page={page}
-          rowsPerPage={rowsPerPage}
-          count={count}
-        />
+            <CustomPagination
+              handleChangePage={handleChangePage}
+              matches={matches}
+              page={page}
+              rowsPerPage={rowsPerPage}
+              count={count}
+            />
+          </>
+        )}
       </Box>
     </CustomProfileContainer>
   );
