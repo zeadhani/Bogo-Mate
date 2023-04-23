@@ -1,6 +1,7 @@
 import { DeleteOutline } from "@mui/icons-material";
 import {
   Avatar,
+  Box,
   Divider,
   IconButton,
   ListItem,
@@ -9,6 +10,7 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
+import moment from "moment/moment";
 import React from "react";
 
 function ContactUsItem({ item, isReplied, handleDeleteMessage }) {
@@ -32,16 +34,18 @@ function ContactUsItem({ item, isReplied, handleDeleteMessage }) {
             maxHeight: "100px",
           }}
           primary={
-            <Typography
-              sx={{
-                display: "inline",
-              }}
-              component="span"
-              variant="body2"
-              color={isReplied ? "limegreen" : "red"}
-            >
-              {isReplied ? "Replied" : "Not Replied"}
-            </Typography>
+            <Box display={"flex"} gap={2}>
+              <Typography
+                component="span"
+                variant="body2"
+                color={isReplied ? "limegreen" : "red"}
+              >
+                {isReplied ? "Replied" : "Not Replied"}
+              </Typography>
+              <Typography component="span" variant="caption">
+                {moment(item.createdAt).format("MMMM D, YYYY")}
+              </Typography>
+            </Box>
           }
           secondary={<>{` — ${item.message} `}</>}
         />
