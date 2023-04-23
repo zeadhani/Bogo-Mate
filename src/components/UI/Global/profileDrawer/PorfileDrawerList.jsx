@@ -103,7 +103,7 @@ function PorfileDrawerList({ closeDrawer }) {
             <ListItemText primary={"Current Requests"} />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding>
+        <ListItem disablePadding onClick={handleNavigate("/profile/reviews")}>
           <ListItemButton disableTouchRipple>
             <ListItemIcon>
               <RateReview />

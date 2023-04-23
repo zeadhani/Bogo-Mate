@@ -35,6 +35,9 @@ const AddReview = React.lazy(() => import("../../screens/Profile/addReview"));
 const CurrentRequests = React.lazy(() =>
   import("../../screens/Profile/CurrentRequests")
 );
+const ReviewsPage = React.lazy(() =>
+  import("../../screens/Profile/ReviewsPage")
+);
 function RouteComponent() {
   //   return (
   //     <Routes>
@@ -244,6 +247,10 @@ function RouteComponent() {
     {
       path: "/profile/current-requests",
       component: CurrentRequests,
+    },
+    {
+      path: "/profile/reviews",
+      component: ReviewsPage,
     },
   ];
   const authRoutes = [

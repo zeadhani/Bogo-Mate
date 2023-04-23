@@ -8,7 +8,7 @@ function CustomProfileContainer({ nav, children, title }) {
   const navigate = useNavigate();
   const matches = useMediaQuery("(max-width:800px)");
   const handleGoBack = () => {
-    if (title === "Orders history"||"Requests") {
+    if (title === "Orders history" || "Requests" || "Reviews") {
       navigate("/");
     } else {
       navigate(-1);
