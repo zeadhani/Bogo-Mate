@@ -20,23 +20,15 @@ const reducer = (state, action) => {
       };
     }
     case "UPDATE_PRODUCT": {
+      const updatedProducts = state.products.filter((product) => {
+        if (product.offersId === action.payload.id) {
+          return false;
+        }
+        return true;
+      });
       return {
         ...state,
-        products: state.products.map((product) => {
-          if (product.offersId === action.payload.id) {
-            return {
-              ...product,
-              offers: {
-                ...product.offers,
-                _count: {
-                  ...product.offers._count,
-                  requests: action.payload.NewofferNumber,
-                },
-              },
-            };
-          }
-          return product;
-        }),
+        products: updatedProducts,
       };
     }
     default:
