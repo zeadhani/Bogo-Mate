@@ -44,7 +44,7 @@ function HomePage() {
         matches={matches}
         title={"Hot Offers"}
         products={data?.oneRemaining}
-        navigate={"/hotOffers"}
+        navigate={"/hot-offers"}
       />
       <CategoriesHomePage categories={data?.categories} matches={matches} />
     </CustomContainer>
