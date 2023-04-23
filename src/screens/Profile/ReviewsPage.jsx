@@ -54,7 +54,7 @@ function ReviewsPage() {
           </Typography>
         ) : (
           <>
-            <Grid container spacing={2}>
+            <Grid container spacing={1}>
               {reviews?.map((item) => (
                 <Grid item key={item.id} xs={12}>
                   <ReviewItem
