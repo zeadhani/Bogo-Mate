@@ -111,7 +111,7 @@ function PorfileDrawerList({ closeDrawer }) {
             <ListItemText primary={"Reviews"} />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding>
+        <ListItem disablePadding onClick={handleNavigate("/profile/messages")}>
           <ListItemButton disableTouchRipple>
             <ListItemIcon>
               <Chat />
