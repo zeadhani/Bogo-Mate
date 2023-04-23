@@ -1,29 +1,19 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { Grid, useMediaQuery, useTheme } from "@mui/material";
-import Error from "../../components/UI/Global/Error";
-import ProductsShopContainer from "./productsShpContainer";
-import LoadingData from "../../components/UI/Global/LoadingData";
-import useProductsData from "../../hooks/products/useProductsData";
+import HotOffersContainer from "./hotOffersContainer";
 import handleReverseSortChange from "../../utils/handleReverseSortChange";
-import ProductItems from "../../components/UI/products/ProductItems";
-
 import CustomFetchItems from "../../components/UI/Global/CustomFetchItems";
-
-
+import ProductItems from "../../components/UI/products/ProductItems";
+import { Grid, useMediaQuery, useTheme } from "@mui/material";
+import useHotOffers from "../../hooks/products/useHotOffers";
+import Error from "../../components/UI/Global/Error";
+import LoadingData from "../../components/UI/Global/LoadingData";
 const stockArray = [{ name: "inStock" }, { name: "outStock" }];
-function ProductsDashboard() {
-  const { brand } = useParams();
+function HotOffersPage() {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   const {
-    filtered,
-    filteredGneder,
     filteredStock,
     handleChangePage,
-    handleChangeRowsPerPage,
-    handleFilterChange,
-    handleFilterGenderChange,
     handleFilterStockChange,
     handleSearchChange,
     handleSortChange,
@@ -37,7 +27,8 @@ function ProductsDashboard() {
     search,
     sort,
     state,
-  } = useProductsData({ filteredBrand: brand });
+  } = useHotOffers();
+
   const resetFilters = () => {
     resetProductFilters();
     resetCommonFilters();
@@ -47,33 +38,24 @@ function ProductsDashboard() {
   }
   if (isLoading && !isError) {
     return (
-      <ProductsShopContainer>
+      <HotOffersContainer>
         <Grid item xs={12}>
           <LoadingData />
         </Grid>
-      </ProductsShopContainer>
+      </HotOffersContainer>
     );
   }
-
   return (
-    <ProductsShopContainer
-      brand={brand}
+    <HotOffersContainer
       matches={matches}
-      filteredItem={handleReverseSortChange({ order: orderBy, sort })()}
       handleFilteredItemChange={handleSortChange}
+      filteredItem={handleReverseSortChange({ order: orderBy, sort })()}
       handleSearchChange={handleSearchChange}
       resetFilters={resetFilters}
       search={search}
-      categories={state?.categories}
-      filteredCategories={filtered}
-      handleFilterCategoryChange={handleFilterChange}
       stockArray={stockArray}
       filteredStock={filteredStock}
       handleFilterStockChange={handleFilterStockChange}
-      filteredGneder={filteredGneder}
-      handleFilterGenderChange={handleFilterGenderChange}
-      gender={state?.gender}
-      hasGender={state?.hasGender}
     >
       <CustomFetchItems
         count={state?.count}
@@ -85,8 +67,8 @@ function ProductsDashboard() {
       >
         <ProductItems matches={matches} products={state?.products} />
       </CustomFetchItems>
-    </ProductsShopContainer>
+    </HotOffersContainer>
   );
 }
 
-export default ProductsDashboard;
+export default HotOffersPage;

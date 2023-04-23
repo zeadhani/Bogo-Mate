@@ -78,7 +78,7 @@ function MobileMenu() {
         <MenuIcon text={"Shop"}>
           <Shop2 sx={{ fontSize: "27px" }} />
         </MenuIcon>
-        <MenuIcon text={"hot Deals"}>
+        <MenuIcon text={"hot-offers"}>
           <LocalFireDepartment sx={{ fontSize: "27px" }} />
         </MenuIcon>
       </Box>

@@ -1,14 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import FilterContainer from "../Global/filters/FilterContainer";
-import { Box, Button, Divider, Slider, Typography } from "@mui/material";
+import { Box, Button, Divider, Typography } from "@mui/material";
 import SearchBar from "../../Forms/searchBar";
-import {
-  Category,
-  EventAvailable,
-  MoneyOff,
-  People,
-  Storage,
-} from "@mui/icons-material";
+import { Category, People, Storage } from "@mui/icons-material";
 
 import CustomFilterList from "../Global/filters/FilterList";
 import CustomSortList from "../Global/filters/sort/CustomSortList";
@@ -53,15 +47,19 @@ function ProductsFilter({
         />
       </Box>
       <Divider style={{ margin: "10px 0" }} />
-      <CustomFilterList
-        FilterData={categories}
-        icon={<Category />}
-        title={"categories"}
-        filteredArray={filteredCategories}
-        handleFilterChange={handleFilterCategoryChange}
-      />
+      {categories?.length > 0 && (
+        <>
+          <CustomFilterList
+            FilterData={categories}
+            icon={<Category />}
+            title={"categories"}
+            filteredArray={filteredCategories}
+            handleFilterChange={handleFilterCategoryChange}
+          />
 
-      <Divider style={{ margin: "10px 0" }} />
+          <Divider style={{ margin: "10px 0" }} />
+        </>
+      )}
 
       {hasGender && (
         <>
@@ -85,13 +83,14 @@ function ProductsFilter({
       />
 
       <Divider style={{ margin: "10px 0" }} />
+      
       <CustomSortList
         FilterData={FilterData}
         filteredItem={filteredItem}
         handleFilteredItemChange={handleFilteredItemChange}
       />
-
       <Divider style={{ margin: "16px 0" }} />
+
       <Box display={"flex"} gap={1}>
         {!matches && (
           <Button variant="outlined" onClick={resetFilters}>

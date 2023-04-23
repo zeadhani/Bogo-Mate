@@ -4,6 +4,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import CustomSuspense from "../UI/Global/CustomSuspense";
 import AuthRoutes from "./AuthRoutes";
 import NoMatch from "../UI/Global/NoMatch";
+import HotOffersPage from "../../screens/hot-offers";
 
 const HomePage = React.lazy(() => import("../../screens/Home"));
 const ProductsDashboard = React.lazy(() => import("../../screens/Product"));
@@ -258,6 +259,10 @@ function RouteComponent() {
     {
       path: "/profile/messages",
       component: MessagesPage,
+    },
+    {
+      path: "/hot-offers",
+      component: HotOffersPage,
     },
   ];
   const authRoutes = [
