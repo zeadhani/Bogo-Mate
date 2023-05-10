@@ -1,7 +1,6 @@
 import React from "react";
 import CustomProfileContainer from "../../components/UI/Global/profileDrawer/CustomProfileContainer";
 import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { useSelector } from "react-redux";
 import useUserCurrentRequests from "../../hooks/user/useUserCurrentRequests";
 import Error from "../../components/UI/Global/Error";
 import LoadingData from "../../components/UI/Global/LoadingData";
@@ -12,10 +11,7 @@ import { toast } from "react-toastify";
 import io from "socket.io-client";
 const socket = io(process.env.REACT_APP_API_URL);
 function CurrentRequests() {
-  const data = useSelector((state) => state.Auth.user);
-  const email = data.replace(/"/g, "");
   const theme = useTheme();
-
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   const {
     count,
@@ -26,8 +22,7 @@ function CurrentRequests() {
     products,
     rowsPerPage,
     getData,
-  } = useUserCurrentRequests({ email });
-
+  } = useUserCurrentRequests();
   const handleDeleteRequest = (id, offerId) => {
     return async (e) => {
       try {

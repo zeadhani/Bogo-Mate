@@ -51,7 +51,7 @@ const reducer = (state, action) => {
       throw new Error("Unexpected action");
   }
 };
-function useUserCurrentRequests({ email }) {
+function useUserCurrentRequests() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { page, handleChangePage, rowsPerPage } = usePage();
   const initialRender = useRef(true);
@@ -62,7 +62,7 @@ function useUserCurrentRequests({ email }) {
       const products = await authFetch.get(
         `/request?limit=${rowsPerPage}&page=${
           page + 1
-        }&sort=createdAt,desc&email=${email}&status=incomplete`
+        }&sort=createdAt,desc&email=true&status=incomplete`
       );
 
       dispatch({
@@ -78,14 +78,12 @@ function useUserCurrentRequests({ email }) {
     setIsLoading(false);
   };
   useEffect(() => {
-    if (email) {
-      const url = new URL(window.location);
-      url.searchParams.set("rowsPerPage", rowsPerPage);
-      url.searchParams.set("page", page);
-      window.history.pushState({}, "", url);
-      getData();
-    }
-  }, [rowsPerPage, page, email]);
+    const url = new URL(window.location);
+    url.searchParams.set("rowsPerPage", rowsPerPage);
+    url.searchParams.set("page", page);
+    window.history.pushState({}, "", url);
+    getData();
+  }, [rowsPerPage, page]);
 
   useEffect(() => {
     if (initialRender.current) {

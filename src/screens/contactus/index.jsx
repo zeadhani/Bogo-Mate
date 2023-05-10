@@ -5,15 +5,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import authFetch from "../../service/interceptors";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
+
 
 const ContactUsPage = () => {
   const navigate = useNavigate();
   const [message, setMessage] = useState();
   const [messageError, setMessageError] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const useData = useSelector((state) => state.Auth.user);
-  const email = useData.replace(/"/g, "");
+
 
   const handleChange = (e) => {
     if (messageError) {
@@ -28,7 +27,7 @@ const ContactUsPage = () => {
       return;
     }
     try {
-      await authFetch.post("/contactus", { email, message });
+      await authFetch.post("/contactus", { message });
       setIsSubmitted(true);
       setTimeout(() => {
         setIsSubmitted(false);

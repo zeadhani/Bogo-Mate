@@ -25,7 +25,7 @@ const reducer = (state, action) => {
       throw new Error("Unexpected action");
   }
 };
-function useDahboardData({ email }) {
+function useDahboardData() {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -33,7 +33,7 @@ function useDahboardData({ email }) {
   const getData = async () => {
     try {
       const dashboardData = await authFetch.get(
-        `${process.env.REACT_APP_API_URL}/user/dashboard/${email}`
+        `${process.env.REACT_APP_API_URL}/user/dashboard`
       );
 
       dispatch({
@@ -52,10 +52,8 @@ function useDahboardData({ email }) {
     setIsLoading(false);
   };
   useEffect(() => {
-    if (email) {
-      getData();
-    }
-  }, [email]);
+    getData();
+  }, []);
   return {
     totalOrders: state?.totalOrders,
     moneySpent: state?.moneySpent,

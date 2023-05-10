@@ -1,7 +1,6 @@
 import authFetch from "../../../service/interceptors";
 import { useState } from "react";
 import { useReducer } from "react";
-import { useSelector } from "react-redux";
 import usePage from "../../global/newPage";
 import useUserMessagesFilter from "./useUserMessagesFilter";
 import { useEffect } from "react";
@@ -26,8 +25,6 @@ function useUserMessages() {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [state, dispatch] = useReducer(reducer, initialState);
-  const data = useSelector((state) => state.Auth.user);
-  const email = data.replace(/"/g, "");
   const { page, handleChangePage, handleChangeRowsPerPage, rowsPerPage } =
     usePage();
   const {
@@ -41,7 +38,7 @@ function useUserMessages() {
       const messagesData = await authFetch.get(
         `/contactus?limit=${rowsPerPage}&page=${
           page + 1
-        }&sort=createdAt,desc&replied=${repliedFilter}&email=${email}`
+        }&sort=createdAt,desc&replied=${repliedFilter}&email=true`
       );
 
       dispatch({
@@ -57,15 +54,13 @@ function useUserMessages() {
     setIsLoading(false);
   };
   useEffect(() => {
-    if (email) {
-      const url = new URL(window.location);
-      url.searchParams.set("rowsPerPage", rowsPerPage);
-      url.searchParams.set("page", page);
-      url.searchParams.set("replied", [repliedFilter]);
-      window.history.pushState({}, "", url);
-      getData();
-    }
-  }, [email, rowsPerPage, page, repliedFilter]);
+    const url = new URL(window.location);
+    url.searchParams.set("rowsPerPage", rowsPerPage);
+    url.searchParams.set("page", page);
+    url.searchParams.set("replied", [repliedFilter]);
+    window.history.pushState({}, "", url);
+    getData();
+  }, [rowsPerPage, page, repliedFilter]);
   return {
     messages: state?.messages,
     isLoading,
@@ -79,7 +74,7 @@ function useUserMessages() {
     handleRepliedFilterChange,
     repliedArray,
     resetContactUsFilter,
-    repliedFilter
+    repliedFilter,
   };
 }
 

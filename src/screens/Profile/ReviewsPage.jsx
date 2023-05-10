@@ -3,7 +3,6 @@ import CustomProfileContainer from "../../components/UI/Global/profileDrawer/Cus
 import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import ReviewItem from "../../components/UI/profile/ReviewItem";
 import CustomPagination from "../../components/UI/Global/Pagination";
-import { useSelector } from "react-redux";
 import useUserReviews from "../../hooks/user/useUserReviews";
 import Error from "../../components/UI/Global/Error";
 import LoadingData from "../../components/UI/Global/LoadingData";
@@ -11,8 +10,6 @@ import authFetch from "../../service/interceptors";
 import { toast } from "react-toastify";
 
 function ReviewsPage() {
-  const data = useSelector((state) => state.Auth.user);
-  const email = data.replace(/"/g, "");
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   const {
@@ -24,11 +21,11 @@ function ReviewsPage() {
     reviews,
     rowsPerPage,
     getData,
-  } = useUserReviews({ email });
+  } = useUserReviews();
   const handleDeleteReview = (id) => {
     return async () => {
       try {
-        const req = await authFetch.delete(`/review/${id}?email=${email}`);
+        const req = await authFetch.delete(`/review/${id}`);
         if (req.status === 200) {
           getData();
           toast.success("Deleted");

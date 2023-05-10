@@ -20,7 +20,7 @@ const reducer = (state, action) => {
       throw new Error("Unexpected action");
   }
 };
-function useUserOrders({ email }) {
+function useUserOrders() {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -31,7 +31,7 @@ function useUserOrders({ email }) {
       const ordersData = await authFetch.get(
         `/orders/userorders/web?limit=${rowsPerPage}&page=${
           page + 1
-        }&sort=createdAt,desc&email=${email}`
+        }&sort=createdAt,desc&email=true`
       );
 
       dispatch({
@@ -47,14 +47,12 @@ function useUserOrders({ email }) {
     setIsLoading(false);
   };
   useEffect(() => {
-    if (email) {
-      const url = new URL(window.location);
-      url.searchParams.set("rowsPerPage", rowsPerPage);
-      url.searchParams.set("page", page);
-      window.history.pushState({}, "", url);
-      getData();
-    }
-  }, [email, rowsPerPage, page]);
+    const url = new URL(window.location);
+    url.searchParams.set("rowsPerPage", rowsPerPage);
+    url.searchParams.set("page", page);
+    window.history.pushState({}, "", url);
+    getData();
+  }, [rowsPerPage, page]);
   return {
     orders: state?.orders,
     isLoading,

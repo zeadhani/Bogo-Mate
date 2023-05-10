@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import authFetch from "../../service/interceptors";
 import usePage from "../global/newPage";
 const initialState = {
@@ -18,7 +18,7 @@ const reducer = (state, action) => {
       throw new Error("Unexpected action");
   }
 };
-function useUserReviews({ email }) {
+function useUserReviews() {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -29,7 +29,7 @@ function useUserReviews({ email }) {
       const reviewsData = await authFetch.get(
         `/review?limit=${rowsPerPage}&page=${
           page + 1
-        }&sort=createdAt,desc&email=${email}`
+        }&sort=createdAt,desc&email=true`
       );
 
       dispatch({
@@ -45,14 +45,12 @@ function useUserReviews({ email }) {
     setIsLoading(false);
   };
   useEffect(() => {
-    if (email) {
-      const url = new URL(window.location);
-      url.searchParams.set("rowsPerPage", rowsPerPage);
-      url.searchParams.set("page", page);
-      window.history.pushState({}, "", url);
-      getData();
-    }
-  }, [email, rowsPerPage, page]);
+    const url = new URL(window.location);
+    url.searchParams.set("rowsPerPage", rowsPerPage);
+    url.searchParams.set("page", page);
+    window.history.pushState({}, "", url);
+    getData();
+  }, [rowsPerPage, page]);
   return {
     reviews: state?.reviews,
     isLoading,

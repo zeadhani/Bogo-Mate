@@ -43,7 +43,7 @@ const reducer = (state, action) => {
   }
 };
 
-function useUserPref({ email }) {
+function useUserPref() {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -52,7 +52,7 @@ function useUserPref({ email }) {
     try {
       const [allPref, userPref] = await Promise.all([
         axios.get(`${process.env.REACT_APP_API_URL}/pref`),
-        authFetch.get(`${process.env.REACT_APP_API_URL}/user/getpref/${email}`),
+        authFetch.get(`${process.env.REACT_APP_API_URL}/user/pref/getpref`),
       ]);
       dispatch({
         type: "INITIAL_FETCH_DATA_SUCCESS",
@@ -67,10 +67,8 @@ function useUserPref({ email }) {
     setIsLoading(false);
   };
   useEffect(() => {
-    if (email) {
-      getFilteredData();
-    }
-  }, [email]);
+    getFilteredData();
+  }, []);
   const addItem = (item) => () => {
     const currentIndex = state.userNewPrefData?.indexOf(item);
     const newPrefs = [...state.userNewPrefData];

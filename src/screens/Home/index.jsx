@@ -11,15 +11,12 @@ import CategoriesHomePage from "../../components/UI/home/Global/CategoriesHomePa
 import useHomeData from "../../hooks/home/useHomeData";
 import LoadingData from "../../components/UI/Global/LoadingData";
 import Error from "../../components/UI/Global/Error";
-import { useSelector } from "react-redux";
+
 
 function HomePage() {
   const matches = useMediaQuery("(max-width:800px)");
-  const useData = useSelector((state) => state.Auth.user);
-  const email = useData.replace(/"/g, "");
-  const { data, isLoading, error } = useHomeData({
-    email,
-  });
+
+  const { data, isLoading, error } = useHomeData();
 
   if (error) {
     return <Error />;

@@ -2,15 +2,13 @@ import React from "react";
 import CustomProfileContainer from "../../components/UI/Global/profileDrawer/CustomProfileContainer";
 import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
 import useUserOrders from "../../hooks/user/useUserOrders";
-import { useSelector } from "react-redux";
 import LoadingData from "../../components/UI/Global/LoadingData";
 import Error from "../../components/UI/Global/Error";
 import CustomPagination from "../../components/UI/Global/Pagination";
 import OrderItem from "../../components/UI/profile/orders/orderItem";
 
 function OrdersHistory() {
-  const userData = useSelector((state) => state.Auth.user);
-  const email = userData.replace(/"/g, "");
+  
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   const {
@@ -21,7 +19,7 @@ function OrdersHistory() {
     page,
     rowsPerPage,
     count,
-  } = useUserOrders({ email });
+  } = useUserOrders();
 
   if (isError) {
     return <Error />;

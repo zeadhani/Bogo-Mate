@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import CustomProfileContainer from "../../components/UI/Global/profileDrawer/CustomProfileContainer";
-import { useSelector } from "react-redux";
 import useUserPref from "../../hooks/user/useUserPref";
 import { Box, LinearProgress } from "@mui/material";
 import PrefItem from "../../components/UI/Global/Register/PrefItem";
@@ -11,10 +10,7 @@ import { toast } from "react-toastify";
 import authFetch from "../../service/interceptors";
 
 function ChangePref() {
-  const data = useSelector((state) => state.Auth.user);
-  const email = data.replace(/"/g, "");
   const [loading, setLoading] = useState(false);
-
   const {
     allPref,
     isError,
@@ -23,7 +19,7 @@ function ChangePref() {
     dirty,
     addItem,
     updateOldPref,
-  } = useUserPref({ email });
+  } = useUserPref();
 
   const handleSubmit = async () => {
     if (!dirty) {
@@ -32,7 +28,7 @@ function ChangePref() {
     setLoading(true);
     try {
       await authFetch.patch(
-        `${process.env.REACT_APP_API_URL}/user/editprefweb/${email}`,
+        `${process.env.REACT_APP_API_URL}/user/editprefweb/pref`,
         {
           preferences: userNewPrefData,
         }

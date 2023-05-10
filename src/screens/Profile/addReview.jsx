@@ -15,7 +15,6 @@ import LoadingData from "../../components/UI/Global/LoadingData";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useState } from "react";
 import FormButton from "../../components/Forms/FormButton";
-import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import authFetch from "../../service/interceptors";
 
@@ -27,8 +26,7 @@ function AddReview() {
   const [reviewError, setReviewError] = useState(false);
   const [ratingError, setRatingError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const data = useSelector((state) => state.Auth.user);
-  const email = data.replace(/"/g, "");
+
   const navigate = useNavigate();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const handleRatingChange = (event, newValue) => {
@@ -58,7 +56,6 @@ function AddReview() {
       await authFetch.post(`/review/${order.Product.name}`, {
         rating: Number(rating),
         comment: review,
-        email,
       });
       setIsSubmitted(true);
       setTimeout(() => {

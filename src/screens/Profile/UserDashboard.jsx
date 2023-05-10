@@ -10,15 +10,13 @@ import {
 } from "@mui/icons-material";
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import useDahboardData from "../../hooks/user/useDahboardData";
-import { useSelector } from "react-redux";
 import Error from "../../components/UI/Global/Error";
 import LoadingData from "../../components/UI/Global/LoadingData";
 
 function UserDashboard() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const data = useSelector((state) => state.Auth.user);
-  const email = data.replace(/"/g, "");
+
   const {
     currentRequests,
     favoriteBrand,
@@ -27,7 +25,7 @@ function UserDashboard() {
     moneySpent,
     totalOrders,
     totalReviews,
-  } = useDahboardData({ email });
+  } = useDahboardData();
 
   if (isError) {
     return <Error />;

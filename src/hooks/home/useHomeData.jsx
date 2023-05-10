@@ -1,11 +1,11 @@
 import { useQuery } from "react-query";
 import authFetch from "../../service/interceptors";
 
-function useHomeData({ email }) {
+function useHomeData() {
   return useQuery(
-    ["landingpageData", email],
+    ["landingpageData"],
     async () => {
-      const { data } = await authFetch.get(`/landingPage/${email}`);
+      const { data } = await authFetch.get(`/landingPage`);
       return data;
     },
     // { staleTime: 2 * 60 * 1000 }
