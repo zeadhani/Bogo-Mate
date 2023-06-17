@@ -52,6 +52,7 @@ body,
   min-width: 0;
   padding-left: var(--slide-spacing);
   position: relative;
+  max-height: 200px;
 }
 .embla__slide__img {
   display: block;
