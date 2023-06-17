@@ -9,8 +9,8 @@ import {
 import React from "react";
 import DropDownMenu from "../../UI/Global/DropDownMenu";
 import { useSelector } from "react-redux";
-
-
+import { useDispatch } from "react-redux";
+import { profileActions } from "../../../store/profileDrawerSlice";
 function ProfileIcon() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const useData = useSelector((state) => state.Auth.user);
@@ -22,10 +22,27 @@ function ProfileIcon() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+ 
+  const dispatch = useDispatch();
+
+  const openDrawer = (event) => {
+    if (
+      event &&
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+    dispatch(profileActions.open());
+  };
+  function openDrawerAndCloseMenu(){
+    handleCloseUserMenu()
+    openDrawer()
+  }
   return (
     <Box sx={{ flexGrow: 0, ml: 3 }}>
       <Tooltip title="Open settings">
-        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
           <Avatar alt={email} src="/static/images/avatar/2.jpg" />
         </IconButton>
       </Tooltip>
@@ -33,7 +50,7 @@ function ProfileIcon() {
         anchorEl={anchorElUser}
         handleCloseMenu={handleCloseUserMenu}
       >
-        <MenuItem onClick={handleCloseUserMenu}>
+        <MenuItem onClick={openDrawerAndCloseMenu} >
           <Typography textAlign="center">Profile</Typography>
         </MenuItem>
 

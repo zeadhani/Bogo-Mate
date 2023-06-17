@@ -16,5 +16,5 @@ const profileSlice = createSlice({
     },
   },
 });
-export default profileSlice;
+export default profileSlice; 
 export const profileActions = profileSlice.actions;
