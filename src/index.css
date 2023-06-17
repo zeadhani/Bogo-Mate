@@ -46,6 +46,7 @@ body,
   height: auto;
   margin-left: calc(var(--slide-spacing) * -1);
 }
+
 .embla__slide {
   flex: 0 0 var(--slide-size);
   min-width: 0;
@@ -72,7 +73,6 @@ body,
   /* --slide-height: 19rem; */
   --slide-height: 14rem;
   padding: 1rem 1.6rem;
-
 }
 .embla__viewport2 {
   overflow: hidden;
@@ -213,7 +213,6 @@ body,
   font-size: 16px;
 }
 
-
 .custom-textfield .MuiInputBase-root::before {
   /* Set border-bottom to none */
   border-bottom: none;
@@ -231,7 +230,6 @@ body,
   border-bottom: none;
 }
 
-
-.MuiAutocomplete-endAdornment{
+.MuiAutocomplete-endAdornment {
   display: none;
 }

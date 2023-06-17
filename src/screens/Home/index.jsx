@@ -26,8 +26,8 @@ function HomePage() {
   }
   return (
     <CustomContainer>
-      {matches && <SmallHero />}
-      {!matches && <Hero />}
+      {matches && <SmallHero  homeSliders={data?.homeSliders}/>}
+      {!matches && <Hero homeSliders={data?.homeSliders}/>}
       {/* <MidLevelIcons /> */}
       <ProductCarousel
         matches={matches}

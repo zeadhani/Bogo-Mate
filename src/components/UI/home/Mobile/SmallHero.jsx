@@ -3,7 +3,7 @@ import React from "react";
 import Carousel from "./Carousel";
 import { motion } from "framer-motion";
 
-function SmallHero() {
+function SmallHero({ homeSliders }) {
   return (
     <>
       <Typography variant="h6" fontWeight={700} textTransform={"uppercase"}>
@@ -14,9 +14,9 @@ function SmallHero() {
         component={motion.div}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{duration:0.5}}
+        transition={{ duration: 0.5 }}
       >
-        <Carousel />
+        <Carousel homeSliders={homeSliders} />
       </Box>
     </>
   );
