@@ -51,7 +51,7 @@ function ProductItem({ product, matches }) {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              background: "rgba(0, 0, 0, 0.9)",
+              background: "rgba(0, 0, 0, 0.8)",
               borderRadius: "5px",
               color: "#fff",
               fontSize: "14px",
