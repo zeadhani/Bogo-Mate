@@ -20,12 +20,12 @@ function HocDescription({
   offerId,
   handleClose,
   handleOpen,
-  incrementCompletedRequests
+  incrementCompletedRequests,
 }) {
   const [attributeInStock, setAttributeInStock] = useState();
   const [attributeId, setAttributeId] = useState(null);
-  const useData = useSelector((state) => state.Auth.user);
-  const email = useData.replace(/"/g, "");
+  // const useData = useSelector((state) => state.Auth.user);
+  // const email = useData.replace(/"/g, "");
   const handleAttributeInStock = (value) => {
     setAttributeInStock(value);
   };
@@ -34,9 +34,10 @@ function HocDescription({
     if (text === "Join pool") {
       handleOpen();
       try {
-        const user = await authFetch.get(`/user/${email}`);
-        if (!user.data) return;
-        let data = { offerId, userId: user.data.id, productId: id };
+        // const user = await authFetch.get(`/user/${email}`);
+        // if (!user.data) return;
+        // let data = { offerId, userId: user.data.id, productId: id };
+        let data = { offerId, productId: id };
         if (Boolean(hasAttributes)) {
           data["productItemsId"] = attributeId;
         }
@@ -44,7 +45,7 @@ function HocDescription({
         const req = await authFetch.post("/request", data);
         if (req.status === 200) {
           socket.emit("add_request", { message: offerId });
-          incrementCompletedRequests()
+          incrementCompletedRequests();
           handleClose();
           toast.success("Pool Joined");
           return;
