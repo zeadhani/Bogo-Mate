@@ -3,13 +3,14 @@ import React from "react";
 import { colors } from "../../../../../Theme";
 
 function AttributeItem({ attribute, attributeData, onSelect, selectedValue }) {
+  const attributeSet = new Set([...attributeData]);
   return (
     <Box my={1}>
       <Typography variant="h5" my={1}>
         {attribute}
       </Typography>
       <Box display={"flex"} flexWrap={"wrap"} gap={0.5}>
-        {attributeData?.map((item, index) => {
+        {[...attributeSet]?.map((item, index) => {
           const selected = item === selectedValue;
           return (
             <Button
