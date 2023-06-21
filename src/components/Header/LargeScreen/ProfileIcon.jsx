@@ -11,6 +11,8 @@ import DropDownMenu from "../../UI/Global/DropDownMenu";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { profileActions } from "../../../store/profileDrawerSlice";
+import { useNavigate } from "react-router-dom";
+import { authActions } from "../../../store/AuthSlice";
 function ProfileIcon() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const useData = useSelector((state) => state.Auth.user);
@@ -22,9 +24,10 @@ function ProfileIcon() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
- 
+
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
   const openDrawer = (event) => {
     if (
       event &&
@@ -35,14 +38,19 @@ function ProfileIcon() {
     }
     dispatch(profileActions.open());
   };
-  function openDrawerAndCloseMenu(){
-    handleCloseUserMenu()
-    openDrawer()
+  function openDrawerAndCloseMenu() {
+    handleCloseUserMenu();
+    openDrawer();
   }
+  const handleLogout = () => {
+    handleCloseUserMenu();
+    dispatch(authActions.Logout());
+    navigate("/Auth/Login");
+  };
   return (
     <Box sx={{ flexGrow: 0, ml: 3 }}>
       <Tooltip title="Open settings">
-        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
+        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
           <Avatar alt={email} src="/static/images/avatar/2.jpg" />
         </IconButton>
       </Tooltip>
@@ -50,11 +58,11 @@ function ProfileIcon() {
         anchorEl={anchorElUser}
         handleCloseMenu={handleCloseUserMenu}
       >
-        <MenuItem onClick={openDrawerAndCloseMenu} >
+        <MenuItem onClick={openDrawerAndCloseMenu}>
           <Typography textAlign="center">Profile</Typography>
         </MenuItem>
 
-        <MenuItem onClick={handleCloseUserMenu}>
+        <MenuItem onClick={handleLogout}>
           <Typography textAlign="center">Logout</Typography>
         </MenuItem>
       </DropDownMenu>
